@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=
+comment0.target=java.lang.String\ getEmail()
+comment1.params=
+comment1.target=java.lang.String\ getNome()
+comment2.params=
+comment2.target=java.lang.String\ getPassword()
+comment3.params=
+comment3.target=java.lang.String\ getMorada()
+comment4.params=
+comment4.target=java.lang.String\ getDataNascimento()
+comment5.params=email\ nome\ password\ morada\ datanascimento
+comment5.target=Utilizador(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+comment5.text=\ \ \r\n\ \ public\ Utilizador()\ {\r\n\ \ \ \ email\ \=\ new\ String();\r\n\ \ \ \ nome\ \=\ new\ String();\r\n\ \ \ \ password\ \=\ new\ String();\r\n\ \ \ \ morada\ \=\ new\ String();\r\n\ \ \ \ datanascimento\ \=\ new\ String();\r\n\ \ }\r\n
+comment6.params=
+comment6.target=void\ Login()
+numComments=7
