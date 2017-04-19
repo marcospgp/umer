@@ -1,8 +1,4 @@
 #BlueJ class context
-comment0.params=
-comment0.target=Cliente()
-comment0.text=\r\n\ COnstrutor\ para\ objetos\ da\ classe\ Cliente\r\n
-comment1.params=y
-comment1.target=int\ sampleMethod(int)
-comment1.text=\r\n\ Exemplo\ de\ m\u00E9todo\ -\ substitua\ este\ coment\u00E1rio\ pelo\ seu\ pr\u00F3prio\r\n\ \r\n\ @param\ \ y\ \ \ exemplo\ de\ um\ par\u00E2metro\ de\ m\u00E9todo\r\n\ @return\ \ \ \ \ a\ soma\ de\ x\ com\ y\ \r\n
-numComments=2
+comment0.params=newEmail\ newNome\ newPassword\ newMorada\ newDataNascimento
+comment0.target=Cliente(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+numComments=1
