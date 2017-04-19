@@ -2,17 +2,17 @@ import java.util.Scanner;
 public class Utilizador
 {
   private String email;
-  private String nome;
+  private String name;
   private String password;
   private String morada;
-  private String datanascimento;
+  private String data;
 
   public String getEmail () {
         return this.email;
   }
     
-  public String getNome (){
-        return this.nome;
+  public String getName (){
+        return this.name;
   }
     
   public String getPassword () {
@@ -24,24 +24,15 @@ public class Utilizador
   }
    
   public String getDataNascimento () {
-        return this.datanascimento;
+        return this.data;
   }
-  /*  
-  public Utilizador() {
-    email = new String();
-    nome = new String();
-    password = new String();
-    morada = new String();
-    datanascimento = new String();
-  }
-  */
   
-  public Utilizador(String email, String nome, String password, String morada, String datanascimento) {
-		this.email = email;
-        this.nome = nome;
-		this.password = password;
-		this.morada = morada;
-		this.datanascimento = datanascimento;
+  public Utilizador(String newEmail, String newNome, String newPassword, String newMorada, String newDataNascimento) {
+		this.email = newEmail;
+        this.name = newNome;
+		this.password = newPassword;
+		this.morada = newMorada;
+		this.data = newDataNascimento;
 	}
 
   public void Login() {
