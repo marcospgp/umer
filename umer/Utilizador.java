@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Utilizador
 {
   private String email;
-  private String name;
+  private String nome;
   private String password;
   private String morada;
   private String data;
@@ -12,8 +12,8 @@ public class Utilizador
         return this.email;
   } 
   
-  public String getName (){
-        return this.name;
+  public String getNome (){
+        return this.nome;
   }
  
   public String getPassword () {
@@ -28,10 +28,10 @@ public class Utilizador
         return this.data;
   }
   
-  //construtor dos objetos
+  // construtor dos objetos
   public Utilizador(String newEmail, String newNome, String newPassword, String newMorada, String newDataNascimento) {
 		this.email = newEmail;
-        this.name = newNome;
+        this.nome = newNome;
 		this.password = newPassword;
 		this.morada = newMorada;
 		this.data = newDataNascimento;
