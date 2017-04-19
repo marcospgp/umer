@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Utilizador
 {
   private String email;
@@ -9,12 +10,12 @@ public class Utilizador
 
   public String getEmail () {
         return this.email;
-  }
-    
+  } 
+  
   public String getName (){
         return this.name;
   }
-    
+ 
   public String getPassword () {
         return this.password;
   }
@@ -27,6 +28,7 @@ public class Utilizador
         return this.data;
   }
   
+  //construtor dos objetos
   public Utilizador(String newEmail, String newNome, String newPassword, String newMorada, String newDataNascimento) {
 		this.email = newEmail;
         this.name = newNome;
@@ -34,6 +36,7 @@ public class Utilizador
 		this.morada = newMorada;
 		this.data = newDataNascimento;
 	}
+  
 
   public void Login() {
     Scanner teclado = new Scanner (System.in);
