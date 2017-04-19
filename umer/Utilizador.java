@@ -40,7 +40,10 @@ public class Utilizador
 
   public void Login() {
     Scanner teclado = new Scanner (System.in);
+    System.out.println("Login:");
+    System.out.println("Username/Email: ");
     String inputuser = teclado.nextLine();
+    System.out.println("Password: ");
     String inputpass = teclado.nextLine();
 
     if (inputuser.equals(email) && inputpass.equals(password)) {
