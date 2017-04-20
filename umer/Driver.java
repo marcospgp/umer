@@ -1,4 +1,4 @@
-public class Driver extends Utilizador{
+public class Driver extends User{
     
     public Driver(String newEmail, String newName, String newPassword, String newAddress, String newBirthdate) {
 		this.email = newEmail;
