@@ -1,8 +1,13 @@
 
-public class Cliente extends Utilizador{
+public class Client extends User{
     
-	public Cliente(String newEmail, String newNome, String newPassword, String newMorada, String newDataNascimento){
-		          super(newEmail, newNome, newPassword, newMorada, newDataNascimento);
+	 // construtor dos objetos
+  public Client(String newEmail, String newName, String newPassword, String newAddress, String newBirthdate) {
+		this.email = newEmail;
+        this.name = newName;
+		this.password = newPassword;
+		this.address = newAddress;
+		this.birthdate = newBirthdate;
 	}
 	public String historicodeviagens;
 	// O cliente está sempre numa determinada localização (expressa em x e y, isto é, num espaço 2D) e 

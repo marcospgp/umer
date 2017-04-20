@@ -1,4 +1,0 @@
-#BlueJ class context
-comment0.params=newEmail\ newNome\ newPassword\ newMorada\ newDataNascimento
-comment0.target=Motorista(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
-numComments=1

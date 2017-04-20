@@ -1,41 +1,32 @@
 import java.util.Scanner;
 
-public class Utilizador
+public abstract class User
 {
-  private String email;
-  private String nome;
-  private String password;
-  private String morada;
-  private String data;
+  protected String email;
+  protected String name;
+  protected String password;
+  protected String address;
+  protected String birthdate;
 
   public String getEmail () {
         return this.email;
   } 
   
-  public String getNome (){
-        return this.nome;
+  public String getName (){
+        return this.name;
   }
  
   public String getPassword () {
         return this.password;
   }
     
-  public String getMorada () {
-        return this.morada;
+  public String getAddress () {
+        return this.address;
   }
    
-  public String getDataNascimento () {
-        return this.data;
+  public String getBirthdate () {
+        return this.birthdate;
   }
-  
-  // construtor dos objetos
-  public Utilizador(String newEmail, String newNome, String newPassword, String newMorada, String newDataNascimento) {
-		this.email = newEmail;
-        this.nome = newNome;
-		this.password = newPassword;
-		this.morada = newMorada;
-		this.data = newDataNascimento;
-	}
   
 
   public void Login() {

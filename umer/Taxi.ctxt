@@ -1,10 +1,10 @@
 #BlueJ class context
 comment0.params=
-comment0.target=int\ getVelocidadeMedia()
+comment0.target=int\ getVelocity()
 comment1.params=
-comment1.target=int\ getPrecobase()
+comment1.target=int\ getPrice()
 comment2.params=
-comment2.target=int\ getFiabilidade()
-comment3.params=newVelmedia\ newPrecobase\ newFiabilidade
+comment2.target=int\ getReliability()
+comment3.params=newVelocity\ newPrice\ newReliability
 comment3.target=Taxi(int,\ int,\ int)
 numComments=4

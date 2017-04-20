@@ -1,0 +1,4 @@
+#BlueJ class context
+comment0.params=newEmail\ newName\ newPassword\ newAddress\ newBirthdate
+comment0.target=Client(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+numComments=1
