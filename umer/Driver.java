@@ -8,7 +8,7 @@ public class Driver extends User{
 		this.birthdate = newBirthdate;
 	}
     // grau de cumprimento de horário estabelecido com o cliente, dado por um factor entre 0 e 100
-    public int cumprimento;
+    public int fulfillment;
     // classificação do motorista, dado numa escala de 0 a 100, calculada com base na classificação dada pelo cliente no final da viagem;
     public int rating;
     // historico de viagens array?
