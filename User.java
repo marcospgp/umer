@@ -27,9 +27,8 @@ public abstract class User
   public String getBirthdate () {
         return this.birthdate;
   }
-  
 
-  public void Login() {
+  public void login() {
     Scanner teclado = new Scanner (System.in);
     System.out.println("Login:");
     System.out.println("Username/Email: ");
