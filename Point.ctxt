@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=x\ y
+comment0.target=Point(java.lang.Number,\ java.lang.Number)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Point\r\n
+comment1.params=
+comment1.target=java.lang.Number\ getX()
+comment1.text=\r\n\ Returns\ the\ X\ coordinate\ of\ the\ point\r\n\r\n\ @return\ \ \ \ \ the\ x\ coordinate\r\n
+comment2.params=
+comment2.target=java.lang.Number\ getY()
+comment2.text=\r\n\ Returns\ the\ Y\ coordinate\ of\ the\ point\r\n\r\n\ @return\ \ \ \ \ the\ y\ coordinate\r\n
+comment3.params=x
+comment3.target=void\ setX(java.lang.Number)
+comment3.text=\r\n\ Sets\ the\ X\ coordinate\ of\ the\ point\r\n\r\n\ @return\ \ \ \ \ the\ x\ coordinate\r\n
+comment4.params=y
+comment4.target=void\ setY(java.lang.Number)
+comment4.text=\r\n\ Sets\ the\ Y\ coordinate\ of\ the\ point\r\n\r\n\ @return\ \ \ \ \ the\ y\ coordinate\r\n
+comment5.params=b
+comment5.target=double\ distanceTo(Point)
+comment5.text=\r\n\ Returns\ the\ distance\ from\ this\ point\ to\ another\r\n\ The\ double\ value\ of\ both\ points\ is\ used\ for\ the\ calculation.\r\n\r\n\ @param\ \ b\ \ \ point\ to\ calculate\ the\ distance\ to\r\n\ @return\ \ \ \ \ the\ distance\ between\ this\ point\ and\ point\ b\r\n
+numComments=6
