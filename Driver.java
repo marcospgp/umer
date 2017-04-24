@@ -1,12 +1,13 @@
 public class Driver extends User {
 
-    // grau de cumprimento de horário estabelecido com o cliente, dado por um factor entre 0 e 100
+    // Grau de cumprimento de horário estabelecido com o cliente, dado por um factor entre 0 e 100
     private double fulfillment;
 
-    // classificação do motorista, dado numa escala de 0 a 100, calculada com base na classificação dada pelo cliente no final de cada viagem
+    // Classificação do motorista, dado numa escala de 0 a 100,
+    // calculada com base na classificação dada pelo cliente no final de cada viagem
     private double rating;
 
-    // total de kms feitos na empresa
+    // Total de kms feitos na empresa
     private int kms;
 
     // Se o motorista se encontra disponível

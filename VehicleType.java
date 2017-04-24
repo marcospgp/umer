@@ -10,26 +10,28 @@ public enum VehicleType {
     private final double avgSpeed; // Average speed in km/h
     private final double pricePerKm; // Price per km in euros
 
-	// Value from 0-100 that represents the vehicle type's
-	// capacity to fulfill the estimated trip time
+    // Value from 0-100 that represents the vehicle type's
+    // capacity to fulfill the estimated trip time
     private final double reliability;
 
     /**
      * Constructor for VehicleType enums
      */
     VehicleType(double avgSpeed, double pricePerKm, double reliability) {
-    	this.avgSpeed = avgSpeed;
-    	this.pricePerKm = pricePerKm;
-    	this.reliability = reliability;
+        this.avgSpeed = avgSpeed;
+        this.pricePerKm = pricePerKm;
+        this.reliability = reliability;
     }
 
     public double getAvgSpeed() {
-    	return this.avgSpeed;
+        return this.avgSpeed;
     }
+
     public double getPricePerKm() {
-    	return this.pricePerKm;
+        return this.pricePerKm;
     }
+
     public double getReliability() {
-    	return this.reliability;
+        return this.reliability;
     }
 }
