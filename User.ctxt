@@ -10,5 +10,5 @@ comment3.target=java.lang.String\ getAddress()
 comment4.params=
 comment4.target=java.lang.String\ getBirthdate()
 comment5.params=
-comment5.target=void\ Login()
+comment5.target=void\ login()
 numComments=6

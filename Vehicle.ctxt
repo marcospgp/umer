@@ -1,10 +1,17 @@
 #BlueJ class context
-comment0.params=
-comment0.target=int\ getVelocity()
+comment0.params=newPosX\ newPosY
+comment0.target=Vehicle(double,\ double)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Vehicle\r\n
 comment1.params=
-comment1.target=int\ getPrice()
+comment1.target=VehicleType\ getType()
 comment2.params=
-comment2.target=int\ getReliability()
-comment3.params=newVelocity\ newPrice\ newReliability
-comment3.target=Taxi(int,\ int,\ int)
-numComments=4
+comment2.target=Driver\ getCurrentDriver()
+comment3.params=
+comment3.target=Point\ getPosition()
+comment4.params=
+comment4.target=double\ getAvgSpeed()
+comment5.params=
+comment5.target=double\ getPricePerKm()
+comment6.params=
+comment6.target=double\ getReliability()
+numComments=7

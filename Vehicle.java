@@ -23,15 +23,15 @@ public class Vehicle {
         return this.position;
     }
 
-    public int getAvgSpeed() {
+    public double getAvgSpeed() {
         return this.type.getAvgSpeed();
     }
 
-    public int getPricePerKm() {
+    public double getPricePerKm() {
         return this.type.getPricePerKm();
     }
 
-    public int getReliability() {
+    public double getReliability() {
         return this.type.getReliability();
     }
 }
