@@ -10,12 +10,20 @@ public class Point <T extends Number> {
     private T x;
     private T y;
 
-    /**
-     * Constructor for objects of class Point
+    /*
+     * Main constructor for objects of class Point
      */
     public Point(T x, T y) {
         this.x = x;
         this.y = y;
+    }
+
+    public Point(Point p) {
+        this(p.getX(), p.getY());
+    }
+
+    public Point() {
+        throw new java.lang.Error("Cannot instantiate new point without providing initial coordinates.");
     }
 
     /**
