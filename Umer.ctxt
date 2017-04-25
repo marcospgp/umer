@@ -1,11 +1,9 @@
 #BlueJ class context
-comment0.target=Umer
-comment0.text=\r\n\ O\ Umer\ \u00E9\ um\ programa\ que\ permite\ efetuar\ a\ ger\u00EAncia\ de\ viagens\ entre\ clientes\ e\ motoristas.\r\n\ Esta\ \u00E9\ a\ classe\ principal\ que\ gere\ o\ programa.\r\n\r\n\ @author\ Marcos\ Pereira,\ S\u00E9rgio\ Oliveira,\ V\u00EDtor\ Castro\r\n\ @version\ 0.1\r\n\ @since\ 2017-04-23\r\n
-comment1.params=
-comment1.target=Umer()
-comment2.params=y
-comment2.target=int\ sampleMethod(int)
-comment2.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\r\n\ @param\ \ y\ \ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ \ the\ sum\ of\ x\ and\ y\r\n
-comment3.params=args
-comment3.target=void\ main(java.lang.String[])
-numComments=4
+comment0.params=
+comment0.target=Umer()
+comment1.params=y
+comment1.target=int\ sampleMethod(int)
+comment1.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\r\n\ @param\ \ y\ \ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ \ the\ sum\ of\ x\ and\ y\r\n
+comment2.params=args
+comment2.target=void\ main(java.lang.String[])
+numComments=3

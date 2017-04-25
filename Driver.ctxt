@@ -1,6 +1,5 @@
 #BlueJ class context
-comment0.target=Driver
-comment1.params=newEmail\ newName\ newPassword\ newAddress\ newBirthdate\ newFulfillment\ newRating\ newKms\ newAvailable
-comment1.target=Driver(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ double,\ double,\ int,\ boolean)
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Driver\r\n
-numComments=2
+comment0.params=newEmail\ newName\ newPassword\ newAddress\ newBirthdate\ newFulfillment\ newRating\ newKms\ newAvailable
+comment0.target=Driver(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ double,\ double,\ int,\ boolean)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Driver\r\n
+numComments=1
