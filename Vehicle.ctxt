@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Vehicle
-comment1.params=newPosX\ newPosY
-comment1.target=Vehicle(double,\ double)
+comment1.params=newPosX\ newPosY\ type\ newDriver
+comment1.target=Vehicle(double,\ double,\ VehicleType,\ Driver)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Vehicle\r\n
 comment2.params=
 comment2.target=VehicleType\ getType()

@@ -1,14 +1,16 @@
 public class Vehicle {
 
+    private Point position;
     private VehicleType type;
     private Driver currentDriver;
-    private Point position;
 
     /**
      * Constructor for objects of class Vehicle
      */
-    public Vehicle(double newPosX, double newPosY) {
+    public Vehicle(double newPosX, double newPosY, VehicleType type, Driver newDriver) {
         this.position = new Point<Double>(newPosX, newPosY);
+        this.type = type;
+        this.currentDriver = newDriver;
     }
 
     public VehicleType getType() {
