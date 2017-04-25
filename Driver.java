@@ -16,15 +16,15 @@ public class Driver extends User {
     /**
      * Constructor for objects of class Driver
      */
-    public Driver(String newEmail, String newName, String newPassword, String newAddress, String newBirthdate, double newFulfillment, double newRating, int newKms, boolean newAvailable) {
+    public Driver(String newEmail, String newName, String newPassword, String newAddress, String newBirthdate) {
         this.email = newEmail;
         this.name = newName;
         this.password = newPassword;
         this.address = newAddress;
         this.birthdate = newBirthdate;
-        this.fulfillment = newFulfillment;
-        this.rating = newRating;
-        this.kms = newKms;
-        this.available = newAvailable;
+        this.fulfillment = (double) 100;
+        this.rating = (double) 100;
+        this.kms = (double) 0;
+        this.available = false;
     }
 }

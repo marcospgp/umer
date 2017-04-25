@@ -8,6 +8,7 @@ dependency2.type=UsesDependency
 dependency3.from=Vehicle
 dependency3.to=Point
 dependency3.type=UsesDependency
+<<<<<<< HEAD
 dependency4.from=FileSerialization
 dependency4.to=Client
 dependency4.type=UsesDependency
@@ -22,17 +23,41 @@ package.editor.x=-8
 package.editor.y=-8
 package.numDependencies=5
 package.numTargets=9
+=======
+dependency4.from=Umer
+dependency4.to=VehicleType
+dependency4.type=UsesDependency
+dependency5.from=Umer
+dependency5.to=Driver
+dependency5.type=UsesDependency
+dependency6.from=Umer
+dependency6.to=Vehicle
+dependency6.type=UsesDependency
+editor.fx.0.height=739
+editor.fx.0.width=816
+editor.fx.0.x=552
+editor.fx.0.y=100
+objectbench.height=301
+objectbench.width=1896
+package.divider.horizontal=0.6
+package.divider.vertical=0.6778242677824268
+package.editor.height=641
+package.editor.width=1779
+package.editor.x=-135
+package.editor.y=100
+package.frame.height=1056
+package.frame.width=1936
+package.numDependencies=6
+package.numTargets=7
+>>>>>>> origin/master
 package.showExtends=true
 package.showUses=true
 project.charset=UTF-8
-readme.editor.height=700
-readme.editor.width=900
-readme.editor.x=0
-readme.editor.y=0
-target1.editor.height=700
-target1.editor.width=900
-target1.editor.x=32
-target1.editor.y=12
+readme.height=58
+readme.name=@README
+readme.width=47
+readme.x=10
+readme.y=10
 target1.height=50
 target1.name=Vehicle
 target1.naviview.expanded=false
@@ -40,12 +65,17 @@ target1.showInterface=false
 target1.type=ClassTarget
 target1.typeParameters=
 target1.width=80
+<<<<<<< HEAD
 target1.x=220
 target1.y=140
 target2.editor.height=700
 target2.editor.width=900
 target2.editor.x=32
 target2.editor.y=12
+=======
+target1.x=390
+target1.y=190
+>>>>>>> origin/master
 target2.height=50
 target2.name=Client1
 target2.naviview.expanded=true
@@ -53,18 +83,24 @@ target2.showInterface=false
 target2.type=ClassTarget
 target2.typeParameters=
 target2.width=80
+<<<<<<< HEAD
 target2.x=860
 target2.y=400
 target3.editor.height=735
 target3.editor.width=697
 target3.editor.x=-7
 target3.editor.y=0
+=======
+target2.x=100
+target2.y=80
+>>>>>>> origin/master
 target3.height=50
 target3.name=User
 target3.naviview.expanded=true
 target3.showInterface=false
 target3.type=AbstractTarget
 target3.typeParameters=
+<<<<<<< HEAD
 target3.width=80
 target3.x=80
 target3.y=40
@@ -72,11 +108,17 @@ target4.editor.height=700
 target4.editor.width=900
 target4.editor.x=0
 target4.editor.y=0
+=======
+target3.width=90
+target3.x=530
+target3.y=110
+>>>>>>> origin/master
 target4.height=50
 target4.name=VehicleType
 target4.showInterface=false
 target4.type=EnumTarget
 target4.typeParameters=
+<<<<<<< HEAD
 target4.width=90
 target4.x=560
 target4.y=80
@@ -84,6 +126,11 @@ target5.editor.height=735
 target5.editor.width=697
 target5.editor.x=-7
 target5.editor.y=0
+=======
+target4.width=80
+target4.x=250
+target4.y=40
+>>>>>>> origin/master
 target5.height=50
 target5.name=Driver
 target5.naviview.expanded=true
@@ -91,12 +138,17 @@ target5.showInterface=false
 target5.type=ClassTarget
 target5.typeParameters=
 target5.width=80
+<<<<<<< HEAD
 target5.x=220
 target5.y=70
 target6.editor.height=700
 target6.editor.width=900
 target6.editor.x=32
 target6.editor.y=12
+=======
+target5.x=530
+target5.y=40
+>>>>>>> origin/master
 target6.height=50
 target6.name=Point
 target6.naviview.expanded=false
@@ -104,12 +156,17 @@ target6.showInterface=false
 target6.type=ClassTarget
 target6.typeParameters=<T>
 target6.width=80
+<<<<<<< HEAD
 target6.x=560
 target6.y=20
 target7.editor.height=735
 target7.editor.width=697
 target7.editor.x=333
 target7.editor.y=84
+=======
+target6.x=250
+target6.y=110
+>>>>>>> origin/master
 target7.height=50
 target7.name=Client
 target7.naviview.expanded=true
@@ -117,6 +174,7 @@ target7.showInterface=false
 target7.type=ClassTarget
 target7.typeParameters=
 target7.width=80
+<<<<<<< HEAD
 target7.x=220
 target7.y=10
 target8.editor.height=840
@@ -145,3 +203,7 @@ target9.typeParameters=
 target9.width=80
 target9.x=390
 target9.y=260
+=======
+target7.x=100
+target7.y=310
+>>>>>>> origin/master
