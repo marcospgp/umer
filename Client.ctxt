@@ -1,5 +1,6 @@
 #BlueJ class context
-comment0.params=newEmail\ newName\ newPassword\ newAddress\ newBirthdate\ newPosX\ newPosY
-comment0.target=Client(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ double,\ double)
-comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Client\r\n
-numComments=1
+comment0.target=Client
+comment1.params=newEmail\ newName\ newPassword\ newAddress\ newBirthdate\ newPosX\ newPosY
+comment1.target=Client(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ double,\ double)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Client\r\n
+numComments=2
