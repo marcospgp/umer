@@ -1,10 +1,6 @@
 #BlueJ class context
 comment0.target=Trip
 comment0.text=\r\n\ Classe\ que\ guarda\ informa\u00E7\u00E3o\ sobre\ uma\ viagem\ efetuada\ no\ programa.\r\n
-comment1.params=
-comment1.target=Trip()
-comment1.text=\r\n\ COnstrutor\ para\ objetos\ da\ classe\ Trip\r\n
-comment2.params=y
-comment2.target=int\ sampleMethod(int)
-comment2.text=\r\n\ Exemplo\ de\ m\u00E9todo\ -\ substitua\ este\ coment\u00E1rio\ pelo\ seu\ pr\u00F3prio\r\n\ \r\n\ @param\ \ y\ \ \ exemplo\ de\ um\ par\u00E2metro\ de\ m\u00E9todo\r\n\ @return\ \ \ \ \ a\ soma\ de\ x\ com\ y\ \r\n
-numComments=3
+comment1.params=vehicle\ driver\ origin\ destination\ estimatedDuration\ realDuration\ timeStarted\ cost
+comment1.target=Trip(Vehicle,\ Driver,\ Point,\ Point,\ double,\ double,\ double,\ double)
+numComments=2

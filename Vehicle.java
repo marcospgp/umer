@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Vehicle {
 
     private Point position;

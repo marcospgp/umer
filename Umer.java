@@ -49,7 +49,7 @@ public final class Umer {
      */
     private void createClient(String email, String name, String password, String address, String birthdate, double posX, double posY) {
 
-        Driver newClient = new Client(email, name, password, address, birthdate, posX, posY);
+        Client newClient = new Client(email, name, password, address, birthdate, posX, posY);
 
         this.clients.add(newClient);
     }

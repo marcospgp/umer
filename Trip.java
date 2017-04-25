@@ -1,4 +1,3 @@
-
 /**
  * Classe que guarda informação sobre uma viagem efetuada no programa.
  */
@@ -13,13 +12,13 @@ public class Trip {
     public double timeStarted;
     public double cost;
 
-    public Trip(Vehicle vehicle
-                Driver driver
-                Point origin
-                Point destination
-                double estimatedDuration
-                double realDuration
-                double timeStarted
+    public Trip(Vehicle vehicle,
+                Driver driver,
+                Point origin,
+                Point destination,
+                double estimatedDuration,
+                double realDuration,
+                double timeStarted,
                 double cost
     ) {
         this.vehicle = vehicle;

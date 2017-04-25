@@ -8,7 +8,7 @@ public class Driver extends User {
     private double rating;
 
     // Total de kms feitos na empresa
-    private int kms;
+    private double kms;
 
     // Se o motorista se encontra disponível
     private boolean available;
