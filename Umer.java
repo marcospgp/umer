@@ -10,8 +10,9 @@ import java.util.*;
  */
 public final class Umer {
 
-    private ArrayList vehicles = new ArrayList();
-    private ArrayList drivers = new ArrayList();
+    private ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
+    private ArrayList<Driver> drivers = new ArrayList<Driver>();
+    private ArrayList<Client> clients = new ArrayList<Client>();
 
     // Prevenir instanciação desta classe (googlar "java final class private constructor")
     private Umer() {
@@ -19,32 +20,42 @@ public final class Umer {
     }
 
     /**
-     * Creates a new vehicle
+     * Cria um novo veículo
      *
      * @param x         The initial x position of the vehicle
      * @param y         The initial y position of the vehicle
      * @param type      The vehicle type
      * @param newDriver (optional) The new vehicle's driver. Should be null if not needed.
      */
-    public void createVehicle(double x, double y, VehicleType type, Driver newDriver) {
+    private void createVehicle(double x, double y, VehicleType type, Driver newDriver) {
 
         Vehicle newVehicle = new Vehicle(x, y, type, newDriver);
+
+        this.vehicles.add(newVehicle);
     }
 
     /**
-     * Creates a new driver
+     * Cria um novo condutor
      */
-    public void createDriver(String email, String name, String password, String address, String birthdate) {
+    private void createDriver(String email, String name, String password, String address, String birthdate) {
 
         Driver newDriver = new Driver(email, name, password, address, birthdate);
+
+        this.drivers.add(newDriver);
     }
 
     /**
-     * Creates a new client
+     * Cria um novo cliente
      */
-    public void createClient(String email, String name, String password, String address, String birthdate, double posX, double posY) {
+    private void createClient(String email, String name, String password, String address, String birthdate, double posX, double posY) {
 
         Driver newClient = new Client(email, name, password, address, birthdate, posX, posY);
+
+        this.clients.add(newClient);
+    }
+
+    private void occupyVehicle(Vehicle theVehicle, Driver newDriver) {
+        theVehicle.setDriver(newDriver);
     }
 
     public static void main(String[] args) {

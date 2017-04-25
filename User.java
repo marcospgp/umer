@@ -6,6 +6,9 @@ public abstract class User {
     protected String address;
     protected String birthdate;
 
+    // Histórico de viagens
+    protected ArrayList<Trip> tripHistory = new ArrayList<Trip>();
+
     public String getEmail () {
         return this.email;
     }

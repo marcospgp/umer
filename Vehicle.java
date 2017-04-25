@@ -4,6 +4,9 @@ public class Vehicle {
     private VehicleType type;
     private Driver currentDriver;
 
+    // Histórico de viagens
+    private ArrayList<Trip> tripHistory = new ArrayList<Trip>();
+
     /**
      * Constructor for objects of class Vehicle
      */
@@ -17,8 +20,12 @@ public class Vehicle {
         return this.type;
     }
 
-    public Driver getCurrentDriver() {
+    public Driver getDriver() {
         return this.currentDriver;
+    }
+
+    public void setDriver(Driver newDriver) {
+        this.currentDriver = newDriver;
     }
 
     public Point getPosition() {

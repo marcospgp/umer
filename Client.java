@@ -1,6 +1,4 @@
-import java.io.Serializable;
-
-public class Client extends User implements Serializable{
+public class Client extends User {
 
     private double posX;
     private double posY;
@@ -16,19 +14,6 @@ public class Client extends User implements Serializable{
         this.birthdate = newBirthdate;
         this.posX = newPosX;
         this.posY = newPosY;
-    }
-    
-    public String getemail() {
-    return email;
-    }
-    public String getname() {
-    return name;
-    }
-    public String getpassword() {
-    return password;
-    }
-    public String getaddress() {
-    return address;
     }
 
 }
