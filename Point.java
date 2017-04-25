@@ -18,7 +18,7 @@ public class Point <T extends Number> {
         this.y = y;
     }
 
-    public Point(Point p) {
+    public Point(Point<T> p) {
         this(p.getX(), p.getY());
     }
 
