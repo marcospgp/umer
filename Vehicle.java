@@ -24,7 +24,7 @@ public class Vehicle {
         return this.position;
     }
 
-    public Point getIdentifier() {
+    public String getIdentifier() {
         return this.identifier;
     }
 

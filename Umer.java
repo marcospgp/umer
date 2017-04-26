@@ -10,13 +10,13 @@ import java.util.*;
  */
 public final class Umer {
 
-    private ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
-    private ArrayList<Driver> drivers = new ArrayList<Driver>();
-    private ArrayList<Client> clients = new ArrayList<Client>();
-    private ArrayList<Trip> tripHistory = new ArrayList<Trip>();
-    private ArrayList<Trip> tripsUnderway = new ArrayList<Trip>();
+    private static ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
+    private static ArrayList<Driver> drivers = new ArrayList<Driver>();
+    private static ArrayList<Client> clients = new ArrayList<Client>();
+    private static ArrayList<Trip> tripHistory = new ArrayList<Trip>();
+    private static ArrayList<Trip> tripsUnderway = new ArrayList<Trip>();
 
-    private User loggedAs;
+    private static User loggedAs;
 
     // Prevenir instanciação desta classe (googlar "java final class private constructor")
     private Umer() {
@@ -31,37 +31,43 @@ public final class Umer {
      * @param type      The vehicle type
      * @param newDriver (optional) The new vehicle's driver. Should be null if not needed.
      */
-    private void createVehicle(double x, double y, VehicleType type, Driver newDriver) {
+    private static Vehicle createVehicle(double x, double y, String identifier, VehicleType type, Driver newDriver) {
 
-        Vehicle newVehicle = new Vehicle(x, y, type, newDriver);
+        Vehicle newVehicle = new Vehicle(x, y, identifier, type, newDriver);
 
-        this.vehicles.add(newVehicle);
+        Umer.vehicles.add(newVehicle);
+
+        return newVehicle;
     }
 
     /**
      * Cria um novo condutor
      */
-    private void createDriver(String email, String name, String password, String address, String birthdate) {
+    private static Driver createDriver(String email, String name, String password, String address, String birthdate) {
 
         Driver newDriver = new Driver(email, name, password, address, birthdate);
 
-        this.drivers.add(newDriver);
+        Umer.drivers.add(newDriver);
+
+        return newDriver;
     }
 
     /**
      * Cria um novo cliente
      */
-    private void createClient(String email, String name, String password, String address, String birthdate, double posX, double posY) {
+    private static Client createClient(String email, String name, String password, String address, String birthdate, double posX, double posY) {
 
         Client newClient = new Client(email, name, password, address, birthdate, posX, posY);
 
-        this.clients.add(newClient);
+        Umer.clients.add(newClient);
+
+        return newClient;
     }
 
     /**
      * Ocupa um veículo com um dado condutor
      */
-    private void occupyVehicle(Vehicle theVehicle, Driver newDriver) {
+    private static void occupyVehicle(Vehicle theVehicle, Driver newDriver) {
         theVehicle.setDriver(newDriver);
     }
 
@@ -72,25 +78,25 @@ public final class Umer {
      * @param passord A password do utilizador
      * @return        True se o login foi bem sucedido, caso contrário é retornado false
      */
-    private boolean login(String email, String password) {
+    private static boolean login(String email, String password) {
 
         // Loopar pelos clientes
-        for (int i = 0; i < this.clients.size(); i++) {
+        for (int i = 0; i < Umer.clients.size(); i++) {
 
-            if (this.clients.get(i).getEmail().equals(email) && this.clients.get(i).getPassword().equals(password)) {
+            if (Umer.clients.get(i).getEmail().equals(email) && Umer.clients.get(i).getPassword().equals(password)) {
 
-                this.loggedAs = (User) this.clients.get(i);
+                Umer.loggedAs = (User) Umer.clients.get(i);
 
                 return true;
             }
         }
 
         // Loopar pelos condutores
-        for (int i = 0; i < this.drivers.size(); i++) {
+        for (int i = 0; i < Umer.drivers.size(); i++) {
 
-            if (this.drivers.get(i).getEmail().equals(email) && this.drivers.get(i).getPassword().equals(password)) {
+            if (Umer.drivers.get(i).getEmail().equals(email) && Umer.drivers.get(i).getPassword().equals(password)) {
 
-                this.loggedAs = (User) this.drivers.get(i);
+                Umer.loggedAs = (User) Umer.drivers.get(i);
 
                 return true;
             }
@@ -103,18 +109,20 @@ public final class Umer {
      * Retorna o veículo pronto a viajar mais próximo do utilizador
      * logado atualmente, apenas se o utilizador for um cliente
      */
-    private Vehicle getNearestReadyVehicle() {
+    private static Vehicle getNearestReadyVehicle() {
 
-        if (!this.loggedAs instanceof Client) {
+        if ( !(Umer.loggedAs instanceof Client) ) {
             throw new java.lang.Error("Tried to find nearest vehicle, but current user is not a client.");
         }
 
-        return this.loggedAs.getNearestReadyVehicle();
+        Client a = (Client) Umer.loggedAs;
+
+        return a.getNearestReadyVehicle(Umer.vehicles);
     }
 
     public static void main(String[] args) {
 
-        System.out.println("Starting test");
+       System.out.println("Starting test");
 
         System.out.println("Creating user vitor with password gay at (0.5, 0.324)");
 
@@ -122,11 +130,11 @@ public final class Umer {
 
         System.out.println("Creating driver sergio with password gay at (2,3)");
 
-        Driver sergio = createDriver("sergio@hotmail.com", "sergio", "gay", "casa", "couple weeks ago", (double) 2, (double) 3);
+        Driver sergio = createDriver("sergio@hotmail.com", "sergio", "gay", "casa", "couple weeks ago");
 
         System.out.println("Creating driver marcos with password forte at (4,2)");
 
-        Driver marcos = createDriver("marcos@hotmail.com", "marcos", "forte", "casa", "many a year ago", (double) 4, (double) 2);
+        Driver marcos = createDriver("marcos@hotmail.com", "marcos", "forte", "casa", "many a year ago");
 
         System.out.println("Setting driver marcos to available");
 
@@ -134,10 +142,10 @@ public final class Umer {
 
         System.out.println("Logging in as vitor with password gay");
 
-        this.login(vitor.getEmail(), vitor.getPassword());
+        Umer.login(vitor.getEmail(), vitor.getPassword());
 
         System.out.println("Finding nearest (ready to travel) vehicle to currently logged in user (vitor)");
 
-        Vehicle nearestVehicle = this.getNearestReadyVehicle();
+        Vehicle nearestVehicle = Umer.getNearestReadyVehicle();
     }
 }

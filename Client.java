@@ -1,6 +1,6 @@
-import java.io.Serializable;
+import java.util.*;
 
-public class Client extends User implements Serializable{
+public class Client extends User {
 
     private Point position;
 
@@ -37,14 +37,14 @@ public class Client extends User implements Serializable{
      */
     public Vehicle getNearestVehicle(ArrayList<Vehicle> vehicles) {
 
-        double closestDistanceSoFar = this.position.distanceTo(vehicles.get(0).position);
+        double closestDistanceSoFar = this.position.distanceTo(vehicles.get(0).getPosition());
         Vehicle closestVehicle = vehicles.get(0);
 
         double newDistance;
 
         for (int i = 1; i < vehicles.size(); i++) {
 
-            newDistance = this.position.distanceTo(vehicles.get(i).position);
+            newDistance = this.position.distanceTo(vehicles.get(i).getPosition());
 
             if (newDistance < closestDistanceSoFar) {
 
@@ -61,15 +61,15 @@ public class Client extends User implements Serializable{
      */
     public Vehicle getNearestReadyVehicle(ArrayList<Vehicle> vehicles) {
 
-        double closestDistanceSoFar = double.MAX_VALUE;
-        Vehicle closestVehicle;
+        double closestDistanceSoFar = Double.MAX_VALUE;
+        Vehicle closestVehicle = null;
 
         double newDistance;
         double currentDriver;
 
         for (int i = 0; i < vehicles.size(); i++) {
 
-            newDistance = this.position.distanceTo(vehicles.get(i).position);
+            newDistance = this.position.distanceTo(vehicles.get(i).getPosition());
 
             if (newDistance < closestDistanceSoFar  &&
                 vehicles.get(i).getDriver() != null &&
