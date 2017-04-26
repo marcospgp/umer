@@ -198,11 +198,13 @@ public final class Umer {
 
         Vehicle identifierVehicle = Umer.getSpecificVehicle("taxi primeiro");
 
-        System.out.println(identifierVehicle.getIdentifier()); // Dá "primeiro taxi"
+        System.out.println(identifierVehicle.getIdentifier()); // Dá "taxi primeiro"
         //
         System.out.println("Arranging trip to currently logged in user (vitor)");
 
-        Trip viagem = Umer.getTrip(double userposX, double userposY, double destX, double destY, String taxiID);
+        Trip viagem1 = Umer.getTrip(0.5, 0.7, 2.0, 2.0, ""); // Chama o mais proximo
+
+        Trip viagem2 = Umer.getTrip(0.5, 0.7, 2.0, 2.0, "taxi primeiro"); // Chama pelo ID
 
 
 

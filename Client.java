@@ -95,8 +95,8 @@ public class Client extends User {
     public Trip getTrip(ArrayList<Vehicle> vehicles, double userPosX, double userPosY, double destPosX, double destPosY, String taxiID) {
 
         Trip newTrip = null;;
-        Point<double> userPos = new Point(userPosX, userPosY);
-        Point<double> destPos = new Point(destPosX, destPosY);
+        Point userPos = new Point(userPosX, userPosY);
+        Point destPos = new Point(destPosX, destPosY);
         Vehicle tripVehicle = null;
         double distanceToClient = 0.0, distanceToDest = 0.0, totalDistance = 0.0;
         double timeToClient = 0.0, timeToDest = 0.0, totalTime = 0.0;
