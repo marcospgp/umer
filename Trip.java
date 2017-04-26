@@ -32,4 +32,14 @@ public class Trip {
         this.cost = cost;
         this.completed = false;
     }
+
+    /**
+     * Obtem uma viagem a pedido do cliente.
+     * @param posX -> posição X do cliente
+     * @param posY -> posição Y do cliente
+     * @param taxiID -> se for "" é porque quer o nearestVehicle, senão quer com ID especifico
+    */
+    public Trip getTrip(double posX, double posY, String taxiID) {
+
+    }
 }
