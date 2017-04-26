@@ -121,7 +121,7 @@ public final class Umer {
     }
 
     /**
-     * Retorna o veículo pronto a viajar mais próximo do utilizador
+     * Retorna o veículo com o ID específico ao utilizador
      * logado atualmente, apenas se o utilizador for um cliente
      */
     private static Vehicle getSpecificVehicle(String taxiIdentifier) {
@@ -133,6 +133,21 @@ public final class Umer {
         Client a = (Client) Umer.loggedAs;
 
         return a.getSpecificVehicle(Umer.vehicles, taxiIdentifier);
+    }
+
+    /**
+     * Retorna o veículo com o ID específico ao utilizador
+     * logado atualmente, apenas se o utilizador for um cliente
+     */
+    private static Trip getTrip(double userPosX, double userPosY, double destPosX, double destPosY, String taxiID) {
+
+        if ( !(Umer.loggedAs instanceof Client) ) {
+            throw new java.lang.Error("Tried to find a specific vehicle, but current user is not a client.");
+        }
+
+        Client a = (Client) Umer.loggedAs;
+
+        return a.getTrip(Umer.vehicles, userPosX, userPosY, destPosX, destPosY, taxiID);
     }
 
     public static void main(String[] args) {
@@ -181,13 +196,13 @@ public final class Umer {
         //-----------------------------------
         System.out.println("Finding vehicle with identifier to currently logged in user (vitor)");
 
-        Vehicle identifierVehicle = getSpecificVehicle("taxi primeiro");
+        Vehicle identifierVehicle = Umer.getSpecificVehicle("taxi primeiro");
 
         System.out.println(identifierVehicle.getIdentifier()); // Dá "primeiro taxi"
         //
         System.out.println("Arranging trip to currently logged in user (vitor)");
 
-        Trip viagem = getTrip(double posX, double posY, String taxiID);
+        Trip viagem = Umer.getTrip(double userposX, double userposY, double destX, double destY, String taxiID);
 
 
 

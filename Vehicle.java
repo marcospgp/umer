@@ -51,4 +51,8 @@ public class Vehicle {
     public double getReliability() {
         return this.type.getReliability();
     }
+
+    public double getTripTime(double distance) {
+        return (distance / this.type.getAvgSpeed());
+    }
 }

@@ -85,4 +85,44 @@ public class Client extends User {
 
         return idVehicle;
     }
+
+    /**
+     * Obtem uma viagem a pedido do cliente.
+     * @param userPosX -> posição X do cliente
+     * @param userPosY -> posição Y do cliente
+     * @param taxiID -> se for "" é porque quer o nearestVehicle, senão quer com ID especifico
+    */
+    public Trip getTrip(ArrayList<Vehicle> vehicles, double userPosX, double userPosY, double destPosX, double destPosY, String taxiID) {
+
+        Trip newTrip = null;;
+        Point<double> userPos = new Point(userPosX, userPosY);
+        Point<double> destPos = new Point(destPosX, destPosY);
+        Vehicle tripVehicle = null;
+        double distanceToClient = 0.0, distanceToDest = 0.0, totalDistance = 0.0;
+        double timeToClient = 0.0, timeToDest = 0.0, totalTime = 0.0;
+
+        // Para o caso de querer o taxi mais próximo
+        if (taxiID.equals("")) {
+            tripVehicle = this.getNearestReadyVehicle(vehicles);
+            distanceToClient = userPos.distanceTo(tripVehicle.getPosition());
+            distanceToDest = userPos.getPosition().distanceTo(destPos);
+            totalDistance = distanceToClient + distanceToDest;
+            timeToClient = tripVehicle.getTripTime(distanceToClient);
+            timeToDest = tripVehicle.getTripTime(distanceToDest);
+            totalTime = timeToClient + timeToDest;
+
+        }
+
+        // introduziu identificador para um taxi
+        else{
+            tripVehicle = this.getSpecificVehicle(vehicles, taxiID);
+            distanceToClient = userPos.distanceTo(tripVehicle.getPosition());
+            distanceToDest = userPos.getPosition().distanceTo(destPos);
+            totalDistance = distanceToClient + distanceToDest;
+            timeToClient = tripVehicle.getTripTime(distanceToClient);
+            timeToDest = tripVehicle.getTripTime(distanceToDest);
+            totalTime = timeToClient + timeToDest;
+        }
+
+    }
 }
