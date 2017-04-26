@@ -120,36 +120,74 @@ public final class Umer {
         return a.getNearestReadyVehicle(Umer.vehicles);
     }
 
+    /**
+     * Retorna o veículo pronto a viajar mais próximo do utilizador
+     * logado atualmente, apenas se o utilizador for um cliente
+     */
+    private static Vehicle getSpecificVehicle(String taxiIdentifier) {
+
+        if ( !(Umer.loggedAs instanceof Client) ) {
+            throw new java.lang.Error("Tried to find a specific vehicle, but current user is not a client.");
+        }
+
+        Client a = (Client) Umer.loggedAs;
+
+        return a.getSpecificVehicle(Umer.vehicles, taxiIdentifier);
+    }
+
     public static void main(String[] args) {
 
         int index = 0;
 
         System.out.println("Starting test");
-
+        //
         System.out.println("Creating user vitor with password gay at (0.5, 0.324)");
 
         Client vitor = createClient("vitor@hotmail.com", "vitor", "gay", "casa", "yesterday", (double) 0.5, (double) 0.324);
-
+        //-----------------------------------
         System.out.println("Creating driver sergio with password gay at (2,3)");
 
         Driver sergio = createDriver("sergio@hotmail.com", "sergio", "gay", "casa", "couple weeks ago");
-
+        //
         System.out.println("Creating driver marcos with password forte at (4,2)");
 
         Driver marcos = createDriver("marcos@hotmail.com", "marcos", "forte", "casa", "many a year ago");
-
+        //-----------------------------------
         System.out.println("Setting driver marcos to available");
 
         marcos.toggleAvailable();
-
+        //
         System.out.println("Logging in as vitor with password gay");
 
         Umer.login(vitor.getEmail(), vitor.getPassword());
-
+        //-----------------------------------
         System.out.println("Finding nearest (ready to travel) vehicle to currently logged in user (vitor)");
 
         Vehicle nearestVehicle = Umer.getNearestReadyVehicle();
 
+        System.out.println(nearestVehicle); // Dá null porque ainda não há veículos
+        //
+        System.out.println("Creating LIGHT taxi");
+
+        Vehicle taxi1 = createVehicle((double) 1.0, (double) 2.3, "taxi primeiro", VehicleType.LIGHT, marcos);
+
+        Vehicle taxi2 = createVehicle((double) 0.0, (double) 0.0, "taxi origem", VehicleType.LIGHT, marcos);
+
+        System.out.println("Finding nearest (ready to travel) vehicle to currently logged in user (vitor)");
+
+        nearestVehicle = Umer.getNearestReadyVehicle();
+
+        System.out.println(nearestVehicle.getIdentifier()); // Dá "taxi origem"
+        //-----------------------------------
+        System.out.println("Finding vehicle with identifier to currently logged in user (vitor)");
+
+        Vehicle identifierVehicle = getSpecificVehicle("taxi primeiro");
+
+        System.out.println(identifierVehicle.getIdentifier()); // Dá "primeiro taxi"
+
+
+
+        /*  --- TESTES DE ARRAYS ---
         // imprimir clientes
         System.out.println("\nFull list of clients:");
         for (index = 0; index < Umer.clients.size(); index++) {
@@ -173,5 +211,6 @@ public final class Umer {
             System.out.println(Umer.drivers.get(index).getKms() + ", ");
             System.out.println(Umer.drivers.get(index).isAvailable() + ";");
         }
+        */
     }
 }

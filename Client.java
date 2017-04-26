@@ -67,4 +67,22 @@ public class Client extends User {
 
         return closestVehicle;
     }
+
+    /**
+     * Obter o veículo com o identificador
+     */
+    public Vehicle getSpecificVehicle(ArrayList<Vehicle> vehicles, String taxiID) {
+
+        Vehicle idVehicle = null;
+
+        for (int i = 0; i < vehicles.size(); i++) {
+
+            if (vehicles.get(i).getIdentifier().equals(taxiID)) {
+                idVehicle = vehicles.get(i);
+                return idVehicle;
+            }
+        }
+
+        return idVehicle;
+    }
 }
