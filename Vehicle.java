@@ -55,4 +55,8 @@ public class Vehicle {
     public double getTripTime(double distance) {
         return (distance / this.type.getAvgSpeed());
     }
+
+    public double getTripPrice(double distance) {
+        return (distance / this.type.getPricePerKm());
+    }
 }

@@ -100,6 +100,7 @@ public class Client extends User {
         Vehicle tripVehicle = null;
         double distanceToClient = 0.0, distanceToDest = 0.0, totalDistance = 0.0;
         double timeToClient = 0.0, timeToDest = 0.0, totalTime = 0.0;
+        double tripPrice = 0.0;
 
         // Para o caso de querer o taxi mais próximo
         if (taxiID.equals("")) {
@@ -110,6 +111,7 @@ public class Client extends User {
             timeToClient = tripVehicle.getTripTime(distanceToClient);
             timeToDest = tripVehicle.getTripTime(distanceToDest);
             totalTime = timeToClient + timeToDest;
+            tripPrice = tripVehicle.getTripPrice(totalDistance);
 
         }
 
@@ -122,6 +124,7 @@ public class Client extends User {
             timeToClient = tripVehicle.getTripTime(distanceToClient);
             timeToDest = tripVehicle.getTripTime(distanceToDest);
             totalTime = timeToClient + timeToDest;
+            tripPrice = tripVehicle.getTripPrice(totalDistance);
         }
 
     }
