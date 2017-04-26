@@ -122,7 +122,9 @@ public final class Umer {
 
     public static void main(String[] args) {
 
-       System.out.println("Starting test");
+        int index = 0;
+
+        System.out.println("Starting test");
 
         System.out.println("Creating user vitor with password gay at (0.5, 0.324)");
 
@@ -147,5 +149,29 @@ public final class Umer {
         System.out.println("Finding nearest (ready to travel) vehicle to currently logged in user (vitor)");
 
         Vehicle nearestVehicle = Umer.getNearestReadyVehicle();
+
+        // imprimir clientes
+        System.out.println("\nFull list of clients:");
+        for (index = 0; index < Umer.clients.size(); index++) {
+            System.out.print(Umer.clients.get(index).getName() + ", ");
+            System.out.print(Umer.clients.get(index).getEmail() + ", ");
+            System.out.print(Umer.clients.get(index).getPassword() + ", ");
+            System.out.print(Umer.clients.get(index).getAddress() + ", ");
+            System.out.println(Umer.clients.get(index).getBirthdate() + ";");
+        }
+
+        // imprimir drivers
+        System.out.println("\nFull list of drivers:");
+        for (index = 0; index < Umer.drivers.size(); index++) {
+            System.out.print(Umer.drivers.get(index).getName() + ", ");
+            System.out.print(Umer.drivers.get(index).getEmail() + ", ");
+            System.out.print(Umer.drivers.get(index).getPassword() + ", ");
+            System.out.print(Umer.drivers.get(index).getAddress() + ", ");
+            System.out.println(Umer.drivers.get(index).getBirthdate() + ";");
+            System.out.println(Umer.drivers.get(index).getFulfillment() + ", ");
+            System.out.println(Umer.drivers.get(index).getRating() + ", ");
+            System.out.println(Umer.drivers.get(index).getKms() + ", ");
+            System.out.println(Umer.drivers.get(index).isAvailable() + ";");
+        }
     }
 }

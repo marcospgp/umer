@@ -16,21 +16,6 @@ public class Client extends User {
         this.position = new Point<Double>(newPosX, newPosY);
     }
 
-    public String getemail() {
-      return email;
-    }
-
-    public String getname() {
-      return name;
-    }
-
-    public String getpassword() {
-      return password;
-    }
-
-    public String getaddress() {
-      return address;
-    }
 
     /**
      * Obter o veículo mais próximo (pode estar vazio, ou o condutor pode não estar em serviço)
