@@ -3,15 +3,15 @@
  */
 public class Trip {
 
-    public Vehicle vehicle;
-    public Driver driver;
-    public Point origin;
-    public Point destination;
-    public double estimatedDuration;
-    public double realDuration;
-    public double timeStarted;
-    public double cost;
-    public boolean completed;
+    private Vehicle vehicle;
+    private Driver driver;
+    private Point origin;
+    private Point destination;
+    private double estimatedDuration;
+    private double realDuration;
+    private double timeStarted;
+    private double cost;
+    private boolean completed;
 
     public Trip(Vehicle vehicle,
                 Driver driver,
