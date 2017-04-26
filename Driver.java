@@ -27,4 +27,22 @@ public class Driver extends User {
         this.kms = (double) 0;
         this.available = false;
     }
+
+    public double getFulfillment() {
+        return this.fulfillment;
+    }
+    public double getRating() {
+        return this.rating;
+    }
+    public double getKms() {
+        return this.kms;
+    }
+
+    public boolean isAvailable() {
+        return this.available;
+    }
+
+    public void toggleAvailable() {
+        this.available = !this.available;
+    }
 }

@@ -29,7 +29,7 @@ public class Point <T extends Number> {
     /**
      * Returns the X coordinate of the point
      *
-     * @return     the x coordinate
+     * @return     The x coordinate
      */
     public T getX() {
         return this.x;
@@ -38,7 +38,7 @@ public class Point <T extends Number> {
     /**
      * Returns the Y coordinate of the point
      *
-     * @return     the y coordinate
+     * @return     The y coordinate
      */
     public T getY() {
         return this.y;
@@ -47,7 +47,7 @@ public class Point <T extends Number> {
     /**
      * Sets the X coordinate of the point
      *
-     * @return     the x coordinate
+     * @return    The x coordinate
      */
     public void setX(T x) {
         this.x = x;
@@ -56,7 +56,7 @@ public class Point <T extends Number> {
     /**
      * Sets the Y coordinate of the point
      *
-     * @return     the y coordinate
+     * @return     The y coordinate
      */
     public void setY(T y) {
         this.y = y;
@@ -66,8 +66,8 @@ public class Point <T extends Number> {
      * Returns the distance from this point to another
      * The double value of both points is used for the calculation.
      *
-     * @param  b   point to calculate the distance to
-     * @return     the distance between this point and point b
+     * @param  b   Point to calculate the distance to
+     * @return     The distance between this point and point b
      */
     public double distanceTo(Point b) {
 

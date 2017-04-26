@@ -3,6 +3,7 @@ import java.util.*;
 public class Vehicle {
 
     private Point position;
+    private String identifier;
     private VehicleType type;
     private Driver currentDriver;
 
@@ -12,10 +13,19 @@ public class Vehicle {
     /**
      * Constructor for objects of class Vehicle
      */
-    public Vehicle(double newPosX, double newPosY, VehicleType type, Driver newDriver) {
+    public Vehicle(double newPosX, double newPosY, String identifier, VehicleType type, Driver newDriver) {
         this.position = new Point<Double>(newPosX, newPosY);
+        this.identifier = identifier;
         this.type = type;
         this.currentDriver = newDriver;
+    }
+
+    public Point getPosition() {
+        return this.position;
+    }
+
+    public Point getIdentifier() {
+        return this.identifier;
     }
 
     public VehicleType getType() {
@@ -28,10 +38,6 @@ public class Vehicle {
 
     public void setDriver(Driver newDriver) {
         this.currentDriver = newDriver;
-    }
-
-    public Point getPosition() {
-        return this.position;
     }
 
     public double getAvgSpeed() {

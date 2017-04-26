@@ -11,6 +11,7 @@ public class Trip {
     public double realDuration;
     public double timeStarted;
     public double cost;
+    public boolean completed;
 
     public Trip(Vehicle vehicle,
                 Driver driver,
@@ -29,5 +30,6 @@ public class Trip {
         this.realDuration = realDuration;
         this.timeStarted = timeStarted;
         this.cost = cost;
+        this.completed = false;
     }
 }

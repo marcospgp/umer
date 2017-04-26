@@ -13,6 +13,10 @@ public final class Umer {
     private ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
     private ArrayList<Driver> drivers = new ArrayList<Driver>();
     private ArrayList<Client> clients = new ArrayList<Client>();
+    private ArrayList<Trip> tripHistory = new ArrayList<Trip>();
+    private ArrayList<Trip> tripsUnderway = new ArrayList<Trip>();
+
+    private User loggedAs;
 
     // Prevenir instanciação desta classe (googlar "java final class private constructor")
     private Umer() {
@@ -54,10 +58,86 @@ public final class Umer {
         this.clients.add(newClient);
     }
 
+    /**
+     * Ocupa um veículo com um dado condutor
+     */
     private void occupyVehicle(Vehicle theVehicle, Driver newDriver) {
         theVehicle.setDriver(newDriver);
     }
 
+    /**
+     * Tenta fazer login numa conta de utilizador
+     *
+     * @param email   O email do utilizador
+     * @param passord A password do utilizador
+     * @return        True se o login foi bem sucedido, caso contrário é retornado false
+     */
+    private boolean login(String email, String password) {
+
+        // Loopar pelos clientes
+        for (int i = 0; i < this.clients.size(); i++) {
+
+            if (this.clients.get(i).getEmail().equals(email) && this.clients.get(i).getPassword().equals(password)) {
+
+                this.loggedAs = (User) this.clients.get(i);
+
+                return true;
+            }
+        }
+
+        // Loopar pelos condutores
+        for (int i = 0; i < this.drivers.size(); i++) {
+
+            if (this.drivers.get(i).getEmail().equals(email) && this.drivers.get(i).getPassword().equals(password)) {
+
+                this.loggedAs = (User) this.drivers.get(i);
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Retorna o veículo pronto a viajar mais próximo do utilizador
+     * logado atualmente, apenas se o utilizador for um cliente
+     */
+    private Vehicle getNearestReadyVehicle() {
+
+        if (!this.loggedAs instanceof Client) {
+            throw new java.lang.Error("Tried to find nearest vehicle, but current user is not a client.");
+        }
+
+        return this.loggedAs.getNearestReadyVehicle();
+    }
+
     public static void main(String[] args) {
+
+        System.out.println("Starting test");
+
+        System.out.println("Creating user vitor with password gay at (0.5, 0.324)");
+
+        Client vitor = createClient("vitor@hotmail.com", "vitor", "gay", "casa", "yesterday", (double) 0.5, (double) 0.324);
+
+        System.out.println("Creating driver sergio with password gay at (2,3)");
+
+        Driver sergio = createDriver("sergio@hotmail.com", "sergio", "gay", "casa", "couple weeks ago", (double) 2, (double) 3);
+
+        System.out.println("Creating driver marcos with password forte at (4,2)");
+
+        Driver marcos = createDriver("marcos@hotmail.com", "marcos", "forte", "casa", "many a year ago", (double) 4, (double) 2);
+
+        System.out.println("Setting driver marcos to available");
+
+        marcos.toggleAvailable();
+
+        System.out.println("Logging in as vitor with password gay");
+
+        this.login(vitor.getEmail(), vitor.getPassword());
+
+        System.out.println("Finding nearest (ready to travel) vehicle to currently logged in user (vitor)");
+
+        Vehicle nearestVehicle = this.getNearestReadyVehicle();
     }
 }
