@@ -208,8 +208,27 @@ public final class Umer {
         System.out.println("Arranging trip to currently logged in user (vitor)");
 
         Trip viagem1 = Umer.getTrip(0.5, 0.7, 2.0, 2.0, ""); // Chama o mais proximo
+        System.out.println("\nViagem que chama o mais próximo:");
+        System.out.println("Vehicle: " + viagem1.getVehicle().getIdentifier());
+        System.out.println("Driver: " + viagem1.getDriver().getName());
+        System.out.println("Origin: " + "(" + viagem1.getOrigin().getX() + "," + viagem1.getOrigin().getY() + ")");
+        System.out.println("Destination: " + "(" + viagem1.getDestination().getX() + "," + viagem1.getDestination().getY() + ")");
+        System.out.println("Estimated duration: " + viagem1.getEstimatedDuration());
+        System.out.println("Real Duration: " + viagem1.getRealDuration());
+        System.out.println("Time Started: " + viagem1.getTimeStarted());
+        System.out.println("Cost: " + viagem1.getCost());
 
-        Trip viagem2 = Umer.getTrip(0.5, 0.7, 2.0, 2.0, "taxi primeiro"); // Chama pelo ID
+
+        Trip viagem2 = Umer.getTrip(1.0, 2.3, 3.2, 2.4, "taxi primeiro"); // Chama pelo ID
+        System.out.println("\nViagem que chama o: 'taxi primeiro'");
+        System.out.println("Vehicle: " + viagem2.getVehicle().getIdentifier());
+        System.out.println("Driver: " + viagem2.getDriver().getName());
+        System.out.println("Origin: " + "(" + viagem2.getOrigin().getX() + "," + viagem2.getOrigin().getY() + ")");
+        System.out.println("Destination: " + "(" + viagem2.getDestination().getX() + "," + viagem2.getDestination().getY() + ")");
+        System.out.println("Estimated duration: " + viagem2.getEstimatedDuration());
+        System.out.println("Real Duration: " + viagem2.getRealDuration());
+        System.out.println("Time Started: " + viagem2.getTimeStarted());
+        System.out.println("Cost: " + viagem2.getCost());
 
 
 

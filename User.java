@@ -15,7 +15,7 @@ public abstract class User {
         return this.email;
     }
 
-    public String getName (){
+    public String getName () {
         return this.name;
     }
 

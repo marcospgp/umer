@@ -32,4 +32,44 @@ public class Trip {
         this.cost = cost;
         this.completed = false;
     }
+
+    public Vehicle getVehicle() {
+        return this.vehicle;
+    }
+
+    public Driver getDriver() {
+        return this.driver;
+    }
+
+    public Point getOrigin() {
+        return this.origin;
+    }
+
+    public Point getDestination() {
+        return this.destination;
+    }
+
+    public double getEstimatedDuration() {
+        return this.estimatedDuration;
+    }
+
+    public double getRealDuration() {
+        return this.realDuration;
+    }
+
+    public double getTimeStarted() {
+        return this.timeStarted;
+    }
+
+    public double getCost() {
+        return this.cost;
+    }
+
+    public boolean getIsCompleted() {
+        return this.completed;
+    }
+
+    public void setIsCompleted(boolean completo) {
+        this.completed = completo;
+    }
 }
