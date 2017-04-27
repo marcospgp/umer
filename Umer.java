@@ -141,13 +141,18 @@ public final class Umer {
      */
     private static Trip getTrip(double userPosX, double userPosY, double destPosX, double destPosY, String taxiID) {
 
+        Trip newTrip = null;
+
         if ( !(Umer.loggedAs instanceof Client) ) {
             throw new java.lang.Error("Tried to find a specific vehicle, but current user is not a client.");
         }
 
         Client a = (Client) Umer.loggedAs;
+        newTrip = a.getTrip(Umer.vehicles, userPosX, userPosY, destPosX, destPosY, taxiID);
+        // Viagem começa a decorrer
+        Umer.tripsUnderway.add(newTrip);
 
-        return a.getTrip(Umer.vehicles, userPosX, userPosY, destPosX, destPosY, taxiID);
+        return newTrip;
     }
 
     public static void main(String[] args) {

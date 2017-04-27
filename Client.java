@@ -98,6 +98,7 @@ public class Client extends User {
         Point userPos = new Point(userPosX, userPosY);
         Point destPos = new Point(destPosX, destPosY);
         Vehicle tripVehicle = null;
+        Driver tripDriver = null;
         double distanceToClient = 0.0, distanceToDest = 0.0, totalDistance = 0.0;
         double timeToClient = 0.0, timeToDest = 0.0, totalTime = 0.0;
         double tripPrice = 0.0;
@@ -105,8 +106,9 @@ public class Client extends User {
         // Para o caso de querer o taxi mais próximo
         if (taxiID.equals("")) {
             tripVehicle = this.getNearestReadyVehicle(vehicles);
+            tripDriver = tripVehicle.getDriver();
             distanceToClient = userPos.distanceTo(tripVehicle.getPosition());
-            distanceToDest = userPos.getPosition().distanceTo(destPos);
+            distanceToDest = userPos.distanceTo(destPos);
             totalDistance = distanceToClient + distanceToDest;
             timeToClient = tripVehicle.getTripTime(distanceToClient);
             timeToDest = tripVehicle.getTripTime(distanceToDest);
@@ -118,8 +120,9 @@ public class Client extends User {
         // introduziu identificador para um taxi
         else{
             tripVehicle = this.getSpecificVehicle(vehicles, taxiID);
+            tripDriver = tripVehicle.getDriver();
             distanceToClient = userPos.distanceTo(tripVehicle.getPosition());
-            distanceToDest = userPos.getPosition().distanceTo(destPos);
+            distanceToDest = userPos.distanceTo(destPos);
             totalDistance = distanceToClient + distanceToDest;
             timeToClient = tripVehicle.getTripTime(distanceToClient);
             timeToDest = tripVehicle.getTripTime(distanceToDest);
@@ -127,5 +130,10 @@ public class Client extends User {
             tripPrice = tripVehicle.getTripPrice(totalDistance);
         }
 
+        // O segundo totalTime é o tempo real da viagem, que ainda não se implementou por isso vai ser certo;
+        // O timestarted é 0 porque a viagem é só uma proposta, ainda não começou.
+        newTrip = new Trip(tripVehicle, tripDriver, userPos, destPos, totalTime, totalTime, (double) 0, tripPrice);
+
+        return newTrip;
     }
 }
