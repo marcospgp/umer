@@ -322,11 +322,12 @@ public class GUI extends JFrame {
 		
 		String[] result = dialog.getResult(); // result[0] = email, result[1] = password
 		
-		if (!result || result[0].isEmpty() || result[1].isEmpty()) {
+		if (result == null || result[0].isEmpty() || result[1].isEmpty()) {
 			// Não se obteve um resultado válido
 			return;
 		}
 		
+		// TODO - Enviar informação de login para a classe Umer
 		insertDriver("wo " + result[0], "wo " + result[0]);
 		insertDriver("la " + result[1], "la " + result[1]);
 	}
