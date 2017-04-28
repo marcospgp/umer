@@ -21,16 +21,11 @@ import javax.swing.UIManager;
 import javax.swing.JSplitPane;
 import java.awt.Component;
 import javax.swing.BoxLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.JList;
 import java.awt.GridLayout;
 import java.awt.CardLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import com.jgoodies.forms.layout.FormSpecs;
-import net.miginfocom.swing.MigLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Insets;
@@ -70,7 +65,7 @@ public class GUI extends JFrame {
 						frame.insertClient("Cliente " + i, Integer.toString(i));
 					}
 					
-					for	(int i = 0; i < 150; i++) {
+					for	(int i = 0; i < 190; i++) {
 						frame.removeClient(Integer.toString(i));
 					}
 					
@@ -130,15 +125,11 @@ public class GUI extends JFrame {
 		JButton btnNewButton = new JButton("Iniciar Sess\u00E3o");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				try {
-					LoginDialog dialog = new LoginDialog();
-					dialog.customShow();
-					
+					showLoginDialog();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-
 			}
 		});
 		pnlTopInner.add(btnNewButton);
@@ -146,15 +137,11 @@ public class GUI extends JFrame {
 		JButton registerClient = new JButton("Registar Cliente");
 		registerClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				try {
-					RegisterClientDialog dialog = new RegisterClientDialog();
-					dialog.customShow();
-					
+					showRegisterClientDialog();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-
 			}
 		});
 		pnlTopInner.add(registerClient);
@@ -162,15 +149,11 @@ public class GUI extends JFrame {
 		JButton registerDriver = new JButton("Registar Condutor");
 		registerDriver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				try {
-					RegisterDriverDialog dialog = new RegisterDriverDialog();
-					dialog.customShow();
-					
+					showRegisterDriverDialog();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-
 			}
 		});
 		pnlTopInner.add(registerDriver);
@@ -284,6 +267,8 @@ public class GUI extends JFrame {
 		
 		JLabel newLabel = new JLabel(driverString);
 		this.driversContainer.add(newLabel);
+		this.driversContainer.revalidate();
+		this.driversContainer.repaint();
 		
 		// Guardar label no mapa de forma a permitir apagá-la através do seu identificador
 		this.drivers.put(driverId, newLabel);
@@ -297,6 +282,8 @@ public class GUI extends JFrame {
 		
 		JLabel newLabel = new JLabel(clientString);
 		this.clientsContainer.add(newLabel);
+		this.clientsContainer.revalidate();
+		this.clientsContainer.repaint();
 		
 		// Guardar label no mapa de forma a permitir apagá-la através do seu identificador
 		this.clients.put(clientId, newLabel);
@@ -326,5 +313,31 @@ public class GUI extends JFrame {
 		this.clientsContainer.repaint();
 		
 		this.clients.remove(clientId);
+	}
+	
+	private void showLoginDialog() {
+
+		LoginDialog dialog = new LoginDialog();
+		dialog.customShow();
+		
+		String[] result = dialog.getResult(); // result[0] = email, result[1] = password
+		
+		if (!result || result[0].isEmpty() || result[1].isEmpty()) {
+			// Não se obteve um resultado válido
+			return;
+		}
+		
+		insertDriver("wo " + result[0], "wo " + result[0]);
+		insertDriver("la " + result[1], "la " + result[1]);
+	}
+	
+	private void showRegisterDriverDialog() {
+		RegisterDriverDialog dialog = new RegisterDriverDialog();
+		dialog.customShow();
+	}
+	
+	private void showRegisterClientDialog() {
+		RegisterClientDialog dialog = new RegisterClientDialog();
+		dialog.customShow();
 	}
 }
