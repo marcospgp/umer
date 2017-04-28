@@ -12,6 +12,7 @@ public class Trip {
     private double timeStarted;
     private double cost;
     private boolean completed;
+    private Date arrivingTime;
 
     public Trip(Vehicle vehicle,
                 Driver driver,
@@ -69,7 +70,20 @@ public class Trip {
         return this.completed;
     }
 
+    public Date getArrivingTime() {
+        return this.arrivingTime;
+    }
+
     public void setIsCompleted(boolean completo) {
         this.completed = completo;
+    }
+
+    // Define a hora de chegada esperada
+    public void setArrivingTime (Trip viagem) {
+        // TENHO DE USAR JODA!
+
+        long itemLong = (long) (this.getEstimatedDuration() * 1000);
+        Date itemDate = new Date(itemLong);
+        this.arrivingTime = itemDate;
     }
 }

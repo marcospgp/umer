@@ -228,6 +228,7 @@ public final class Umer {
         System.out.println("Estimated duration: " + viagem2.getEstimatedDuration());
         System.out.println("Real Duration: " + viagem2.getRealDuration());
         System.out.println("Time Started: " + viagem2.getTimeStarted());
+        System.out.println("Arriving time: " + viagem2.getArrivingDate());
         System.out.println("Cost: " + viagem2.getCost());
 
 
