@@ -1,3 +1,5 @@
+import java.util.Date;
+
 /**
  * Classe que guarda informação sobre uma viagem efetuada no programa.
  */
@@ -9,9 +11,9 @@ public class Trip {
     private Point destination;
     private double estimatedDuration;
     private double realDuration;
-    private double timeStarted;
     private double cost;
     private boolean completed;
+    private Date startingTime;
     private Date arrivingTime;
 
     public Trip(Vehicle vehicle,
@@ -20,7 +22,6 @@ public class Trip {
                 Point destination,
                 double estimatedDuration,
                 double realDuration,
-                double timeStarted,
                 double cost
     ) {
         this.vehicle = vehicle;
@@ -29,9 +30,10 @@ public class Trip {
         this.destination = destination;
         this.estimatedDuration = estimatedDuration;
         this.realDuration = realDuration;
-        this.timeStarted = timeStarted;
         this.cost = cost;
         this.completed = false;
+        this.startingTime = null;
+        this.arrivingTime = null;
     }
 
     public Vehicle getVehicle() {
@@ -58,8 +60,8 @@ public class Trip {
         return this.realDuration;
     }
 
-    public double getTimeStarted() {
-        return this.timeStarted;
+    public Date getTimeStarted() {
+        return this.startingTime;
     }
 
     public double getCost() {
@@ -74,16 +76,22 @@ public class Trip {
         return this.arrivingTime;
     }
 
+    public void setTimeStarted() {
+        Date startedAt = new Date();
+        this.startingTime = startedAt;
+    }
+
     public void setIsCompleted(boolean completo) {
         this.completed = completo;
     }
 
     // Define a hora de chegada esperada
-    public void setArrivingTime (Trip viagem) {
-        // TENHO DE USAR JODA!
-
-        long itemLong = (long) (this.getEstimatedDuration() * 1000);
-        Date itemDate = new Date(itemLong);
+    public void setArrivingTime() {
+        Date currentDate = new Date();
+        long currentTime = currentDate.getTime();
+        long tripTime = (long) (this.getEstimatedDuration() * 60 * 60000);
+        long finalTime = tripTime + currentTime;
+        Date itemDate = new Date(finalTime);
         this.arrivingTime = itemDate;
     }
 }

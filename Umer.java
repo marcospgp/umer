@@ -215,7 +215,10 @@ public final class Umer {
         System.out.println("Destination: " + "(" + viagem1.getDestination().getX() + "," + viagem1.getDestination().getY() + ")");
         System.out.println("Estimated duration: " + viagem1.getEstimatedDuration());
         System.out.println("Real Duration: " + viagem1.getRealDuration());
+        viagem1.setTimeStarted();
         System.out.println("Time Started: " + viagem1.getTimeStarted());
+        viagem1.setArrivingTime();
+        System.out.println("Arriving time: " + viagem1.getArrivingTime());
         System.out.println("Cost: " + viagem1.getCost());
 
 
@@ -227,8 +230,10 @@ public final class Umer {
         System.out.println("Destination: " + "(" + viagem2.getDestination().getX() + "," + viagem2.getDestination().getY() + ")");
         System.out.println("Estimated duration: " + viagem2.getEstimatedDuration());
         System.out.println("Real Duration: " + viagem2.getRealDuration());
+        viagem2.setTimeStarted();
         System.out.println("Time Started: " + viagem2.getTimeStarted());
-        System.out.println("Arriving time: " + viagem2.getArrivingDate());
+        viagem2.setArrivingTime();
+        System.out.println("Arriving time: " + viagem2.getArrivingTime());
         System.out.println("Cost: " + viagem2.getCost());
 
 

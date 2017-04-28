@@ -56,7 +56,8 @@ public class Vehicle {
         return (distance / this.type.getAvgSpeed());
     }
 
+    // aquela complicação toda é para obter um número que seja apenas com duas casas decimais
     public double getTripPrice(double distance) {
-        return (distance / this.type.getPricePerKm());
+        return (int) Math.round((distance / this.type.getPricePerKm()) * 100) / (double) 100;
     }
 }

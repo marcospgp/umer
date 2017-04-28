@@ -131,8 +131,7 @@ public class Client extends User {
         }
 
         // O segundo totalTime é o tempo real da viagem, que ainda não se implementou por isso vai ser certo;
-        // O timestarted é 0 porque a viagem é só uma proposta, ainda não começou.
-        newTrip = new Trip(tripVehicle, tripDriver, userPos, destPos, totalTime, totalTime, (double) 0, tripPrice);
+        newTrip = new Trip(tripVehicle, tripDriver, userPos, destPos, totalTime, totalTime, tripPrice);
         newTrip.setIsCompleted(false); // viagem ainda não está completa
 
         return newTrip;
