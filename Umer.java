@@ -106,6 +106,40 @@ public final class Umer {
     }
 
     /**
+     * Retorna true caso exista o veiculo com aquele ID e esteja disponível.
+     * Serve de guarda para quando chamamos certo veiculo, para que nao seja
+     * feito o pedido de viagem a um veiculo que nao existe ou esta indisponivel.
+     */
+    private static boolean taxiIsAvailable(String taxiID) {
+
+        for (int i = 0; i < vehicles.size(); i++) {
+
+            if (vehicles.get(i).getIdentifier().equals(taxiID) && vehicles.get(i).getDriver().isAvailable()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Retorna true caso exista algum veiculo disponível.
+     * Serve de guarda para quando chamamos qualquer veiculo, para que nao seja
+     * feito o pedido de viagem a um veiculo que nao existe ou esta indisponivel.
+     */
+    private static boolean someTaxiIsAvailable() {
+
+    	for (int i = 0; i < vehicles.size(); i++) {
+
+            if (vehicles.get(i).getDriver().isAvailable()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Retorna o veículo pronto a viajar mais próximo do utilizador
      * logado atualmente, apenas se o utilizador for um cliente
      */
@@ -206,35 +240,79 @@ public final class Umer {
         System.out.println(identifierVehicle.getIdentifier()); // Dá "taxi primeiro"
         //
         System.out.println("Arranging trip to currently logged in user (vitor)");
+        String taxiName = null;
 
-        Trip viagem1 = Umer.getTrip(0.5, 0.7, 2.0, 2.0, ""); // Chama o mais proximo
+        Trip viagem1 = null;
+        taxiName = "";
         System.out.println("\nViagem que chama o mais próximo:");
-        System.out.println("Vehicle: " + viagem1.getVehicle().getIdentifier());
-        System.out.println("Driver: " + viagem1.getDriver().getName());
-        System.out.println("Origin: " + "(" + viagem1.getOrigin().getX() + "," + viagem1.getOrigin().getY() + ")");
-        System.out.println("Destination: " + "(" + viagem1.getDestination().getX() + "," + viagem1.getDestination().getY() + ")");
-        System.out.println("Estimated duration: " + viagem1.getEstimatedDuration());
-        System.out.println("Real Duration: " + viagem1.getRealDuration());
-        viagem1.setTimeStarted();
-        System.out.println("Time Started: " + viagem1.getTimeStarted());
-        viagem1.setArrivingTime();
-        System.out.println("Arriving time: " + viagem1.getArrivingTime());
-        System.out.println("Cost: " + viagem1.getCost());
+        // caso exista o taxi e esteja disponivel
+        if (Umer.someTaxiIsAvailable()) {
+            viagem1 = Umer.getTrip(0.5, 0.7, 2.0, 2.0, taxiName); // Chama o mais proximo
+            System.out.println("Vehicle: " + viagem1.getVehicle().getIdentifier());
+            System.out.println("Driver: " + viagem1.getDriver().getName());
+            System.out.println("Origin: " + "(" + viagem1.getOrigin().getX() + "," + viagem1.getOrigin().getY() + ")");
+            System.out.println("Destination: " + "(" + viagem1.getDestination().getX() + "," + viagem1.getDestination().getY() + ")");
+            System.out.println("Estimated duration: " + viagem1.getEstimatedDuration());
+            System.out.println("Real Duration: " + viagem1.getRealDuration());
+            viagem1.setTimeStarted();
+            System.out.println("Time Started: " + viagem1.getTimeStarted());
+            viagem1.setArrivingTime();
+            System.out.println("Arriving time: " + viagem1.getArrivingTime());
+            System.out.println("Cost: " + viagem1.getCost());
+        }
+        // o taxi nao esta disponivel
+        else {
+            System.out.println("O veículo " + taxiName + " não existe ou não está disponível.");
+        }
 
 
-        Trip viagem2 = Umer.getTrip(1.0, 2.3, 3.2, 2.4, "taxi primeiro"); // Chama pelo ID
+        Trip viagem2 = null;
+        taxiName = "taxi primeiro";
         System.out.println("\nViagem que chama o: 'taxi primeiro'");
-        System.out.println("Vehicle: " + viagem2.getVehicle().getIdentifier());
-        System.out.println("Driver: " + viagem2.getDriver().getName());
-        System.out.println("Origin: " + "(" + viagem2.getOrigin().getX() + "," + viagem2.getOrigin().getY() + ")");
-        System.out.println("Destination: " + "(" + viagem2.getDestination().getX() + "," + viagem2.getDestination().getY() + ")");
-        System.out.println("Estimated duration: " + viagem2.getEstimatedDuration());
-        System.out.println("Real Duration: " + viagem2.getRealDuration());
-        viagem2.setTimeStarted();
-        System.out.println("Time Started: " + viagem2.getTimeStarted());
-        viagem2.setArrivingTime();
-        System.out.println("Arriving time: " + viagem2.getArrivingTime());
-        System.out.println("Cost: " + viagem2.getCost());
+        // caso exista o taxi e esteja disponivel
+        if (Umer.taxiIsAvailable(taxiName)) {
+            viagem2 = Umer.getTrip(1.0, 2.3, 3.2, 2.4, taxiName); // Chama pelo ID
+            System.out.println("Vehicle: " + viagem2.getVehicle().getIdentifier());
+            System.out.println("Driver: " + viagem2.getDriver().getName());
+            System.out.println("Origin: " + "(" + viagem2.getOrigin().getX() + "," + viagem2.getOrigin().getY() + ")");
+            System.out.println("Destination: " + "(" + viagem2.getDestination().getX() + "," + viagem2.getDestination().getY() + ")");
+            System.out.println("Estimated duration: " + viagem2.getEstimatedDuration());
+            System.out.println("Real Duration: " + viagem2.getRealDuration());
+            viagem2.setTimeStarted();
+            System.out.println("Time Started: " + viagem2.getTimeStarted());
+            viagem2.setArrivingTime();
+            System.out.println("Arriving time: " + viagem2.getArrivingTime());
+            System.out.println("Cost: " + viagem2.getCost());
+        }
+        // o taxi nao esta disponivel
+        else {
+            System.out.println("O veículo " + taxiName + " não existe ou não está disponível.");
+        }
+
+
+        Trip viagem3 = null;
+        taxiName = "taxi que nao existe";
+        System.out.println("\nViagem que chama o: 'taxi que nao existe'");
+        // caso exista o taxi e esteja disponivel
+        if (Umer.taxiIsAvailable(taxiName)) {
+            viagem3 = Umer.getTrip(1.0, 2.3, 3.2, 2.4, taxiName); // Chama pelo ID
+            System.out.println("Vehicle: " + viagem3.getVehicle().getIdentifier());
+            System.out.println("Driver: " + viagem3.getDriver().getName());
+            System.out.println("Origin: " + "(" + viagem3.getOrigin().getX() + "," + viagem3.getOrigin().getY() + ")");
+            System.out.println("Destination: " + "(" + viagem3.getDestination().getX() + "," + viagem3.getDestination().getY() + ")");
+            System.out.println("Estimated duration: " + viagem3.getEstimatedDuration());
+            System.out.println("Real Duration: " + viagem3.getRealDuration());
+            viagem3.setTimeStarted();
+            System.out.println("Time Started: " + viagem3.getTimeStarted());
+            viagem3.setArrivingTime();
+            System.out.println("Arriving time: " + viagem3.getArrivingTime());
+            System.out.println("Cost: " + viagem3.getCost());
+        }
+        // o taxi nao esta disponivel
+        else {
+            System.out.println("O veículo " + taxiName + " não existe ou não está disponível.");
+        }
+
 
 
 

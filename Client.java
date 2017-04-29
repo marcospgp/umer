@@ -77,7 +77,7 @@ public class Client extends User {
 
         for (int i = 0; i < vehicles.size(); i++) {
 
-            if (vehicles.get(i).getIdentifier().equals(taxiID)) {
+            if (vehicles.get(i).getIdentifier().equals(taxiID) && vehicles.get(i).getDriver().isAvailable()) {
                 idVehicle = vehicles.get(i);
                 return idVehicle;
             }
