@@ -53,7 +53,7 @@ public class IO
         catch (IOException ioex) {
             ioex.printStackTrace();
         }
-        System.out.println("ArrayList object saved to data.txt");
+        System.out.println("ArrayList object saved");
     }
     
 
@@ -86,9 +86,9 @@ public class IO
         catch (ClassNotFoundException ccex) {
             ccex.printStackTrace();
         }
-       System.out.println("ArrayList object read from data.txt");
+       System.out.println("ArrayList object read");
        
        // printing ArrayList to console
-       System.out.println("Address:" +l);
+       System.out.println("Read:" +l);
    }
 }

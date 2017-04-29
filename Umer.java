@@ -365,5 +365,21 @@ public final class Umer {
             System.out.println(Umer.drivers.get(index).isAvailable() + ";");
         }
         */
+       
+        /* TESTING WRITING/READING TRIPHISTORY */
+        IO iotriphistory; 
+        iotriphistory = new IO();
+        iotriphistory.Write(tripHistory,4);
+        iotriphistory.Read(clients,4);
+        //-----------------------------------//
+        //-----------------------------------//
+         
+        /* TESTING WRITING/READING TRIPSUNDERWAY */
+        IO iotripsunderway; 
+        iotripsunderway = new IO();
+        iotripsunderway.Write(tripsUnderway,5);
+        iotripsunderway.Read(tripsUnderway,5);
+        //-----------------------------------//
+        //-----------------------------------//
     }
 }

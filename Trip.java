@@ -1,9 +1,10 @@
 import java.util.Date;
+import java.io.Serializable;
 
 /**
  * Classe que guarda informação sobre uma viagem efetuada no programa.
  */
-public class Trip {
+public class Trip implements Serializable {
 
     private Vehicle vehicle;
     private Driver driver;
