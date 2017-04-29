@@ -129,7 +129,7 @@ public final class Umer {
      */
     private static boolean someTaxiIsAvailable() {
 
-    	for (int i = 0; i < vehicles.size(); i++) {
+        for (int i = 0; i < vehicles.size(); i++) {
 
             if (vehicles.get(i).getDriver().isAvailable()) {
                 return true;
@@ -198,7 +198,15 @@ public final class Umer {
         System.out.println("Creating user vitor with password gay at (0.5, 0.324)");
 
         Client vitor = createClient("vitor@hotmail.com", "vitor", "gay", "casa", "yesterday", (double) 0.5, (double) 0.324);
-        //-----------------------------------
+        
+        /* TESTING WRITING/READING CLIENTS */
+        IO ioclients; 
+        ioclients = new IO();
+        ioclients.Write(clients,3);
+        ioclients.Read(clients,3);
+         //-----------------------------------//
+         //-----------------------------------//
+         
         System.out.println("Creating driver sergio with password gay at (2,3)");
 
         Driver sergio = createDriver("sergio@hotmail.com", "sergio", "gay", "casa", "couple weeks ago");
@@ -206,7 +214,15 @@ public final class Umer {
         System.out.println("Creating driver marcos with password forte at (4,2)");
 
         Driver marcos = createDriver("marcos@hotmail.com", "marcos", "forte", "casa", "many a year ago");
-        //-----------------------------------
+        
+        /* TESTING WRITING/READING DRIVERS */
+        IO iodrivers; 
+        iodrivers = new IO();
+        iodrivers.Write(drivers,2);
+        iodrivers.Read(drivers,2);
+         //-----------------------------------//
+         //-----------------------------------//
+         
         System.out.println("Setting driver marcos to available");
 
         marcos.toggleAvailable();
@@ -225,8 +241,16 @@ public final class Umer {
 
         Vehicle taxi1 = createVehicle((double) 1.0, (double) 2.3, "taxi primeiro", VehicleType.LIGHT, marcos);
 
-        Vehicle taxi2 = createVehicle((double) 0.0, (double) 0.0, "taxi origem", VehicleType.LIGHT, marcos);
-
+        Vehicle taxi2 = createVehicle((double) 0.0, (double) 0.0, "taxi origem", VehicleType.LIGHT, marcos      );
+        
+        /* TESTING WRITING/READING VEHICLES */
+        IO iovehicles; 
+        iovehicles = new IO();
+        iovehicles.Write(vehicles,1);
+        iovehicles.Read(vehicles,1);
+         //-----------------------------------//
+         //-----------------------------------//
+         
         System.out.println("Finding nearest (ready to travel) vehicle to currently logged in user (vitor)");
 
         nearestVehicle = Umer.getNearestReadyVehicle();

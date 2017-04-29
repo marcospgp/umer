@@ -1,3 +1,4 @@
+import java.io.Serializable;
 
 /**
  * Classe genérica que representa um ponto.
@@ -5,7 +6,7 @@
  * herde to tipo Number. No entanto, para todos os cálculos efetuados
  * pelos métodos desta classe, os valores são convertidos para double.
  */
-public class Point <T extends Number> {
+public class Point <T extends Number> implements Serializable {
 
     private T x;
     private T y;

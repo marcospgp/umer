@@ -1,6 +1,7 @@
 import java.util.*;
+import java.io.Serializable;
 
-public class Client extends User {
+public class Client extends User implements Serializable {
 
     private Point position;
 

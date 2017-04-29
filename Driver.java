@@ -1,4 +1,6 @@
-public class Driver extends User {
+import java.io.Serializable;
+
+public class Driver extends User implements Serializable {
 
     // Grau de cumprimento de horário estabelecido com o cliente, dado por um factor entre 0 e 100
     private double fulfillment;

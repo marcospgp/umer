@@ -1,6 +1,7 @@
 import java.util.*;
+import java.io.Serializable;
 
-public class Vehicle {
+public class Vehicle implements Serializable {
 
     private Point position;
     private String identifier;
