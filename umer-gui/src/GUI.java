@@ -158,6 +158,9 @@ public class GUI extends JFrame {
 		});
 		pnlTopInner.add(registerDriver);
 		
+		JButton btnCriarVeculo = new JButton("Criar Ve\u00EDculo");
+		pnlTopInner.add(btnCriarVeculo);
+		
 		/*
 		 * Panel left
 		 */
@@ -335,10 +338,50 @@ public class GUI extends JFrame {
 	private void showRegisterDriverDialog() {
 		RegisterDriverDialog dialog = new RegisterDriverDialog();
 		dialog.customShow();
+		
+		String[] result = dialog.getResult(); // [email, name, password, address, birthdate]
+		
+		if (result == null      ||
+			result[0].isEmpty() ||
+			result[1].isEmpty() ||
+			result[2].isEmpty() ||
+			result[3].isEmpty() ||
+			result[4].isEmpty()
+		) {
+			// Não se obteve um resultado válido
+			return;
+		}
+		
+		// TODO - Enviar informação para a classe Umer
 	}
 	
 	private void showRegisterClientDialog() {
 		RegisterClientDialog dialog = new RegisterClientDialog();
 		dialog.customShow();
+		
+		String[] result = dialog.getResult(); // [email, name, password, address, birthdate, posX, posY]
+		
+		if (result == null      ||
+			result[0].isEmpty() ||
+			result[1].isEmpty() ||
+			result[2].isEmpty() ||
+			result[3].isEmpty() ||
+			result[4].isEmpty() ||
+			result[5].isEmpty() ||
+			result[6].isEmpty()
+		) {
+			// Não se obteve um resultado válido
+			return;
+		}
+		
+		try {
+			double posX = Double.parseDouble(result[5]);
+			double posY = Double.parseDouble(result[6]);
+		} catch(NumberFormatException ex) {
+			// O utilizador não inseriu uma posição válida
+			return;
+		}
+		
+		// TODO - Enviar informação para a classe Umer
 	}
 }

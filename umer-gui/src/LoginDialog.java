@@ -27,42 +27,41 @@ public class LoginDialog extends JDialog {
 	private JTextField txtEmail;
 	private JTextField txtPassword;
 	
-	private boolean userPressedOk;
+	private boolean userPressedOk = false;
 
 	/**
 	 * Create the dialog.
 	 */
 	public LoginDialog() {
 		setResizable(false);
-		setTitle("Registar Condutor");
-		setMinimumSize(new Dimension(400, 300));
+		setTitle("Iniciar Sess\u00E3o");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegisterDriverDialog.class.getResource("/resources/logo.png")));
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
-		gbl_contentPanel.columnWidths = new int[] {30, 30, 30, 30, 30};
-		gbl_contentPanel.rowHeights = new int[] {30, 30, 30, 30, 30, 30};
-		gbl_contentPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.rowHeights = new int[] {0};
+		gbl_contentPanel.columnWidths = new int[] {30};
+		gbl_contentPanel.columnWeights = new double[]{0.0, 0.0};
+		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JLabel lblEmail = new JLabel("Email");
 			GridBagConstraints gbc_lblEmail = new GridBagConstraints();
 			gbc_lblEmail.anchor = GridBagConstraints.EAST;
 			gbc_lblEmail.insets = new Insets(0, 0, 5, 5);
-			gbc_lblEmail.gridx = 2;
-			gbc_lblEmail.gridy = 3;
+			gbc_lblEmail.gridx = 0;
+			gbc_lblEmail.gridy = 0;
 			contentPanel.add(lblEmail, gbc_lblEmail);
 		}
 		{
 			txtEmail = new JTextField();
 			GridBagConstraints gbc_txtEmail = new GridBagConstraints();
-			gbc_txtEmail.insets = new Insets(0, 0, 5, 0);
+			gbc_txtEmail.insets = new Insets(0, 0, 5, 5);
 			gbc_txtEmail.anchor = GridBagConstraints.WEST;
-			gbc_txtEmail.gridx = 3;
-			gbc_txtEmail.gridy = 3;
+			gbc_txtEmail.gridx = 1;
+			gbc_txtEmail.gridy = 0;
 			contentPanel.add(txtEmail, gbc_txtEmail);
 			txtEmail.setColumns(30);
 		}
@@ -70,17 +69,18 @@ public class LoginDialog extends JDialog {
 			JLabel lblPassword = new JLabel("Password");
 			GridBagConstraints gbc_lblPassword = new GridBagConstraints();
 			gbc_lblPassword.anchor = GridBagConstraints.EAST;
-			gbc_lblPassword.insets = new Insets(0, 0, 0, 5);
-			gbc_lblPassword.gridx = 2;
-			gbc_lblPassword.gridy = 4;
+			gbc_lblPassword.insets = new Insets(0, 0, 5, 5);
+			gbc_lblPassword.gridx = 0;
+			gbc_lblPassword.gridy = 1;
 			contentPanel.add(lblPassword, gbc_lblPassword);
 		}
 		{
 			txtPassword = new JTextField();
 			GridBagConstraints gbc_txtPassword = new GridBagConstraints();
+			gbc_txtPassword.insets = new Insets(0, 0, 5, 5);
 			gbc_txtPassword.anchor = GridBagConstraints.WEST;
-			gbc_txtPassword.gridx = 3;
-			gbc_txtPassword.gridy = 4;
+			gbc_txtPassword.gridx = 1;
+			gbc_txtPassword.gridy = 1;
 			contentPanel.add(txtPassword, gbc_txtPassword);
 			txtPassword.setColumns(30);
 		}
