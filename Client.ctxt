@@ -14,4 +14,6 @@ comment3.text=\r\n\ Obter\ o\ ve\u00EDculo\ com\ o\ identificador\r\n
 comment4.params=vehicles\ userPosX\ userPosY\ destPosX\ destPosY\ taxiID
 comment4.target=Trip\ getTrip(java.util.ArrayList,\ double,\ double,\ double,\ double,\ java.lang.String)
 comment4.text=\r\n\ Obtem\ uma\ viagem\ a\ pedido\ do\ cliente.\r\n\ @param\ userPosX\ ->\ posi\u00E7\u00E3o\ X\ do\ cliente\r\n\ @param\ userPosY\ ->\ posi\u00E7\u00E3o\ Y\ do\ cliente\r\n\ @param\ taxiID\ ->\ se\ for\ ""\ \u00E9\ porque\ quer\ o\ nearestVehicle,\ sen\u00E3o\ quer\ com\ ID\ especifico\r\n
-numComments=5
+comment5.params=
+comment5.target=java.lang.String\ toString()
+numComments=6

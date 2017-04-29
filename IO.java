@@ -39,7 +39,6 @@ public class IO
             if (ID==3) fileoutput = new FileOutputStream("clients.txt");
             if (ID==4) fileoutput = new FileOutputStream("triphistory.txt");
             if (ID==5) fileoutput = new FileOutputStream("tripsunderway.txt");
-            
             // converting object to binary
             objectoutput = new ObjectOutputStream(fileoutput);
             // writing ArrayList to stream
@@ -76,6 +75,7 @@ public class IO
                 l=null;
                 System.out.println("ERROR - input object is not an Arraylist");
             }
+            objectinput.close();
        } 
         catch (FileNotFoundException fnfex) {
             fnfex.printStackTrace();
@@ -91,4 +91,5 @@ public class IO
        // printing ArrayList to console
        System.out.println("Read:" +l);
    }
+
 }

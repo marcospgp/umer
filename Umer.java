@@ -1,4 +1,5 @@
 import java.util.*;
+import java.lang.InterruptedException;
 
 /**
  * O Umer é um programa que permite efetuar a gerência de viagens entre clientes e motoristas.
@@ -190,7 +191,7 @@ public final class Umer {
     }
 
     public static void main(String[] args) {
-
+        System.out.println("Array original" +clients);
         int index = 0;
 
         System.out.println("Starting test");
@@ -220,8 +221,8 @@ public final class Umer {
         iodrivers = new IO();
         iodrivers.Write(drivers,2);
         iodrivers.Read(drivers,2);
-         //-----------------------------------//
-         //-----------------------------------//
+        //-----------------------------------//
+        //-----------------------------------//
          
         System.out.println("Setting driver marcos to available");
 
@@ -248,8 +249,8 @@ public final class Umer {
         iovehicles = new IO();
         iovehicles.Write(vehicles,1);
         iovehicles.Read(vehicles,1);
-         //-----------------------------------//
-         //-----------------------------------//
+        //-----------------------------------//
+        //-----------------------------------//
          
         System.out.println("Finding nearest (ready to travel) vehicle to currently logged in user (vitor)");
 

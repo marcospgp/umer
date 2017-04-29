@@ -1,8 +1,9 @@
+import java.io.Serializable;
 
 /**
  * Enum dos tipos de táxis
  */
-public enum VehicleType {
+public enum VehicleType implements Serializable {
     LIGHT      (40, 1.5, 87),
     NINESEAT   (30, 2.5, 84),
     MOTORCYCLE (50, 1, 95);

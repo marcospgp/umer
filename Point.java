@@ -77,4 +77,11 @@ public class Point <T extends Number> implements Serializable {
 
         return Math.sqrt( Math.pow(dX, 2) + Math.pow(dY, 2) );
     }
+    
+    @Override
+    public String toString() {
+    return "x: " + this.x + ", "
+         + "y: " + this.y; 
+    }
 }
+

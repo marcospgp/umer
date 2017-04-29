@@ -1,6 +1,7 @@
 import java.util.*;
+import java.io.Serializable;
 
-public abstract class User {
+public abstract class User implements Serializable{
 
     protected String email;
     protected String name;

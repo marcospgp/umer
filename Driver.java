@@ -47,4 +47,16 @@ public class Driver extends User implements Serializable {
     public void toggleAvailable() {
         this.available = !this.available;
     }
+    @Override
+    public String toString() {
+    return "Email: " + this.email + ", "
+         + "Name: " + this.name + ", "
+         + "Password: " + this.password + ", "
+         + "Address: " + this.address + ", "
+         + "Birthdate: " + this.birthdate + ", "
+         + "Fulfillment: " + this.fulfillment + ", "
+         + "Rating: " + this.rating + ", "
+         + "Kms: " + this.kms + ", "
+         + "Available: " + this.available;  
+    }
 }

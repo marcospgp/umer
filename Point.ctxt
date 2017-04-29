@@ -21,4 +21,6 @@ comment6.text=\r\n\ Sets\ the\ Y\ coordinate\ of\ the\ point\r\n\r\n\ @return\ \
 comment7.params=b
 comment7.target=double\ distanceTo(Point)
 comment7.text=\r\n\ Returns\ the\ distance\ from\ this\ point\ to\ another\r\n\ The\ double\ value\ of\ both\ points\ is\ used\ for\ the\ calculation.\r\n\r\n\ @param\ \ b\ \ \ Point\ to\ calculate\ the\ distance\ to\r\n\ @return\ \ \ \ \ The\ distance\ between\ this\ point\ and\ point\ b\r\n
-numComments=8
+comment8.params=
+comment8.target=java.lang.String\ toString()
+numComments=9

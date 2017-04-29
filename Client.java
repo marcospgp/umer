@@ -137,4 +137,13 @@ public class Client extends User implements Serializable {
 
         return newTrip;
     }
+        @Override
+        public String toString() {
+        return "Email: " + this.email + ", "
+             + "Name: " + this.name + ", "
+             + "Password: " + this.password + ", "
+             + "Address: " + this.address + ", "
+             + "Birthdate: " + this.birthdate + ", "
+             + "Location: " + this.position;
+    }
 }
