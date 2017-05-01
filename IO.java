@@ -4,30 +4,10 @@ import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
-import java.io.IOException;
-import java.util.List;
 import java.io.FileNotFoundException;
-
-/* ESTA CLASSE ESTÁ APENAS PREPARADA PARA 2 ARRAYLISTS */
 
 public class IO
 {
-   public static void main(String [] args){
-       /*ArrayList<String> a1 = new ArrayList<String>();
-       a1.add("Sergio1");
-       a1.add("Vitor1");
-       a1.add("Marcos1");
-       ArrayList<String> a2 = new ArrayList<String>();
-       a2.add("Sergio2");
-       a2.add("Vitor2");
-       a2.add("Marcos2");
-       Write(a1,1);
-       Write(a2,2);
-       ArrayList<String> arraylist1 = new ArrayList<String>();
-       ArrayList<String> arraylist2 = new ArrayList<String>();
-       Read(arraylist1,2);*/
-    }
-    
    public static void Write(ArrayList<?> l, int ID) {
         // creating output stream variables
         FileOutputStream fileoutput = null;
@@ -52,7 +32,7 @@ public class IO
         catch (IOException ioex) {
             ioex.printStackTrace();
         }
-        System.out.println("ArrayList object saved");
+        System.out.println("ArrayList " + ID + " saved");
     }
     
 
@@ -86,8 +66,7 @@ public class IO
         catch (ClassNotFoundException ccex) {
             ccex.printStackTrace();
         }
-       System.out.println("ArrayList object read");
-       
+       System.out.println("ArrayList " + ID + " read");
        // printing ArrayList to console
        System.out.println("Read:" +l);
    }

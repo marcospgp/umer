@@ -1,5 +1,4 @@
 import java.util.*;
-import java.lang.InterruptedException;
 
 /**
  * O Umer é um programa que permite efetuar a gerência de viagens entre clientes e motoristas.
@@ -191,7 +190,6 @@ public final class Umer {
     }
 
     public static void main(String[] args) {
-        System.out.println("Array original" +clients);
         int index = 0;
 
         System.out.println("Starting test");
