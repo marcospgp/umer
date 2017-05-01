@@ -43,7 +43,7 @@ public final class Umer {
     /**
      * Cria um novo condutor
      */
-    private static Driver createDriver(String email, String name, String password, String address, String birthdate) {
+    private static Driver registerDriver(String email, String name, String password, String address, String birthdate) {
 
         Driver newDriver = new Driver(email, name, password, address, birthdate);
 
@@ -55,7 +55,7 @@ public final class Umer {
     /**
      * Cria um novo cliente
      */
-    private static Client createClient(String email, String name, String password, String address, String birthdate, double posX, double posY) {
+    private static Client registerClient(String email, String name, String password, String address, String birthdate, double posX, double posY) {
 
         Client newClient = new Client(email, name, password, address, birthdate, posX, posY);
 
@@ -212,7 +212,7 @@ public final class Umer {
         //
         System.out.println("Creating user vitor with password gay at (0.5, 0.324)");
 
-        Client vitor = createClient("vitor@hotmail.com", "vitor", "gay", "casa", "yesterday", (double) 0.5, (double) 0.324);
+        Client vitor = registerClient("vitor@hotmail.com", "vitor", "gay", "casa", "yesterday", (double) 0.5, (double) 0.324);
 
         /* TESTING WRITING/READING CLIENTS */
         IO ioclients;
@@ -224,11 +224,11 @@ public final class Umer {
 
         System.out.println("Creating driver sergio with password gay at (2,3)");
 
-        Driver sergio = createDriver("sergio@hotmail.com", "sergio", "gay", "casa", "couple weeks ago");
+        Driver sergio = registerDriver("sergio@hotmail.com", "sergio", "gay", "casa", "couple weeks ago");
         //
         System.out.println("Creating driver marcos with password forte at (4,2)");
 
-        Driver marcos = createDriver("marcos@hotmail.com", "marcos", "forte", "casa", "many a year ago");
+        Driver marcos = registerDriver("marcos@hotmail.com", "marcos", "forte", "casa", "many a year ago");
 
         /* TESTING WRITING/READING DRIVERS */
         IO iodrivers;
