@@ -44,6 +44,11 @@ public class GUI extends JFrame {
 	private JPanel driversContainer;
 	private JPanel clientsContainer;
 	private JPanel tripsContainer;
+	private JPanel loggedInClientContainer;
+	private JPanel loggedInDriverContainer;
+	private JPanel loggedOutLeftPanelContainer;
+	private JButton logoutButton;
+	private JButton loginButton;
 	
 	// Estes mapas são usados para manter uma referência aos dados apresentados na UI
 	// Isto torna possível remover dados da UI a partir de um identificador
@@ -64,15 +69,6 @@ public class GUI extends JFrame {
 				try {
 					GUI frame = new GUI();
 					frame.setVisible(true);
-					
-					for	(int i = 0; i < 200; i++) {
-						frame.insertClient("Cliente " + i, Integer.toString(i));
-					}
-					
-					for	(int i = 0; i < 190; i++) {
-						frame.removeClient(Integer.toString(i));
-					}
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -119,15 +115,15 @@ public class GUI extends JFrame {
 		 * Panel top inner
 		 */
 		JPanel pnlTopInner = new JPanel();
+		pnlTopInner.setPreferredSize(new Dimension(10, 80));
 		pnlTopInner.setBorder(new EmptyBorder(10, 10, 10, 10));
 		pnlTopInner.setBackground(new Color(249, 249, 249));
-		pnlTopInner.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		pnlTop.add(pnlTopInner);
 		
 		// Botões do panel top inner
 		
-		JButton btnNewButton = new JButton("Iniciar Sess\u00E3o");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnLogin = new JButton("Iniciar Sess\u00E3o");
+		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					showLoginDialog();
@@ -136,7 +132,10 @@ public class GUI extends JFrame {
 				}
 			}
 		});
-		pnlTopInner.add(btnNewButton);
+		pnlTopInner.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		pnlTopInner.add(btnLogin);
+		
+		this.loginButton = btnLogin;
 		
 		JButton registerClient = new JButton("Registar Cliente");
 		registerClient.addActionListener(new ActionListener() {
@@ -148,7 +147,17 @@ public class GUI extends JFrame {
 				}
 			}
 		});
+		
+		JButton btnLogout = new JButton("Terminar Sess\u00E3o");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				logout();
+			}
+		});
+		pnlTopInner.add(btnLogout);
 		pnlTopInner.add(registerClient);
+		
+		this.logoutButton = btnLogout;
 		
 		JButton registerDriver = new JButton("Registar Condutor");
 		registerDriver.addActionListener(new ActionListener() {
@@ -163,7 +172,36 @@ public class GUI extends JFrame {
 		pnlTopInner.add(registerDriver);
 		
 		JButton btnCriarVeculo = new JButton("Criar Ve\u00EDculo");
+		btnCriarVeculo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				showCreateVehicleDialog();
+			}
+		});
 		pnlTopInner.add(btnCriarVeculo);
+		
+		JButton btnAssociateDriver = new JButton("Associar Condutor a Ve\u00EDculo");
+		btnAssociateDriver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				showAssignDriverToVehicleDialog();
+			}
+		});
+		pnlTopInner.add(btnAssociateDriver);
+		
+		JLabel lblCurrentDate = new JLabel("Data atual:");
+		lblCurrentDate.setFont(new Font("Arial", Font.BOLD, 14));
+		pnlTopInner.add(lblCurrentDate);
+		
+		JLabel lblLblcurrentdatevalue = new JLabel("");
+		lblLblcurrentdatevalue.setBorder(new EmptyBorder(0, 5, 0, 0));
+		pnlTopInner.add(lblLblcurrentdatevalue);
+		
+		JButton btnFastforward = new JButton("+1 hora");
+		btnFastforward.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fastForward((double) 3600);
+			}
+		});
+		pnlTopInner.add(btnFastforward);
 		
 		/*
 		 * Panel left
@@ -181,10 +219,26 @@ public class GUI extends JFrame {
 		pnlLeft.add(pnlLeftInner);
 		pnlLeftInner.setBorder(new EmptyBorder(10, 10, 10, 10));
 		pnlLeftInner.setBackground(new Color(249, 249, 249));
+		pnlLeftInner.setLayout(new BoxLayout(pnlLeftInner, BoxLayout.Y_AXIS));
+		
+		JPanel pnlLoggedOutStartTripContainer = new JPanel();
+		pnlLeftInner.add(pnlLoggedOutStartTripContainer);
+		
+		this.loggedOutLeftPanelContainer = pnlLoggedOutStartTripContainer;
 		
 		// Label do painel da esquerda
 		JLabel lblPorFavorInicie = new JLabel("Por favor inicie sess\u00E3o para iniciar uma viagem");
-		pnlLeftInner.add(lblPorFavorInicie);
+		pnlLoggedOutStartTripContainer.add(lblPorFavorInicie);
+		
+		JPanel pnlLoggedInClientContainer = new JPanel();
+		pnlLeftInner.add(pnlLoggedInClientContainer);
+		
+		this.loggedInClientContainer = pnlLoggedInClientContainer;
+		
+		JPanel pnlLoggedInDriverContainer = new JPanel();
+		pnlLeftInner.add(pnlLoggedInDriverContainer);
+		
+		this.loggedInDriverContainer = pnlLoggedInDriverContainer;
 		
 		/*
 		 * Panel right
@@ -260,7 +314,6 @@ public class GUI extends JFrame {
 		JPanel pnlCenterInner = new JPanel();
 		pnlCenterInner.setPreferredSize(new Dimension(200, 10));
 		pnlCenterInner.setMinimumSize(new Dimension(150, 10));
-		pnlCenterInner.setBorder(new EmptyBorder(10, 10, 10, 10));
 		pnlCenterInner.setBackground(new Color(249, 249, 249));
 		pnlCenter.add(pnlCenterInner);
 		pnlCenterInner.setLayout(new BorderLayout(0, 0));
@@ -269,16 +322,21 @@ public class GUI extends JFrame {
 		pnlCenterInner.add(scrollPaneTrips);
 		
 		JPanel pnlTripsContainer = new JPanel();
+		pnlTripsContainer.setBorder(new EmptyBorder(10, 10, 10, 10));
 		scrollPaneTrips.setViewportView(pnlTripsContainer);
 		pnlTripsContainer.setLayout(new BoxLayout(pnlTripsContainer, BoxLayout.Y_AXIS));
 		
 		JLabel lblTrips = new JLabel("Hist\u00F3rico de Viagens");
+		lblTrips.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lblTrips.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTrips.setFont(new Font("Arial", Font.BOLD, 14));
 		pnlTripsContainer.add(lblTrips);
 		
 		JPanel pnlTrips = new JPanel();
 		pnlTripsContainer.add(pnlTrips);
+		pnlTrips.setLayout(new BoxLayout(pnlTrips, BoxLayout.Y_AXIS));
+		
+		this.tripsContainer = pnlTrips;
 	}
 	
 	private void insertDriver(String driverString, String driverId) {
@@ -335,6 +393,19 @@ public class GUI extends JFrame {
 		this.clientsContainer.repaint();
 		
 		this.clients.remove(clientId);
+	}
+	
+	private void clearTrips() {
+		
+		this.tripsContainer.removeAll();
+	}
+	
+	private void insertTrip(String trip) {
+		
+		JLabel newLabel = new JLabel(trip);
+		this.tripsContainer.add(newLabel);
+		this.tripsContainer.revalidate();
+		this.tripsContainer.repaint();
 	}
 	
 	private void showLoginDialog() {
@@ -408,8 +479,30 @@ public class GUI extends JFrame {
 			// O utilizador não inseriu uma posição válida
 			return;
 		}
-		
+
 		// TODO - Enviar informação do carro
+	}
+	
+	
+	private void showAssignDriverToVehicleDialog() {
+		AssignDriverToVehicleDialog dialog = new AssignDriverToVehicleDialog();
+		dialog.customShow();
+		
+		String[] result = dialog.getResult(); // [email do condutor, id do veículo]
+		
+		if (result == null) {
+			return;
+		}
+		
+		// TODO - Enviar informação do associo
+	}
+	
+	private void logout() {
+		// TODO - Chamar o logout
+	}
+	
+	private void fastForward(Double seconds) {
+		// TODO - chamar o fast forward
 	}
 	
 	public void updateTrips(String[] trips) {
@@ -418,15 +511,8 @@ public class GUI extends JFrame {
 		
 		for(int i = 0; i < trips.length; i++) {
 			
-			insertTrip();
+			insertTrip(trips[i]);
 		}
 	}
 	
-	private void clearTrips() {
-		
-	}
-	
-	private void insertTrip(String trip) {
-		
-	}
 }
