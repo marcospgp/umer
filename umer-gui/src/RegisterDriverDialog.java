@@ -194,6 +194,13 @@ public class RegisterDriverDialog extends JDialog {
 		result[3] = txtAddress.getText();
 		result[4] = txtBirthdate.getText();
 		
+		for (int i = 0; i < result.length; i++) {
+
+			if (result[i].isEmpty()) {
+				return null;
+			}
+		}
+		
 		return result;
 	}
 }

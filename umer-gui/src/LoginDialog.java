@@ -132,6 +132,13 @@ public class LoginDialog extends JDialog {
 		
 		result[0] = txtEmail.getText();
 		result[1] = txtPassword.getText();
+
+		for (int i = 0; i < result.length; i++) {
+
+			if (result[i].isEmpty()) {
+				return null;
+			}
+		}
 		
 		return result;
 	}

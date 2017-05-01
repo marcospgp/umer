@@ -230,6 +230,13 @@ public class RegisterClientDialog extends JDialog {
 		result[5] = txtXPos.getText();
 		result[6] = txtYPos.getText();
 		
+		for (int i = 0; i < result.length; i++) {
+
+			if (result[i].isEmpty()) {
+				return null;
+			}
+		}
+		
 		return result;
 	}
 }

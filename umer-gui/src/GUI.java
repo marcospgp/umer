@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import resources.CreateVehicleDialog;
+
 import java.awt.SystemColor;
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -40,6 +43,7 @@ public class GUI extends JFrame {
 	private JPanel contentPane;
 	private JPanel driversContainer;
 	private JPanel clientsContainer;
+	private JPanel tripsContainer;
 	
 	// Estes mapas são usados para manter uma referência aos dados apresentados na UI
 	// Isto torna possível remover dados da UI a partir de um identificador
@@ -259,7 +263,22 @@ public class GUI extends JFrame {
 		pnlCenterInner.setBorder(new EmptyBorder(10, 10, 10, 10));
 		pnlCenterInner.setBackground(new Color(249, 249, 249));
 		pnlCenter.add(pnlCenterInner);
-		pnlCenterInner.setLayout(new BoxLayout(pnlCenterInner, BoxLayout.Y_AXIS));
+		pnlCenterInner.setLayout(new BorderLayout(0, 0));
+		
+		JScrollPane scrollPaneTrips = new JScrollPane();
+		pnlCenterInner.add(scrollPaneTrips);
+		
+		JPanel pnlTripsContainer = new JPanel();
+		scrollPaneTrips.setViewportView(pnlTripsContainer);
+		pnlTripsContainer.setLayout(new BoxLayout(pnlTripsContainer, BoxLayout.Y_AXIS));
+		
+		JLabel lblTrips = new JLabel("Hist\u00F3rico de Viagens");
+		lblTrips.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTrips.setFont(new Font("Arial", Font.BOLD, 14));
+		pnlTripsContainer.add(lblTrips);
+		
+		JPanel pnlTrips = new JPanel();
+		pnlTripsContainer.add(pnlTrips);
 	}
 	
 	private void insertDriver(String driverString, String driverId) {
@@ -325,7 +344,7 @@ public class GUI extends JFrame {
 		
 		String[] result = dialog.getResult(); // result[0] = email, result[1] = password
 		
-		if (result == null || result[0].isEmpty() || result[1].isEmpty()) {
+		if (result == null) {
 			// Não se obteve um resultado válido
 			return;
 		}
@@ -341,13 +360,7 @@ public class GUI extends JFrame {
 		
 		String[] result = dialog.getResult(); // [email, name, password, address, birthdate]
 		
-		if (result == null      ||
-			result[0].isEmpty() ||
-			result[1].isEmpty() ||
-			result[2].isEmpty() ||
-			result[3].isEmpty() ||
-			result[4].isEmpty()
-		) {
+		if (result == null) {
 			// Não se obteve um resultado válido
 			return;
 		}
@@ -361,15 +374,7 @@ public class GUI extends JFrame {
 		
 		String[] result = dialog.getResult(); // [email, name, password, address, birthdate, posX, posY]
 		
-		if (result == null      ||
-			result[0].isEmpty() ||
-			result[1].isEmpty() ||
-			result[2].isEmpty() ||
-			result[3].isEmpty() ||
-			result[4].isEmpty() ||
-			result[5].isEmpty() ||
-			result[6].isEmpty()
-		) {
+		if (result == null) {
 			// Não se obteve um resultado válido
 			return;
 		}
@@ -383,5 +388,45 @@ public class GUI extends JFrame {
 		}
 		
 		// TODO - Enviar informação para a classe Umer
+	}
+	
+	private void showCreateVehicleDialog() {
+		CreateVehicleDialog dialog = new CreateVehicleDialog();
+		dialog.customShow();
+		
+		String[] result = dialog.getResult(); // [identifier, type, posX, posY]
+		
+		if (result == null) {
+			// Não se obteve um resultado válido
+			return;
+		}
+		
+		try {
+			double posX = Double.parseDouble(result[5]);
+			double posY = Double.parseDouble(result[6]);
+		} catch(NumberFormatException ex) {
+			// O utilizador não inseriu uma posição válida
+			return;
+		}
+		
+		// TODO - Enviar informação do carro
+	}
+	
+	public void updateTrips(String[] trips) {
+		
+		clearTrips();
+		
+		for(int i = 0; i < trips.length; i++) {
+			
+			insertTrip();
+		}
+	}
+	
+	private void clearTrips() {
+		
+	}
+	
+	private void insertTrip(String trip) {
+		
 	}
 }
