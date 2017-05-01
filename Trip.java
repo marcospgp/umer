@@ -37,6 +37,19 @@ public class Trip implements Serializable {
         this.arrivingTime = null;
     }
 
+    @Override
+    public String toString() {
+    return "\nVehicle: " + this.vehicle.getIdentifier() + ", "
+         + "\nDriver: " + this.driver.getName() + ", "
+         + "\nOrigin: " + this.origin.toString() + ", "
+         + "\nDestination: " + this.destination.toString() + ", "
+         + "\nEstimated Duration: " + this.estimatedDuration + ", "
+         + "\nReal Duration: " + this.realDuration + ", "
+         + "\nCost: " + this.cost + ", "
+         + "\nStarting Time: " + this.startingTime + ", "
+         + "\nArriving Time: " + this.arrivingTime + "\n";
+    }
+
     public Vehicle getVehicle() {
         return this.vehicle;
     }

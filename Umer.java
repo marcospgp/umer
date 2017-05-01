@@ -15,6 +15,7 @@ public final class Umer {
     private static ArrayList<Client> clients = new ArrayList<Client>();
     private static ArrayList<Trip> tripHistory = new ArrayList<Trip>();
     private static ArrayList<Trip> tripsUnderway = new ArrayList<Trip>();
+    private static ArrayList<String> trips = new ArrayList<String>();
 
     private static User loggedAs = null;
 
@@ -230,10 +231,25 @@ public final class Umer {
 
         Client a = (Client) Umer.loggedAs;
         newTrip = a.getTrip(Umer.vehicles, userPosX, userPosY, destPosX, destPosY, taxiID);
+        // Viagem adicionada ao histórico
+        a.tripHistory.add(newTrip);
         // Viagem começa a decorrer
         Umer.tripsUnderway.add(newTrip);
 
         return newTrip;
+    }
+
+    /**
+     * Retorna a lista de viagens do utilizador logado
+     * em forma de ArrayList de Strings
+     */
+    private static ArrayList<String> getTripHistory () {
+
+        for (int i = 0; i < Umer.loggedAs.tripHistory.size(); i++) {
+            Umer.trips.add(Umer.loggedAs.tripHistory.get(i).toString());
+        }
+
+        return trips;
     }
 
     public static void main(String[] args) {
@@ -245,13 +261,14 @@ public final class Umer {
 
         Client vitor = registerClient("vitor@hotmail.com", "vitor", "gay", "casa", "yesterday", (double) 0.5, (double) 0.324);
 
-        /* TESTING WRITING/READING CLIENTS */
+        /* TESTING WRITING/READING CLIENTS
         IO ioclients;
         ioclients = new IO();
         ioclients.Write(clients,3);
         ioclients.Read(clients,3);
          //-----------------------------------//
          //-----------------------------------//
+        */
 
         System.out.println("Creating driver sergio with password gay at (2,3)");
 
@@ -395,6 +412,11 @@ public final class Umer {
             System.out.println("O veículo " + taxiName + " não existe ou não está disponível.");
         }
 
+        //----------------------------------- HISTORICO DE VIAGENS ------------------------------
+        System.out.println("\nHISTORICO DE VIAGENS:");
+
+        getTripHistory();
+        System.out.println(trips);
 
 
 
@@ -424,7 +446,7 @@ public final class Umer {
         }
         */
 
-        /* TESTING WRITING/READING TRIPHISTORY */
+        /* TESTING WRITING/READING TRIPHISTORY
         IO iotriphistory;
         iotriphistory = new IO();
         iotriphistory.Write(tripHistory,4);
@@ -432,12 +454,13 @@ public final class Umer {
         //-----------------------------------//
         //-----------------------------------//
 
-        /* TESTING WRITING/READING TRIPSUNDERWAY */
+        /* TESTING WRITING/READING TRIPSUNDERWAY
         IO iotripsunderway;
         iotripsunderway = new IO();
         iotripsunderway.Write(tripsUnderway,5);
         iotripsunderway.Read(tripsUnderway,5);
         //-----------------------------------//
         //-----------------------------------//
+        */
     }
 }

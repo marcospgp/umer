@@ -31,4 +31,5 @@ public abstract class User implements Serializable{
     public String getBirthdate () {
         return this.birthdate;
     }
+
 }
