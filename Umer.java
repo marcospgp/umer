@@ -16,7 +16,7 @@ public final class Umer {
     private static ArrayList<Trip> tripHistory = new ArrayList<Trip>();
     private static ArrayList<Trip> tripsUnderway = new ArrayList<Trip>();
 
-    private static User loggedAs;
+    private static User loggedAs = null;
 
     // Prevenir instanciação desta classe (googlar "java final class private constructor")
     private Umer() {
@@ -100,6 +100,22 @@ public final class Umer {
 
                 return true;
             }
+        }
+
+        return false;
+    }
+
+    /**
+     * Tenta fazer logout de um utilizador
+     *
+     * @return        True se o logout foi bem sucedido, caso contrário é retornado false
+     */
+    private static boolean logout() {
+
+        // Verificar se está algum utilizador logado
+        if (Umer.loggedAs != null) {
+            Umer.loggedAs = null;
+            return true;
         }
 
         return false;
@@ -197,15 +213,15 @@ public final class Umer {
         System.out.println("Creating user vitor with password gay at (0.5, 0.324)");
 
         Client vitor = createClient("vitor@hotmail.com", "vitor", "gay", "casa", "yesterday", (double) 0.5, (double) 0.324);
-        
+
         /* TESTING WRITING/READING CLIENTS */
-        IO ioclients; 
+        IO ioclients;
         ioclients = new IO();
         ioclients.Write(clients,3);
         ioclients.Read(clients,3);
          //-----------------------------------//
          //-----------------------------------//
-         
+
         System.out.println("Creating driver sergio with password gay at (2,3)");
 
         Driver sergio = createDriver("sergio@hotmail.com", "sergio", "gay", "casa", "couple weeks ago");
@@ -213,15 +229,15 @@ public final class Umer {
         System.out.println("Creating driver marcos with password forte at (4,2)");
 
         Driver marcos = createDriver("marcos@hotmail.com", "marcos", "forte", "casa", "many a year ago");
-        
+
         /* TESTING WRITING/READING DRIVERS */
-        IO iodrivers; 
+        IO iodrivers;
         iodrivers = new IO();
         iodrivers.Write(drivers,2);
         iodrivers.Read(drivers,2);
         //-----------------------------------//
         //-----------------------------------//
-         
+
         System.out.println("Setting driver marcos to available");
 
         marcos.toggleAvailable();
@@ -241,15 +257,15 @@ public final class Umer {
         Vehicle taxi1 = createVehicle((double) 1.0, (double) 2.3, "taxi primeiro", VehicleType.LIGHT, marcos);
 
         Vehicle taxi2 = createVehicle((double) 0.0, (double) 0.0, "taxi origem", VehicleType.LIGHT, marcos      );
-        
+
         /* TESTING WRITING/READING VEHICLES */
-        IO iovehicles; 
+        IO iovehicles;
         iovehicles = new IO();
         iovehicles.Write(vehicles,1);
         iovehicles.Read(vehicles,1);
         //-----------------------------------//
         //-----------------------------------//
-         
+
         System.out.println("Finding nearest (ready to travel) vehicle to currently logged in user (vitor)");
 
         nearestVehicle = Umer.getNearestReadyVehicle();
@@ -364,17 +380,17 @@ public final class Umer {
             System.out.println(Umer.drivers.get(index).isAvailable() + ";");
         }
         */
-       
+
         /* TESTING WRITING/READING TRIPHISTORY */
-        IO iotriphistory; 
+        IO iotriphistory;
         iotriphistory = new IO();
         iotriphistory.Write(tripHistory,4);
         iotriphistory.Read(clients,4);
         //-----------------------------------//
         //-----------------------------------//
-         
+
         /* TESTING WRITING/READING TRIPSUNDERWAY */
-        IO iotripsunderway; 
+        IO iotripsunderway;
         iotripsunderway = new IO();
         iotripsunderway.Write(tripsUnderway,5);
         iotripsunderway.Read(tripsUnderway,5);
