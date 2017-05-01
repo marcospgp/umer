@@ -14,11 +14,11 @@ public class Vehicle implements Serializable {
     /**
      * Constructor for objects of class Vehicle
      */
-    public Vehicle(double newPosX, double newPosY, String identifier, VehicleType type, Driver newDriver) {
+    public Vehicle(double newPosX, double newPosY, String identifier, VehicleType type) {
         this.position = new Point<Double>(newPosX, newPosY);
         this.identifier = identifier;
         this.type = type;
-        this.currentDriver = newDriver;
+        this.currentDriver = null;
         this.type = type;
     }
 

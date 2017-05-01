@@ -31,12 +31,12 @@ public final class Umer {
      * @param type      The vehicle type
      * @param newDriver (optional) The new vehicle's driver. Should be null if not needed.
      */
-    private static Vehicle createVehicle(double x, double y, String identifier, String type, Driver newDriver) {
+    private static Vehicle createVehicle(double x, double y, String identifier, String type) {
 
         // determinar o tipo de veículo (e se existe esse tipo)
         VehicleType typeKnown = VehicleType.valueOf(type);
 
-        Vehicle newVehicle = new Vehicle(x, y, identifier, typeKnown, newDriver);
+        Vehicle newVehicle = new Vehicle(x, y, identifier, typeKnown);
 
         Umer.vehicles.add(newVehicle);
 
@@ -70,8 +70,36 @@ public final class Umer {
     /**
      * Ocupa um veículo com um dado condutor
      */
-    private static void occupyVehicle(Vehicle theVehicle, Driver newDriver) {
-        theVehicle.setDriver(newDriver);
+    private static void assignDriverToVehicle(String driverEmail, String vehicleIdentifier) {
+
+        Driver curDriver = null;
+
+        // Loopar pelos condutores
+        for (int i = 0; i < Umer.drivers.size(); i++) {
+
+            if (Umer.drivers.get(i).getEmail().equals(driverEmail)) {
+
+                curDriver = Umer.drivers.get(i);
+
+            }
+        }
+
+        // Loopar pelos veículos para ver se aquele driver já está em algum. Se estiver, remove-o.
+        // Também adiciona o Driver ao veículo escolhido.
+        for (int i = 0; i < Umer.vehicles.size(); i++) {
+
+            if ((Umer.vehicles.get(i).getDriver() != null) && (Umer.vehicles.get(i).getDriver().getEmail().equals(curDriver.getEmail()))) {
+
+                Umer.vehicles.get(i).setDriver(null);
+
+            }
+
+            if (Umer.vehicles.get(i).getIdentifier().equals(vehicleIdentifier)) {
+
+                Umer.vehicles.get(i).setDriver(curDriver);
+
+            }
+        }
     }
 
     /**
@@ -233,17 +261,23 @@ public final class Umer {
 
         Driver marcos = registerDriver("marcos@hotmail.com", "marcos", "forte", "casa", "many a year ago");
 
-        /* TESTING WRITING/READING DRIVERS */
+        /*
+        TESTING WRITING/READING DRIVERS
         IO iodrivers;
         iodrivers = new IO();
         iodrivers.Write(drivers,2);
         iodrivers.Read(drivers,2);
-        //-----------------------------------//
-        //-----------------------------------//
+        -----------------------------------
+        -----------------------------------
+        */
 
         System.out.println("Setting driver marcos to available");
 
         marcos.toggleAvailable();
+        //-----------------------------------
+        System.out.println("Setting driver sergio to available");
+
+        sergio.toggleAvailable();
         //
         System.out.println("Logging in as vitor with password gay");
 
@@ -257,17 +291,23 @@ public final class Umer {
         //
         System.out.println("Creating LIGHT taxi");
 
-        Vehicle taxi1 = createVehicle((double) 1.0, (double) 2.3, "taxi primeiro", "LIGHT", marcos);
+        Vehicle taxi1 = createVehicle((double) 1.0, (double) 2.3, "taxi primeiro", "LIGHT");
+        System.out.println(taxi1);
+        assignDriverToVehicle("sergio@hotmail.com", "taxi primeiro");
+        System.out.println(taxi1);
 
-        Vehicle taxi2 = createVehicle((double) 0.0, (double) 0.0, "taxi origem", "LIGHT", marcos);
+        Vehicle taxi2 = createVehicle((double) 0.0, (double) 0.0, "taxi origem", "LIGHT");
+        assignDriverToVehicle("marcos@hotmail.com", "taxi origem");
 
-        /* TESTING WRITING/READING VEHICLES */
+        /*
+        TESTING WRITING/READING VEHICLES
         IO iovehicles;
         iovehicles = new IO();
         iovehicles.Write(vehicles,1);
         iovehicles.Read(vehicles,1);
-        //-----------------------------------//
-        //-----------------------------------//
+        -----------------------------------
+        -----------------------------------
+        */
 
         System.out.println("Finding nearest (ready to travel) vehicle to currently logged in user (vitor)");
 

@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Vehicle
-comment1.params=newPosX\ newPosY\ identifier\ type\ newDriver
-comment1.target=Vehicle(double,\ double,\ java.lang.String,\ VehicleType,\ Driver)
+comment1.params=newPosX\ newPosY\ identifier\ type
+comment1.target=Vehicle(double,\ double,\ java.lang.String,\ VehicleType)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Vehicle\r\n
 comment10.params=distance
 comment10.target=double\ getTripTime(double)
