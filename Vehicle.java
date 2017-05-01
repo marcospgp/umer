@@ -19,6 +19,7 @@ public class Vehicle implements Serializable {
         this.identifier = identifier;
         this.type = type;
         this.currentDriver = newDriver;
+        this.type = type;
     }
 
     public Point getPosition() {
@@ -61,12 +62,12 @@ public class Vehicle implements Serializable {
     public double getTripPrice(double distance) {
         return (int) Math.round((distance / this.type.getPricePerKm()) * 100) / (double) 100;
     }
-    
+
     @Override
     public String toString() {
     return "Position: " + this.position + ", "
          + "Identifier: " + this.identifier + ", "
          + "Type: " + this.type + ", "
-         + "Current Driver: " + this.currentDriver; 
+         + "Current Driver: " + this.currentDriver;
     }
 }

@@ -31,9 +31,12 @@ public final class Umer {
      * @param type      The vehicle type
      * @param newDriver (optional) The new vehicle's driver. Should be null if not needed.
      */
-    private static Vehicle createVehicle(double x, double y, String identifier, VehicleType type, Driver newDriver) {
+    private static Vehicle createVehicle(double x, double y, String identifier, String type, Driver newDriver) {
 
-        Vehicle newVehicle = new Vehicle(x, y, identifier, type, newDriver);
+        // determinar o tipo de veículo (e se existe esse tipo)
+        VehicleType typeKnown = VehicleType.valueOf(type);
+
+        Vehicle newVehicle = new Vehicle(x, y, identifier, typeKnown, newDriver);
 
         Umer.vehicles.add(newVehicle);
 
@@ -254,9 +257,9 @@ public final class Umer {
         //
         System.out.println("Creating LIGHT taxi");
 
-        Vehicle taxi1 = createVehicle((double) 1.0, (double) 2.3, "taxi primeiro", VehicleType.LIGHT, marcos);
+        Vehicle taxi1 = createVehicle((double) 1.0, (double) 2.3, "taxi primeiro", "LIGHT", marcos);
 
-        Vehicle taxi2 = createVehicle((double) 0.0, (double) 0.0, "taxi origem", VehicleType.LIGHT, marcos      );
+        Vehicle taxi2 = createVehicle((double) 0.0, (double) 0.0, "taxi origem", "LIGHT", marcos);
 
         /* TESTING WRITING/READING VEHICLES */
         IO iovehicles;

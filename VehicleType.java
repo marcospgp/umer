@@ -4,9 +4,9 @@ import java.io.Serializable;
  * Enum dos tipos de táxis
  */
 public enum VehicleType implements Serializable {
-    LIGHT      (40, 1.5, 87),
-    NINESEAT   (30, 2.5, 84),
-    MOTORCYCLE (50, 1, 95);
+    LIGHT       (40, 1.5, 87),
+    NINESEAT    (30, 2.5, 84),
+    MOTORCYCLE  (50, 1, 95);
 
     private final double avgSpeed; // Average speed in km/h
     private final double pricePerKm; // Price per km in euros
