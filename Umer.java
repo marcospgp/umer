@@ -256,6 +256,13 @@ public final class Umer {
         return trips;
     }
 
+    public void setAvailable(boolean available) {
+
+        Driver a = (Driver) Umer.loggedAs;
+
+        a.setAvailability(available);
+    }
+
     private static String getTop10SpendingClients() {
         // ordena o array client tendo em conta o dinheiro gasto
         Collections.sort(clients, new Comparator<Client>() {
@@ -266,9 +273,9 @@ public final class Umer {
         List<String> temp = new ArrayList<String>();
         for (int i = 0; i<clients.size() && i < 10; i++)
             temp.add(clients.get(i).getName());
-        
+
         // Transforma arraylist em String
-        String listString = ""; 
+        String listString = "";
         for (String s : temp) {
             listString += s + " ";
         }
@@ -483,11 +490,11 @@ public final class Umer {
         //-----------------------------------//
         //-----------------------------------//
         */
-       
+
        //--------------- QUEUE -------------//
        Queue queue ;
        queue = new Queue();
-       
+
        // Cria um ArrayDeque que serve como fila
        ArrayDeque<Vehicle> list = new ArrayDeque<>();
        // Insere o Taxi na cauda da fila de espera
@@ -497,12 +504,12 @@ public final class Umer {
        System.out.println(list);
        // Tamanho do array
        System.out.println("Tamanho da fila de espera: " + queue.size(list));
-       // Remove o Taxi da cabeça da fila de espera 
+       // Remove o Taxi da cabeça da fila de espera
        queue.remove(list);
        // Print do array com 1 taxi removido
        System.out.println(list);
-       
-       
+
+
        System.out.println("TOP10: " + getTop10SpendingClients());
     }
 }
