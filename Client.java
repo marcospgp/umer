@@ -17,6 +17,20 @@ public class Client extends User implements Serializable {
         this.position = new Point<Double>(newPosX, newPosY);
     }
 
+    /**
+     * Obter a posição do utilizador
+     */
+    public Point getPosition() {
+        return this.position;
+    }
+
+    /**
+     * Definir a posição do utilizador
+     */
+    public void setPosition(Point newPos) {
+        this.position = newPos;
+    }
+
 
     /**
      * Obter o veículo mais próximo (pode estar vazio, ou o condutor pode não estar em serviço)
@@ -93,11 +107,9 @@ public class Client extends User implements Serializable {
      * @param userPosY -> posição Y do cliente
      * @param taxiID -> se for "" é porque quer o nearestVehicle, senão quer com ID especifico
     */
-    public Trip getTrip(ArrayList<Vehicle> vehicles, double userPosX, double userPosY, double destPosX, double destPosY, String taxiID) {
+    public Trip getTrip(ArrayList<Vehicle> vehicles, Point userPos, Point destPos, String taxiID) {
 
         Trip newTrip = null;;
-        Point userPos = new Point(userPosX, userPosY);
-        Point destPos = new Point(destPosX, destPosY);
         Vehicle tripVehicle = null;
         Driver tripDriver = null;
         double distanceToClient = 0.0, distanceToDest = 0.0, totalDistance = 0.0;

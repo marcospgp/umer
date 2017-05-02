@@ -26,6 +26,10 @@ public class Vehicle implements Serializable {
         return this.position;
     }
 
+    public Point setPosition(Point newPos) {
+        return this.position = newPos;
+    }
+
     public String getIdentifier() {
         return this.identifier;
     }
