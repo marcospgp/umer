@@ -283,6 +283,13 @@ public final class Umer {
         return trips;
     }
 
+    public void setAvailable(boolean available) {
+
+        Driver a = (Driver) Umer.loggedAs;
+
+        a.setAvailability(available);
+    }
+
     public static void main(String[] args) {
         int index = 0;
 
