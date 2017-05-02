@@ -57,18 +57,18 @@ public class GUI extends JFrame {
 	private JLabel emptyRatingsNotifier;
 	private JLabel dateLabel;
 	
-	private boolean isAvailable; // Se o condutor logado atualmente está disponível
+	private boolean isAvailable; // Se o condutor logado atualmente estï¿½ disponï¿½vel
 	private JLabel driverAvailableLabel;
 	private JLabel driverUnavailableLabel;
 	
-	// Formulário de iniciar viagem
+	// Formulï¿½rio de iniciar viagem
 	private JTextField txtX;
 	private JTextField txtY;
 	private JTextField txtVehicleID;
 	private JTextField vehicleFinancesInput;
 	
-	// Estes mapas são usados para manter uma referência aos dados apresentados na UI
-	// Isto torna possível remover dados da UI a partir de um identificador
+	// Estes mapas sï¿½o usados para manter uma referï¿½ncia aos dados apresentados na UI
+	// Isto torna possï¿½vel remover dados da UI a partir de um identificador
 	private Map<String, JLabel> drivers = new HashMap<String, JLabel>();
 	private Map<String, JLabel> clients = new HashMap<String, JLabel>();
 	
@@ -77,34 +77,12 @@ public class GUI extends JFrame {
 	private JTextField txtFinancesVehicleId;
 
 	/**
-	 * Iniciar a GUI
-	 */
-	public static void main(String[] args) {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUI frame = new GUI();
-					frame.setVisible(true);
-					frame.init();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Criar a Frame
 	 */
 	public GUI() {
 
 		/*
-		 * Opções da janela 
+		 * Opï¿½ï¿½es da janela 
 		 */
 		setMinimumSize(new Dimension(800, 600));
 		setTitle("Umer");
@@ -142,7 +120,7 @@ public class GUI extends JFrame {
 		pnlTopInner.setBackground(new Color(249, 249, 249));
 		pnlTop.add(pnlTopInner);
 		
-		// Botões do panel top inner
+		// Botï¿½es do panel top inner
 		
 		JButton btnLogin = new JButton("Iniciar Sess\u00E3o");
 		btnLogin.addActionListener(new ActionListener() {
@@ -502,7 +480,7 @@ public class GUI extends JFrame {
 		JScrollPane scrollPaneUsers = new JScrollPane();
 		pnlRightInner.add(scrollPaneUsers);
 		
-		// Painel scrollable que contém informação sobre utilizadores registados
+		// Painel scrollable que contï¿½m informaï¿½ï¿½o sobre utilizadores registados
 		JPanel pnlUsers = new JPanel();
 		pnlUsers.setBorder(new EmptyBorder(10, 10, 10, 10));
 		pnlUsers.setBackground(new Color(249, 249, 249));
@@ -647,13 +625,13 @@ public class GUI extends JFrame {
 		String[] result = dialog.getResult(); // result[0] = email, result[1] = password
 		
 		if (result == null) {
-			// Não se obteve um resultado válido
+			// Nï¿½o se obteve um resultado vï¿½lido
 			return;
 		}
 		
-		// TODO - Enviar informação de login para a classe Umer
+		// TODO - Enviar informaï¿½ï¿½o de login para a classe Umer
 		
-		// Classe Umer retorna se o utilizador é condutor ou cliente
+		// Classe Umer retorna se o utilizador ï¿½ condutor ou cliente
 		Boolean isDriver = true;
 		
 		if (isDriver == null) {
@@ -681,11 +659,11 @@ public class GUI extends JFrame {
 		String[] result = dialog.getResult(); // [email, name, password, address, birthdate]
 		
 		if (result == null) {
-			// Não se obteve um resultado válido
+			// Nï¿½o se obteve um resultado vï¿½lido
 			return;
 		}
 		
-		// TODO - Enviar informação para a classe Umer
+		// TODO - Enviar informaï¿½ï¿½o para a classe Umer
 	}
 	
 	private void showRegisterClientDialog() {
@@ -695,7 +673,7 @@ public class GUI extends JFrame {
 		String[] result = dialog.getResult(); // [email, name, password, address, birthdate, posX, posY]
 		
 		if (result == null) {
-			// Não se obteve um resultado válido
+			// Nï¿½o se obteve um resultado vï¿½lido
 			return;
 		}
 		
@@ -703,11 +681,11 @@ public class GUI extends JFrame {
 			double posX = Double.parseDouble(result[5]);
 			double posY = Double.parseDouble(result[6]);
 		} catch(NumberFormatException ex) {
-			// O utilizador não inseriu uma posição válida
+			// O utilizador nï¿½o inseriu uma posiï¿½ï¿½o vï¿½lida
 			return;
 		}
 		
-		// TODO - Enviar informação para a classe Umer
+		// TODO - Enviar informaï¿½ï¿½o para a classe Umer
 	}
 	
 	private void showCreateVehicleDialog() {
@@ -717,7 +695,7 @@ public class GUI extends JFrame {
 		String[] result = dialog.getResult(); // [identifier, type, posX, posY, hasWaitingList]
 		
 		if (result == null) {
-			// Não se obteve um resultado válido
+			// Nï¿½o se obteve um resultado vï¿½lido
 			return;
 		}
 		
@@ -725,13 +703,13 @@ public class GUI extends JFrame {
 			double posX = Double.parseDouble(result[2]);
 			double posY = Double.parseDouble(result[3]);
 		} catch(NumberFormatException ex) {
-			// O utilizador não inseriu uma posição válida
+			// O utilizador nï¿½o inseriu uma posiï¿½ï¿½o vï¿½lida
 			return;
 		}
 		
 		boolean hasWaitingList = Boolean.parseBoolean(result[4]);
 
-		// TODO - Enviar informação do carro
+		// TODO - Enviar informaï¿½ï¿½o do carro
 	}
 	
 	
@@ -739,13 +717,13 @@ public class GUI extends JFrame {
 		AssignDriverToVehicleDialog dialog = new AssignDriverToVehicleDialog();
 		dialog.customShow();
 		
-		String[] result = dialog.getResult(); // [email do condutor, id do veículo]
+		String[] result = dialog.getResult(); // [email do condutor, id do veï¿½culo]
 		
 		if (result == null) {
 			return;
 		}
 		
-		// TODO - Enviar informação do associo
+		// TODO - Enviar informaï¿½ï¿½o do associo
 	}
 	
 	private void logout() {
@@ -768,7 +746,7 @@ public class GUI extends JFrame {
 			double x = Double.parseDouble(destX);
 			double y = Double.parseDouble(destY);
 		} catch(NumberFormatException ex) {
-			// O utilizador não inseriu um destino válido
+			// O utilizador nï¿½o inseriu um destino vï¿½lido
 			return;
 		}
 		
@@ -825,7 +803,7 @@ public class GUI extends JFrame {
 		String id = this.vehicleFinancesInput.getText();
 		
 		// TODO - chamar o umer
-		this.showPopup("Finanças do veículo " + id, "getVehicleFinances(id)");
+		this.showPopup("Finanï¿½as do veï¿½culo " + id, "getVehicleFinances(id)");
 	}
 	
 	public void updateLoggedDriverInfo(String driverString, boolean isAvailable) {

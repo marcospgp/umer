@@ -40,7 +40,6 @@ public class Client extends User implements Serializable {
         return this.moneySpent;
     }
 
-
     /**
      * Obter o veículo mais próximo (pode estar vazio, ou o condutor pode não estar em serviço)
      */
