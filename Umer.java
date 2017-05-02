@@ -293,17 +293,13 @@ public final class Umer {
             return Double.compare(client1.getMoneySpent(), client2.getMoneySpent());
         }
         });
-        // Cria um arraylist com os nomes dos primeiros 10 clientes
-        List<String> temp = new ArrayList<String>();
+        // Cria um hashmap com os nomes dos primeiros 10 clientes
+        Map<String,Double> hashmap = new HashMap<String,Double>();
         for (int i = 0; i<clients.size() && i < 10; i++)
-            temp.add(clients.get(i).getName());
-
-        // Transforma arraylist em String
-        String listString = "";
-        for (String s : temp) {
-            listString += s + " ";
-        }
-        return listString;
+        hashmap.put(clients.get(i).getName(),clients.get(i).getMoneySpent());
+        // Transforma hashmap em String
+        String str = hashmap.toString();
+        return str;
     }
     
     private static String getTop5LessReliableDrivers() {
@@ -318,7 +314,6 @@ public final class Umer {
         List<String> temp = new ArrayList<String>();
         for (int i = 0; i<drivers.size() && i < 5; i++)
             temp.add(drivers.get(i).getName());
-
         // Transforma arraylist em String
         String listString = "";
         for (String s : temp) {

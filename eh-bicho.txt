@@ -1,4 +1,4 @@
-GUI (métodos que tu vais chamar a partir do Umer)
+﻿GUI (métodos que tu vais chamar a partir do Umer)
 ========
 updateTrips(String[] trips);
  - Esta função da GUI vai receber um array de strings que devem ser apresentadas na secção "histórico de viagens"
@@ -61,10 +61,13 @@ getTripHistory();
 getVehicleFinances(String vehicleIdentifier);
  - Retorna o total faturado por uma viatura.
 
+----FEITO---- Falta testar, duvida se está na ordem certa xD
 getTop10SpendingClients();
  - Retorna um array com os 10 clientes que mais gastaram
   até ao momento, com strings no formato "emailDoCondutor totalGasto".
 
+
+----FEITO---- Falta testar, duvida se está na ordem certa xD
 getTop5LessReliableDrivers();
  - Retorna um array com os 5 condutores que apresentam mais
   desvios entre os valores previstos para as viagens e o valor final faturado.
