@@ -284,7 +284,7 @@ public final class Umer {
 
         return trips;
     }
-    
+
      private static String getTop10SpendingClients() {
         // ordena o array client tendo em conta o dinheiro gasto
         Collections.sort(clients, new Comparator<Client>() {
@@ -295,9 +295,9 @@ public final class Umer {
         List<String> temp = new ArrayList<String>();
         for (int i = 0; i<clients.size() && i < 10; i++)
             temp.add(clients.get(i).getName());
-        
+
         // Transforma arraylist em String
-        String listString = ""; 
+        String listString = "";
         for (String s : temp) {
             listString += s + " ";
         }
@@ -305,7 +305,7 @@ public final class Umer {
     }
 
     public static void main(String[] args) {
-        
+
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Throwable e) {
@@ -322,7 +322,7 @@ public final class Umer {
                 }
             }
         });
-        
+
         int index = 0;
 
         System.out.println("Starting test");
@@ -330,6 +330,10 @@ public final class Umer {
         System.out.println("Creating user vitor with password gay at (0.5, 0.324)");
 
         Client vitor = registerClient("vitor@hotmail.com", "vitor", "gay", "casa", "yesterday", (double) 0.5, (double) 0.324);
+
+        System.out.println("Creating user vitor with password gay at (0.5, 0.324)");
+
+        Client joao = registerClient("vitor@hotmail.com", "joao", "gay", "casa", "yesterday", (double) 0.5, (double) 0.324);
 
         /* TESTING WRITING/READING CLIENTS
         IO ioclients;
@@ -497,7 +501,7 @@ public final class Umer {
        queue.remove(list);
        // Print do array com 1 taxi removido
        System.out.println(list);
-       
+
        System.out.println("TOP10: " + getTop10SpendingClients());
     }
 }
