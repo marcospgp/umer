@@ -44,6 +44,10 @@ public class Driver extends User implements Serializable {
         return this.available;
     }
 
+    public void setAvailability(boolean availability) {
+        this.available = availability;
+    }
+
     public void toggleAvailable() {
         this.available = !this.available;
     }
@@ -57,6 +61,6 @@ public class Driver extends User implements Serializable {
          + "Fulfillment: " + this.fulfillment + ", "
          + "Rating: " + this.rating + ", "
          + "Kms: " + this.kms + ", "
-         + "Available: " + this.available;  
+         + "Available: " + this.available;
     }
 }

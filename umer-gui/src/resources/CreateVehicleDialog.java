@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
+import javax.swing.JCheckBox;
 
 public class CreateVehicleDialog extends JDialog {
 
@@ -26,6 +27,7 @@ public class CreateVehicleDialog extends JDialog {
 	private JTextField txtPosX;
 	private JTextField txtPosY;
 	private JTextField txtType;
+	private JCheckBox hasWaitingList;
 	
 	private boolean userPressedOk = false;
 
@@ -43,7 +45,7 @@ public class CreateVehicleDialog extends JDialog {
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
 		gbl_contentPanel.columnWidths = new int[] {30, 30};
 		gbl_contentPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0};
+		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JLabel lblIdentifier = new JLabel("Identificador");
@@ -122,6 +124,22 @@ public class CreateVehicleDialog extends JDialog {
 			}
 		}
 		{
+			JLabel lblListaDeEspera = new JLabel("Lista de espera");
+			GridBagConstraints gbc_lblListaDeEspera = new GridBagConstraints();
+			gbc_lblListaDeEspera.insets = new Insets(0, 0, 0, 5);
+			gbc_lblListaDeEspera.gridx = 2;
+			gbc_lblListaDeEspera.gridy = 3;
+			contentPanel.add(lblListaDeEspera, gbc_lblListaDeEspera);
+		}
+		{
+			hasWaitingList = new JCheckBox("");
+			GridBagConstraints gbc_chckbxHasWaitingList = new GridBagConstraints();
+			gbc_chckbxHasWaitingList.anchor = GridBagConstraints.WEST;
+			gbc_chckbxHasWaitingList.gridx = 3;
+			gbc_chckbxHasWaitingList.gridy = 3;
+			contentPanel.add(hasWaitingList, gbc_chckbxHasWaitingList);
+		}
+		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
@@ -171,6 +189,7 @@ public class CreateVehicleDialog extends JDialog {
 		result[1] = txtType.getText().replaceAll("[^A-Za-z0-9]", "").toUpperCase(); // Only alphanumeric and then convert to uppercase
 		result[2] = txtPosX.getText();
 		result[3] = txtPosY.getText();
+		result[4] = String.valueOf(hasWaitingList.isSelected());
 		
 		for (int i = 0; i < result.length; i++) {
 
