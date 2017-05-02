@@ -231,18 +231,41 @@ public final class Umer {
             throw new java.lang.Error("Tried to find a specific vehicle, but current user is not a client.");
         }
 
-        Client a = (Client) Umer.loggedAs;
-        newTrip = a.getTrip(Umer.vehicles, a.getPosition(), destPos, taxiID);
-        // Viagem adicionada ao histórico
-        a.tripHistory.add(newTrip);
-        // Viagem começa a decorrer
-        Umer.tripsUnderway.add(newTrip);
-        // Atualizar posição do cliente
-        a.setPosition(destPos);
-        // Atualizar posição do veículo
-        newTrip.getVehicle().setPosition(destPos); // atualizar a posição do veículo
+        // procura por qualquer taxi caso seja string vazia ou por especifico caso nao seja
+        if ( (taxiID.equals("") && Umer.someTaxiIsAvailable()) || (Umer.taxiIsAvailable(taxiID)) ) {
+            Client a = (Client) Umer.loggedAs;
+            newTrip = a.getTrip(Umer.vehicles, a.getPosition(), destPos, taxiID);
+            // Viagem adicionada ao histórico
+            a.tripHistory.add(newTrip);
+            // Viagem começa a decorrer
+            Umer.tripsUnderway.add(newTrip);
+            // Atualizar posição do cliente
+            a.setPosition(destPos);
+            // Atualizar posição do veículo
+            newTrip.getVehicle().setPosition(destPos); // atualizar a posição do veículo
 
-        return newTrip;
+            System.out.println("Vehicle: " + newTrip.getVehicle().getIdentifier());
+            System.out.println("Driver: " + newTrip.getDriver().getName());
+            System.out.println("Origin: " + "(" + newTrip.getOrigin().getX() + "," + newTrip.getOrigin().getY() + ")");
+            System.out.println("Destination: " + "(" + newTrip.getDestination().getX() + "," + newTrip.getDestination().getY() + ")");
+            System.out.println("Estimated duration: " + newTrip.getEstimatedDuration());
+            System.out.println("Real Duration: " + newTrip.getRealDuration());
+            newTrip.setTimeStarted();
+            System.out.println("Time Started: " + newTrip.getTimeStarted());
+            newTrip.setArrivingTime();
+            System.out.println("Arriving time: " + newTrip.getArrivingTime());
+            System.out.println("Cost: " + newTrip.getCost());
+            System.out.println("Pos atualizada client: " + a.getPosition());
+            System.out.println("Pos atualizada driver: " + newTrip.getVehicle().getPosition());
+        }
+
+        // nao existe aquele veiculo ou nao há nenhum disponível
+        else {
+            System.out.println("O veículo " + taxiID + " não existe ou não está disponível.");
+            return newTrip;
+        }
+
+            return newTrip;
     }
 
     /**
@@ -352,81 +375,22 @@ public final class Umer {
         Trip viagem1 = null;
         taxiName = "";
         System.out.println("\nViagem que chama o mais próximo:");
-        // caso exista o taxi e esteja disponivel
-        if (Umer.someTaxiIsAvailable()) {
-            viagem1 = Umer.startTrip(taxiName, 2.0, 2.0); // Chama o mais proximo
-            System.out.println("Vehicle: " + viagem1.getVehicle().getIdentifier());
-            System.out.println("Driver: " + viagem1.getDriver().getName());
-            System.out.println("Origin: " + "(" + viagem1.getOrigin().getX() + "," + viagem1.getOrigin().getY() + ")");
-            System.out.println("Destination: " + "(" + viagem1.getDestination().getX() + "," + viagem1.getDestination().getY() + ")");
-            System.out.println("Estimated duration: " + viagem1.getEstimatedDuration());
-            System.out.println("Real Duration: " + viagem1.getRealDuration());
-            viagem1.setTimeStarted();
-            System.out.println("Time Started: " + viagem1.getTimeStarted());
-            viagem1.setArrivingTime();
-            System.out.println("Arriving time: " + viagem1.getArrivingTime());
-            System.out.println("Cost: " + viagem1.getCost());
-            Client a = (Client) Umer.loggedAs;
-            System.out.println("Pos atualizada client: " + a.getPosition());
-            System.out.println("Pos atualizada vehicle: " + viagem1.getVehicle().getPosition());
-        }
-        // o taxi nao esta disponivel
-        else {
-            System.out.println("O veículo " + taxiName + " não existe ou não está disponível.");
-        }
+        // Chama a startTrip que verifica se existe veiculo e a sua disponibilidade e tal
+        viagem1 = Umer.startTrip(taxiName, 2.0, 2.0); // Chama o mais proximo
 
 
         Trip viagem2 = null;
         taxiName = "taxi primeiro";
         System.out.println("\nViagem que chama o: 'taxi primeiro'");
-        // caso exista o taxi e esteja disponivel
-        if (Umer.taxiIsAvailable(taxiName)) {
-            viagem2 = Umer.startTrip(taxiName, 3.2, 2.4); // Chama pelo ID
-            System.out.println("Vehicle: " + viagem2.getVehicle().getIdentifier());
-            System.out.println("Driver: " + viagem2.getDriver().getName());
-            System.out.println("Origin: " + "(" + viagem2.getOrigin().getX() + "," + viagem2.getOrigin().getY() + ")");
-            System.out.println("Destination: " + "(" + viagem2.getDestination().getX() + "," + viagem2.getDestination().getY() + ")");
-            System.out.println("Estimated duration: " + viagem2.getEstimatedDuration());
-            System.out.println("Real Duration: " + viagem2.getRealDuration());
-            viagem2.setTimeStarted();
-            System.out.println("Time Started: " + viagem2.getTimeStarted());
-            viagem2.setArrivingTime();
-            System.out.println("Arriving time: " + viagem2.getArrivingTime());
-            System.out.println("Cost: " + viagem2.getCost());
-            Client a = (Client) Umer.loggedAs;
-            System.out.println("Pos atualizada client: " + a.getPosition());
-            System.out.println("Pos atualizada vehicle: " + viagem2.getVehicle().getPosition());
-        }
-        // o taxi nao esta disponivel
-        else {
-            System.out.println("O veículo " + taxiName + " não existe ou não está disponível.");
-        }
+        // Chama a startTrip que verifica se existe veiculo e a sua disponibilidade e tal
+        viagem2 = Umer.startTrip(taxiName, 3.2, 2.4); // Chama pelo ID
 
 
         Trip viagem3 = null;
         taxiName = "taxi que nao existe";
         System.out.println("\nViagem que chama o: 'taxi que nao existe'");
-        // caso exista o taxi e esteja disponivel
-        if (Umer.taxiIsAvailable(taxiName)) {
-            viagem3 = Umer.startTrip(taxiName, 3.2, 2.4); // Chama pelo ID
-            System.out.println("Vehicle: " + viagem3.getVehicle().getIdentifier());
-            System.out.println("Driver: " + viagem3.getDriver().getName());
-            System.out.println("Origin: " + "(" + viagem3.getOrigin().getX() + "," + viagem3.getOrigin().getY() + ")");
-            System.out.println("Destination: " + "(" + viagem3.getDestination().getX() + "," + viagem3.getDestination().getY() + ")");
-            System.out.println("Estimated duration: " + viagem3.getEstimatedDuration());
-            System.out.println("Real Duration: " + viagem3.getRealDuration());
-            viagem3.setTimeStarted();
-            System.out.println("Time Started: " + viagem3.getTimeStarted());
-            viagem3.setArrivingTime();
-            System.out.println("Arriving time: " + viagem3.getArrivingTime());
-            System.out.println("Cost: " + viagem3.getCost());
-            System.out.println("Pos atualizada client: " + "ainda nao pus");
-            System.out.println("Pos atualizada driver: " + viagem3.getVehicle().getPosition());
-        }
-        // o taxi nao esta disponivel
-        else {
-            System.out.println("O veículo " + taxiName + " não existe ou não está disponível.");
-        }
+        // Chama a startTrip que verifica se existe veiculo e a sua disponibilidade e tal
+        viagem3 = Umer.startTrip(taxiName, 3.2, 2.4); // Chama pelo ID
 
         //----------------------------------- HISTORICO DE VIAGENS ------------------------------
         // System.out.println("\nHISTORICO DE VIAGENS:");
