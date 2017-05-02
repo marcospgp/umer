@@ -4,7 +4,7 @@ import java.io.Serializable;
 public class Client extends User implements Serializable {
 
     private Point position;
-    private int moneySpent;
+    private double moneySpent;
 
     /**
      * Constructor for objects of class Client
@@ -32,11 +32,7 @@ public class Client extends User implements Serializable {
         this.position = newPos;
     }
 
-    public String getName () {
-        return this.name;
-    }
-
-    public int getMoneySpent () {
+    public double getMoneySpent () {
         return this.moneySpent;
     }
 

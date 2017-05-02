@@ -288,13 +288,36 @@ public final class Umer {
      private static String getTop10SpendingClients() {
         // ordena o array client tendo em conta o dinheiro gasto
         Collections.sort(clients, new Comparator<Client>() {
-        @Override public int compare(Client c1, Client c2) {
-            return c1.getMoneySpent() - c2.getMoneySpent(); }
+        @Override
+        public int compare(Client client1, Client client2) {
+            return Double.compare(client1.getMoneySpent(), client2.getMoneySpent());
+        }
         });
         // Cria um arraylist com os nomes dos primeiros 10 clientes
         List<String> temp = new ArrayList<String>();
         for (int i = 0; i<clients.size() && i < 10; i++)
             temp.add(clients.get(i).getName());
+
+        // Transforma arraylist em String
+        String listString = "";
+        for (String s : temp) {
+            listString += s + " ";
+        }
+        return listString;
+    }
+    
+    private static String getTop5LessReliableDrivers() {
+        // ordena o array drivers tendo em conta os less reliable
+        Collections.sort(drivers, new Comparator<Driver>() {
+        @Override
+        public int compare(Driver driver1, Driver driver2) {
+            return -(Double.compare(driver1.getRating(), driver2.getRating()));
+        }
+        });
+        // Cria um arraylist com os nomes dos primeiros 5 drivers
+        List<String> temp = new ArrayList<String>();
+        for (int i = 0; i<drivers.size() && i < 5; i++)
+            temp.add(drivers.get(i).getName());
 
         // Transforma arraylist em String
         String listString = "";
@@ -502,6 +525,7 @@ public final class Umer {
        // Print do array com 1 taxi removido
        System.out.println(list);
 
-       System.out.println("TOP10: " + getTop10SpendingClients());
+       System.out.println("TOP10 clients: " + getTop10SpendingClients());
+       System.out.println("TOP5 drivers: " + getTop5LessReliableDrivers());
     }
 }

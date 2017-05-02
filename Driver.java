@@ -29,7 +29,7 @@ public class Driver extends User implements Serializable {
         this.kms = (double) 0;
         this.available = false;
     }
-
+    
     public double getFulfillment() {
         return this.fulfillment;
     }
