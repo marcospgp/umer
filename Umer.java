@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.ArrayDeque;
 
 /**
  * O Umer é um programa que permite efetuar a gerência de viagens entre clientes e motoristas.
@@ -462,5 +463,22 @@ public final class Umer {
         //-----------------------------------//
         //-----------------------------------//
         */
+       
+       //--------------- QUEUE -------------//
+       Queue queue ;
+       queue = new Queue();
+       
+       // Cria um ArrayDeque que serve como fila
+       Deque list = new ArrayDeque();
+       // Insere o Taxi na cauda da fila de espera
+       queue.add(taxi1,list);
+       queue.add(taxi2,list);
+       // Print do array com os taxis inseridos
+       System.out.println(list);
+       // Remove o Taxi da cabeça da fila de espera 
+       queue.remove(list);
+       // Print do array com 1 taxi removido
+       System.out.println(list);
+
     }
 }
