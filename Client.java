@@ -4,6 +4,7 @@ import java.io.Serializable;
 public class Client extends User implements Serializable {
 
     private Point position;
+    private int moneySpent;
 
     /**
      * Constructor for objects of class Client
@@ -17,7 +18,15 @@ public class Client extends User implements Serializable {
         this.position = new Point<Double>(newPosX, newPosY);
     }
 
-
+    public String getName () {
+        return this.name;
+    }
+    
+    public int getMoneySpent () {
+        return this.moneySpent;
+    }
+    
+    
     /**
      * Obter o veículo mais próximo (pode estar vazio, ou o condutor pode não estar em serviço)
      */
