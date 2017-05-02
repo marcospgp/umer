@@ -7,7 +7,7 @@ public class Queue {
         l.add(v);
     }
     
-    // Método que remive objeto veículo da cabeça da lista
+    // Método que remove objeto veículo da cabeça da lista
     public static void remove(Deque<Vehicle> l) {
         l.removeFirst();
     }
