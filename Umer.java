@@ -284,25 +284,44 @@ public final class Umer {
 
         return trips;
     }
+    
+     private static String getTop10SpendingClients() {
+        // ordena o array client tendo em conta o dinheiro gasto
+        Collections.sort(clients, new Comparator<Client>() {
+        @Override public int compare(Client c1, Client c2) {
+            return c1.getMoneySpent() - c2.getMoneySpent(); }
+        });
+        // Cria um arraylist com os nomes dos primeiros 10 clientes
+        List<String> temp = new ArrayList<String>();
+        for (int i = 0; i<clients.size() && i < 10; i++)
+            temp.add(clients.get(i).getName());
+        
+        // Transforma arraylist em String
+        String listString = ""; 
+        for (String s : temp) {
+            listString += s + " ";
+        }
+        return listString;
+    }
 
     public static void main(String[] args) {
         
         try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUI frame = new GUI();
-					frame.setVisible(true);
-					frame.init();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    GUI frame = new GUI();
+                    frame.setVisible(true);
+                    frame.init();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         
         int index = 0;
 
@@ -478,5 +497,7 @@ public final class Umer {
        queue.remove(list);
        // Print do array com 1 taxi removido
        System.out.println(list);
+       
+       System.out.println("TOP10: " + getTop10SpendingClients());
     }
 }
