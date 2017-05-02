@@ -15,7 +15,7 @@ public final class Umer {
     private static ArrayList<Client> clients = new ArrayList<Client>();
     private static ArrayList<Trip> tripHistory = new ArrayList<Trip>();
     private static ArrayList<Trip> tripsUnderway = new ArrayList<Trip>();
-    private static ArrayList<String> trips = new ArrayList<String>();
+
 
     private static User loggedAs = null;
 
@@ -245,8 +245,10 @@ public final class Umer {
      */
     private static ArrayList<String> getTripHistory () {
 
+        ArrayList<String> trips = new ArrayList<String>();
+
         for (int i = 0; i < Umer.loggedAs.tripHistory.size(); i++) {
-            Umer.trips.add(Umer.loggedAs.tripHistory.get(i).toString());
+            trips.add(Umer.loggedAs.tripHistory.get(i).toString());
         }
 
         return trips;
@@ -414,9 +416,7 @@ public final class Umer {
 
         //----------------------------------- HISTORICO DE VIAGENS ------------------------------
         System.out.println("\nHISTORICO DE VIAGENS:");
-
-        getTripHistory();
-        System.out.println(trips);
+        System.out.println(getTripHistory());
 
 
 
