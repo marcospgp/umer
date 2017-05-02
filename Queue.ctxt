@@ -1,6 +1,6 @@
 #BlueJ class context
-comment0.params=o\ l
-comment0.target=void\ add(java.lang.Object,\ java.util.Deque)
+comment0.params=v\ l
+comment0.target=void\ add(Vehicle,\ java.util.Deque)
 comment1.params=l
 comment1.target=void\ remove(java.util.Deque)
 numComments=2

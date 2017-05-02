@@ -469,7 +469,7 @@ public final class Umer {
        queue = new Queue();
        
        // Cria um ArrayDeque que serve como fila
-       Deque list = new ArrayDeque();
+       ArrayDeque<Vehicle> list = new ArrayDeque<>();
        // Insere o Taxi na cauda da fila de espera
        queue.add(taxi1,list);
        queue.add(taxi2,list);

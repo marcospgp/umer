@@ -2,10 +2,10 @@ import java.util.Deque;
 
 public class Queue {
 
-    public static void add(Object o,Deque<Object> l) {
-        l.add(o);
+    public static void add(Vehicle v,Deque<Vehicle> l) {
+        l.add(v);
     }
-    public static void remove(Deque<Object> l) {
+    public static void remove(Deque<Vehicle> l) {
         l.removeFirst();
     }
 }
