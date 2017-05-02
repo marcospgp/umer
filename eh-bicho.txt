@@ -1,0 +1,88 @@
+GUI (métodos que tu vais chamar a partir do Umer)
+========
+updateTrips(String[] trips);
+ - Esta função da GUI vai receber um array de strings que devem ser apresentadas na secção "histórico de viagens"
+  Podes passar as duas arrayLists de viagens por um loop e preencher um array fazendo trip.toString()
+
+updateDrivers(String[] drivers);
+ - Recebe um array de strings que serão apresentadas
+  na secção "Condutores Registados"
+
+updateClients(String[] clients);
+ - Recebe um array de strings que serão apresentadas
+  na secção "Clientes Registados"
+
+updateVehicles(String[] vehicles);
+ - Recebe um array de strings que serão apresentadas
+  na secção "Veículos Registados"
+
+updateTime(String time);
+ - Recebe uma string que indica o tempo atual, para ser apresentada na GUI
+
+updateLoggedDriverInfo(String driverString);
+e
+updateLoggedClientInfo(String clientString, String[] driverEmails);
+ - Atualizam a informação do utilizador logado atualmente.
+  Apenas deve ser chamada quando houverem alterações nessa informação, para nao dar o break à interface.
+   driverString e clientString podes fazer com o toString().
+   driversToRate é uma lista dos emails dos condutores que
+   estão à espera da avaliação do cliente logado atualmente.
+
+UMER (métodos que eu quero chamar a partir da GUI)
+========
+----FEITO----
+login(String email, String password);
+ - deve detetar se o utilizador é um condutor ou um cliente
+
+----FEITO----
+logout();
+ - simplesmente termina a sessão atual
+
+----FEITO----
+registerClient(String email, String name, String password, String address, String birthdate, Double posX, Double posY);
+
+----FEITO----
+registerDriver(String email, String name, String password, String address, String birthdate);
+
+----FEITO----
+createVehicle(String identifier, VehicleType type, Double posX, Double posY);
+
+----FEITO----
+assignDriverToVehicle(String driverEmail, String vehicleIdentifier);
+
+----FEITO---- (tem de ser testado depois com o programa)
+public void setAvailable(boolean available);
+
+----FEITO----
+getTripHistory();
+ - Retorna o histórico de viagens (array de strings)
+  do utilizador logado atualmente.
+
+getVehicleFinances(String vehicleIdentifier);
+ - Retorna o total faturado por uma viatura.
+
+getTop10SpendingClients();
+ - Retorna um array com os 10 clientes que mais gastaram
+  até ao momento, com strings no formato "emailDoCondutor totalGasto".
+
+getTop5LessReliableDrivers();
+ - Retorna um array com os 5 condutores que apresentam mais
+  desvios entre os valores previstos para as viagens e o valor final faturado.
+
+rateDriver(String driverEmail, Double rating);
+ - Dá uma avaliação a um condutor, de 0 a 100, relativamente
+  a uma viagem. Quando este método for chamado, tens de chamar
+  o updateLoggedClientInfo(); para remover aquele condutor da lista
+  dos condutores que estão à espera de rating deste cliente.
+
+----FEITO----
+startTrip(String vehicleIdentifier, Double destX, Double destY);
+ - Começa uma viagem. Se a string vehicleIdentifier for vazia, significa que o utilizador quer escolher o carro mais próximo.
+  Se não houver nenhum carro disponível, não fazer nada. -> retorna null
+
+fastForward(Double seconds);
+ - esta função permite andar para a frente no tempo, como falamos.
+  deves manter um valor no Umer que é o numero de segundos que se
+  andou para a frente até agora, e que deve ser somado sempre que se calcula o tempo atual.
+  Podes fazer um metodo privado no Umer chamado getTime() que
+  simplesmente faz tipo Date.getTime() + this.fastForwardValue;
