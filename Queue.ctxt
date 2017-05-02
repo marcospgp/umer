@@ -3,4 +3,6 @@ comment0.params=v\ l
 comment0.target=void\ add(Vehicle,\ java.util.Deque)
 comment1.params=l
 comment1.target=void\ remove(java.util.Deque)
-numComments=2
+comment2.params=l
+comment2.target=int\ size(java.util.Deque)
+numComments=3

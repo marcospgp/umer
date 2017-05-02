@@ -475,10 +475,11 @@ public final class Umer {
        queue.add(taxi2,list);
        // Print do array com os taxis inseridos
        System.out.println(list);
+       // Tamanho do array
+       System.out.println("Tamanho da fila de espera: " + queue.size(list));
        // Remove o Taxi da cabeça da fila de espera 
        queue.remove(list);
        // Print do array com 1 taxi removido
        System.out.println(list);
-
     }
 }
