@@ -111,7 +111,7 @@ public final class Umer {
      * @param passord A password do utilizador
      * @return        True se o login foi bem sucedido, caso contrário é retornado false
      */
-    private static boolean login(String email, String password) {
+    private static Boolean login(String email, String password) {
 
         // Loopar pelos clientes
         for (int i = 0; i < Umer.clients.size(); i++) {
@@ -120,7 +120,7 @@ public final class Umer {
 
                 Umer.loggedAs = (User) Umer.clients.get(i);
 
-                return true;
+                return false;
             }
         }
 
@@ -135,7 +135,7 @@ public final class Umer {
             }
         }
 
-        return false;
+        return null;
     }
 
     /**
@@ -463,11 +463,11 @@ public final class Umer {
         //-----------------------------------//
         //-----------------------------------//
         */
-       
+
        //--------------- QUEUE -------------//
        Queue queue ;
        queue = new Queue();
-       
+
        // Cria um ArrayDeque que serve como fila
        ArrayDeque<Vehicle> list = new ArrayDeque<>();
        // Insere o Taxi na cauda da fila de espera
@@ -477,7 +477,7 @@ public final class Umer {
        System.out.println(list);
        // Tamanho do array
        System.out.println("Tamanho da fila de espera: " + queue.size(list));
-       // Remove o Taxi da cabeça da fila de espera 
+       // Remove o Taxi da cabeça da fila de espera
        queue.remove(list);
        // Print do array com 1 taxi removido
        System.out.println(list);
