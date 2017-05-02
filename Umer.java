@@ -35,7 +35,9 @@ public final class Umer {
      * @param type      The vehicle type
      * @param newDriver (optional) The new vehicle's driver. Should be null if not needed.
      */
-    private static Vehicle createVehicle(double x, double y, String identifier, String type) {
+    public static Vehicle createVehicle(double x, double y, String identifier, String type, boolean hasWaitingList) {
+        
+        // TODO - Usar hasWaitingList e usar try catch abaixo no VehicleType.valueOf
 
         // determinar o tipo de veículo (e se existe esse tipo)
         VehicleType typeKnown = VehicleType.valueOf(type);
@@ -50,7 +52,7 @@ public final class Umer {
     /**
      * Cria um novo condutor
      */
-    private static Driver registerDriver(String email, String name, String password, String address, String birthdate) {
+    public static Driver registerDriver(String email, String name, String password, String address, String birthdate) {
 
         Driver newDriver = new Driver(email, name, password, address, birthdate);
 
@@ -62,7 +64,7 @@ public final class Umer {
     /**
      * Cria um novo cliente
      */
-    private static Client registerClient(String email, String name, String password, String address, String birthdate, double posX, double posY) {
+    public static Client registerClient(String email, String name, String password, String address, String birthdate, double posX, double posY) {
 
         Client newClient = new Client(email, name, password, address, birthdate, posX, posY);
 
@@ -74,7 +76,7 @@ public final class Umer {
     /**
      * Ocupa um veículo com um dado condutor
      */
-    private static void assignDriverToVehicle(String driverEmail, String vehicleIdentifier) {
+    public static void assignDriverToVehicle(String driverEmail, String vehicleIdentifier) {
 
         Driver curDriver = null;
 
@@ -113,7 +115,7 @@ public final class Umer {
      * @param passord A password do utilizador
      * @return        True se o login foi bem sucedido, caso contrário é retornado false
      */
-    private static Boolean login(String email, String password) {
+    public static Boolean login(String email, String password) {
 
         // Loopar pelos clientes
         for (int i = 0; i < Umer.clients.size(); i++) {
@@ -145,7 +147,7 @@ public final class Umer {
      *
      * @return        True se o logout foi bem sucedido, caso contrário é retornado false
      */
-    private static boolean logout() {
+    public static boolean logout() {
 
         // Verificar se está algum utilizador logado
         if (Umer.loggedAs != null) {
@@ -224,7 +226,7 @@ public final class Umer {
      * Retorna o veículo com o ID específico ao utilizador
      * logado atualmente, apenas se o utilizador for um cliente
      */
-    private static Trip startTrip(String taxiID, double destPosX, double destPosY) {
+    public static Trip startTrip(String taxiID, double destPosX, double destPosY) {
 
         Trip newTrip = null;
         Point destPos = new Point(destPosX, destPosY);
@@ -274,18 +276,19 @@ public final class Umer {
      * Retorna a lista de viagens do utilizador logado
      * em forma de ArrayList de Strings
      */
-    private static ArrayList<String> getTripHistory () {
+    public static String getTripHistory () {
 
-        ArrayList<String> trips = new ArrayList<String>();
+        String trips = "";
 
         for (int i = 0; i < Umer.loggedAs.tripHistory.size(); i++) {
-            trips.add(Umer.loggedAs.tripHistory.get(i).toString());
+            trips += Umer.loggedAs.tripHistory.get(i).toString();
+            trips += "\n";
         }
 
         return trips;
     }
 
-     private static String getTop10SpendingClients() {
+     public static String getTop10SpendingClients() {
         // ordena o array client tendo em conta o dinheiro gasto
         Collections.sort(clients, new Comparator<Client>() {
         @Override
@@ -302,7 +305,7 @@ public final class Umer {
         return str;
     }
     
-    private static String getTop5LessReliableDrivers() {
+    public static String getTop5LessReliableDrivers() {
         // ordena o array drivers tendo em conta os less reliable
         Collections.sort(drivers, new Comparator<Driver>() {
         @Override
@@ -320,6 +323,29 @@ public final class Umer {
             listString += s + " ";
         }
         return listString;
+    }
+    
+    // TODO - função fast forward
+    public static void fastForward(double seconds) {
+        // this.fastForwardValue += seconds
+        return;
+    }
+    
+    // TODO - função rating
+    public static void rateDriver(String driverEmail, double rating) {
+        // A magda é mesmo gira
+    }
+    
+    // TODO - função available
+    public static void setAvailable(boolean available) {
+    
+        // (Driver) this.loggedAs.setAvailability(available);
+    }
+    
+    // TODO - get vehicle finances
+    public static String getVehicleFinances(String vehicleId) {
+        // muto muto dinhero
+        return "fugue fugue foguetinhos";
     }
 
     public static void main(String[] args) {
@@ -400,12 +426,12 @@ public final class Umer {
         //
         System.out.println("Creating LIGHT taxi");
 
-        Vehicle taxi1 = createVehicle((double) 1.0, (double) 2.3, "taxi primeiro", "LIGHT");
+        Vehicle taxi1 = createVehicle((double) 1.0, (double) 2.3, "taxi primeiro", "LIGHT", false);
         System.out.println(taxi1);
         assignDriverToVehicle("sergio@hotmail.com", "taxi primeiro");
         System.out.println(taxi1);
 
-        Vehicle taxi2 = createVehicle((double) 0.0, (double) 0.0, "taxi origem", "LIGHT");
+        Vehicle taxi2 = createVehicle((double) 0.0, (double) 0.0, "taxi origem", "LIGHT", false);
         assignDriverToVehicle("marcos@hotmail.com", "taxi origem");
 
         /*

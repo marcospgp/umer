@@ -629,10 +629,8 @@ public class GUI extends JFrame {
 			return;
 		}
 		
-		// TODO - Enviar informa��o de login para a classe Umer
-		
 		// Classe Umer retorna se o utilizador � condutor ou cliente
-		Boolean isDriver = true;
+		Boolean isDriver = Umer.login(result[0], result[1]);
 		
 		if (isDriver == null) {
 			// A tentativa de login falhou
@@ -663,7 +661,7 @@ public class GUI extends JFrame {
 			return;
 		}
 		
-		// TODO - Enviar informa��o para a classe Umer
+		Umer.registerDriver(result[0], result[1], result[2], result[3], result[4]);
 	}
 	
 	private void showRegisterClientDialog() {
@@ -677,15 +675,18 @@ public class GUI extends JFrame {
 			return;
 		}
 		
+		double posX;
+		double posY;
+		
 		try {
-			double posX = Double.parseDouble(result[5]);
-			double posY = Double.parseDouble(result[6]);
+			posX = Double.parseDouble(result[5]);
+			posY = Double.parseDouble(result[6]);
 		} catch(NumberFormatException ex) {
 			// O utilizador n�o inseriu uma posi��o v�lida
 			return;
 		}
 		
-		// TODO - Enviar informa��o para a classe Umer
+		Umer.registerClient(result[0], result[1], result[2], result[3], result[4], posX, posY);
 	}
 	
 	private void showCreateVehicleDialog() {
@@ -699,9 +700,12 @@ public class GUI extends JFrame {
 			return;
 		}
 		
+		double posX;
+		double posY;
+		
 		try {
-			double posX = Double.parseDouble(result[2]);
-			double posY = Double.parseDouble(result[3]);
+			posX = Double.parseDouble(result[2]);
+			posY = Double.parseDouble(result[3]);
 		} catch(NumberFormatException ex) {
 			// O utilizador n�o inseriu uma posi��o v�lida
 			return;
@@ -709,7 +713,7 @@ public class GUI extends JFrame {
 		
 		boolean hasWaitingList = Boolean.parseBoolean(result[4]);
 
-		// TODO - Enviar informa��o do carro
+		Umer.createVehicle(posX, posY, result[0], result[1], hasWaitingList);
 	}
 	
 	
@@ -723,7 +727,7 @@ public class GUI extends JFrame {
 			return;
 		}
 		
-		// TODO - Enviar informa��o do associo
+		Umer.assignDriverToVehicle(result[0], result[1]);
 	}
 	
 	private void logout() {
@@ -733,34 +737,40 @@ public class GUI extends JFrame {
 		this.logoutButton.setVisible(false);
 		this.loginButton.setVisible(true);
 		
-		// TODO - Chamar o logout
+		Umer.logout();
 	}
 	
 	private void fastForward(Double seconds) {
-		// TODO - chamar o fast forward
+		Umer.fastForward(seconds);
 	}
 	
 	private void startTrip(String vehicleId, String destX, String destY) {
 		
+	    double x;
+	    double y;
+	    
 		try {
-			double x = Double.parseDouble(destX);
-			double y = Double.parseDouble(destY);
+			x = Double.parseDouble(destX);
+			y = Double.parseDouble(destY);
 		} catch(NumberFormatException ex) {
 			// O utilizador n�o inseriu um destino v�lido
 			return;
 		}
 		
-		// TODO - chamar o umer
+		Umer.startTrip(vehicleId, x, y);
 	}
 	
 	private void rateDriver(String driverEmail, String rating) {
-		try {
-			double ratingNum = Double.parseDouble(rating);
+		
+	    double ratingNum;
+	    
+	    try {
+			ratingNum = Double.parseDouble(rating);
 		} catch (NumberFormatException ex) {
 			return;
 		}
 		
-		// TODO - chamar o umer
+		Umer.rateDriver(driverEmail, ratingNum);
 	}
 	
 	private void toggleAvailability() {
@@ -776,7 +786,7 @@ public class GUI extends JFrame {
 			this.driverAvailableLabel.setVisible(true);
 		}
 		
-		// TODO - chamar o umer
+		Umer.setAvailable(this.isAvailable);
 	}
 	
 	private void showPopup(String titleBar, String text) {
@@ -784,26 +794,22 @@ public class GUI extends JFrame {
 	}
 	
 	private void showTripHistory() {
-		// TODO - chamar o umer
-		this.showPopup("Registo de viagens", "getTripHistory()");
+		this.showPopup("Registo de viagens", Umer.getTripHistory());
 	}
 	
 	private void show10MostSpendingClients() {
-		// TODO - chamar o umer
-		this.showPopup("10 clientes que gastam mais", "getTop10SpendingClients()");
+		this.showPopup("10 clientes que gastam mais", Umer.getTop10SpendingClients());
 	}
 	
 	private void show5LessReliableDrivers() {
-		// TODO - chamar o umer
-		this.showPopup("5 piores condutores", "getTop5LessReliableDrivers()");
+		this.showPopup("5 piores condutores", Umer.getTop5LessReliableDrivers());
 	}
 	
 	private void showVehicleFinances() {
 		
 		String id = this.vehicleFinancesInput.getText();
-		
-		// TODO - chamar o umer
-		this.showPopup("Finan�as do ve�culo " + id, "getVehicleFinances(id)");
+
+		this.showPopup("Finanças do veículo " + id, Umer.getVehicleFinances(id));
 	}
 	
 	public void updateLoggedDriverInfo(String driverString, boolean isAvailable) {
@@ -821,23 +827,19 @@ public class GUI extends JFrame {
 		// Classe listener para os ratings
 		final class RatingActionListener implements ActionListener {
 		    private int index;
+		    private String email;
 
-		    public RatingActionListener(int index) {
+		    public RatingActionListener(int index, String driverEmail) {
 		    	this.index = index;
+		    	this.email = driverEmail;
 		    }
 
-		    public void actionPerformed(ActionEvent e) {
-		    	try {
-					double rating = Double.parseDouble(ratingInputs[index].getText());
-				} catch (NumberFormatException ex) {
-					return;
-				}
-				
-				// TODO - chamar umer
+		    public void actionPerformed(ActionEvent e) {			
+				rateDriver(email, ratingInputs[index].getText());
 		    }
 		}
 		
-		this.loggedInDriverInfo.setText(clientString);
+		this.loggedInClientInfo.setText(clientString);
 		
 		if (ratingPendingEmails.length == 0) {
 			this.emptyRatingsNotifier.setVisible(true);
@@ -867,7 +869,7 @@ public class GUI extends JFrame {
 			this.ratingInputs[i] = txtRating;
 			
 			JButton btnSubmeter = new JButton("Submeter");
-			btnSubmeter.addActionListener(new RatingActionListener(i));
+			btnSubmeter.addActionListener(new RatingActionListener(i, ratingPendingEmails[i]));
 			pnlPendingRating.add(btnSubmeter);
 			
 			this.pendingRatingsContainer.add(pnlPendingRating);
