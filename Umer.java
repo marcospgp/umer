@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -275,7 +275,8 @@ public final class Umer {
 
      public static String getTop10SpendingClients() {
 
-        List<Client> clientsList = (List<Client>) clients.values();
+        Collection<Client> clientsCollection = (Collection<Client>) clients.values();
+        ArrayList<Client> clientsList = new ArrayList(clientsCollection);
 
         // ordena o array client tendo em conta o dinheiro gasto
         Collections.sort(clientsList, new Comparator<Client>() {
@@ -301,10 +302,11 @@ public final class Umer {
 
     public static String getTop5LessReliableDrivers() {
 
-        List<Driver> drivers = (List<Driver>) Umer.drivers.values();
+        Collection<Driver> driversCollection = (Collection<Driver>) drivers.values();
+        ArrayList<Driver> driversList = new ArrayList(driversCollection);
 
         // ordena o array drivers tendo em conta os less reliable
-        Collections.sort(drivers, new Comparator<Driver>() {
+        Collections.sort(driversList, new Comparator<Driver>() {
             @Override
             public int compare(Driver driver1, Driver driver2) {
                 return -(Double.compare(driver1.getRating(), driver2.getRating()));
@@ -315,8 +317,8 @@ public final class Umer {
 
         ArrayList<String> temp = new ArrayList<String>();
 
-        for (int i = 0; i<drivers.size() && i < 5; i++) {
-            temp.add(drivers.get(i).getName());
+        for (int i = 0; i < driversList.size() && i < 5; i++) {
+            temp.add(driversList.get(i).getName());
         }
 
         // Transforma arraylist em String
