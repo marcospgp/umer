@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ArrayDeque;
 import javax.swing.UIManager;
 import java.awt.EventQueue;
@@ -13,9 +14,9 @@ import java.awt.EventQueue;
  */
 public final class Umer {
 
-    private static ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
-    private static ArrayList<Driver> drivers = new ArrayList<Driver>();
-    private static ArrayList<Client> clients = new ArrayList<Client>();
+    private static HashMap vehicles = new HashMap(); // vehicleId   -> Vehicle
+    private static HashMap driversList = new HashMap();  // driverEmail -> Driver
+    private static HashMap clients = new HashMap();  // clientEmail -> Client
     private static ArrayList<Trip> tripHistory = new ArrayList<Trip>();
     private static ArrayList<Trip> tripsUnderway = new ArrayList<Trip>();
 
@@ -36,7 +37,7 @@ public final class Umer {
      * @param newDriver (optional) The new vehicle's driver. Should be null if not needed.
      */
     public static Vehicle createVehicle(double x, double y, String identifier, String type, boolean hasWaitingList) {
-        
+
         // TODO - Usar hasWaitingList e usar try catch abaixo no VehicleType.valueOf
 
         // determinar o tipo de veículo (e se existe esse tipo)
@@ -44,7 +45,7 @@ public final class Umer {
 
         Vehicle newVehicle = new Vehicle(x, y, identifier, typeKnown);
 
-        Umer.vehicles.add(newVehicle);
+        Umer.vehicles.put(identifier, newVehicle);
 
         return newVehicle;
     }
@@ -56,7 +57,7 @@ public final class Umer {
 
         Driver newDriver = new Driver(email, name, password, address, birthdate);
 
-        Umer.drivers.add(newDriver);
+        Umer.driversList.put(email, newDriver);
 
         return newDriver;
     }
@@ -68,7 +69,7 @@ public final class Umer {
 
         Client newClient = new Client(email, name, password, address, birthdate, posX, posY);
 
-        Umer.clients.add(newClient);
+        clients.put(email, newClient);
 
         return newClient;
     }
@@ -78,34 +79,29 @@ public final class Umer {
      */
     public static void assignDriverToVehicle(String driverEmail, String vehicleIdentifier) {
 
-        Driver curDriver = null;
+        Driver curDriver = driversList.get(driverEmail);
 
-        // Loopar pelos condutores
-        for (int i = 0; i < Umer.drivers.size(); i++) {
+        if (curDriver == null || vehicles.get(vehicleIdentifier) == null) {
+            return;
+        }
 
-            if (Umer.drivers.get(i).getEmail().equals(driverEmail)) {
+        // Iterar pelos veículos para ver se aquele driver já está em algum. Se estiver, remove-o.
 
-                curDriver = Umer.drivers.get(i);
+        Set vehicleSet = vehicles.entrySet();
+        Iterator i = vehicleSet.iterator();
 
+        while (i.hasNext()) {
+
+            Vehicle curVehicle = (Vehicle) i.next();
+
+            íf (curVehicle.getDriver() != null && curVehicle.getDriver().getEmail().equals(driverEmail)) {
+
+                curVehicle.setDriver(null);
             }
         }
 
-        // Loopar pelos veículos para ver se aquele driver já está em algum. Se estiver, remove-o.
-        // Também adiciona o Driver ao veículo escolhido.
-        for (int i = 0; i < Umer.vehicles.size(); i++) {
-
-            if ((Umer.vehicles.get(i).getDriver() != null) && (Umer.vehicles.get(i).getDriver().getEmail().equals(curDriver.getEmail()))) {
-
-                Umer.vehicles.get(i).setDriver(null);
-
-            }
-
-            if (Umer.vehicles.get(i).getIdentifier().equals(vehicleIdentifier)) {
-
-                Umer.vehicles.get(i).setDriver(curDriver);
-
-            }
-        }
+        // Associar o condutor ao veículo
+        vehicles.get(vehicleIdentifier).setDriver(curDriver);
     }
 
     /**
@@ -113,30 +109,23 @@ public final class Umer {
      *
      * @param email   O email do utilizador
      * @param passord A password do utilizador
-     * @return        True se o login foi bem sucedido, caso contrário é retornado false
+     * @return        True se o user for um condutor, false se for um cliente,
+     *                null caso o login tenha sido inválido.
      */
     public static Boolean login(String email, String password) {
 
-        // Loopar pelos clientes
-        for (int i = 0; i < Umer.clients.size(); i++) {
+        if (clients.get(email) != null && clients.get(email).getPassword().equals(password)) {
 
-            if (Umer.clients.get(i).getEmail().equals(email) && Umer.clients.get(i).getPassword().equals(password)) {
+            loggedAs = clients.get(email);
 
-                Umer.loggedAs = (User) Umer.clients.get(i);
-
-                return false;
-            }
+            return false;
         }
 
-        // Loopar pelos condutores
-        for (int i = 0; i < Umer.drivers.size(); i++) {
+        if (driversList.get(email) != null && driversList.get(email).getPassword().equals(password)) {
 
-            if (Umer.drivers.get(i).getEmail().equals(email) && Umer.drivers.get(i).getPassword().equals(password)) {
+            loggedAs = driversList.get(email);
 
-                Umer.loggedAs = (User) Umer.drivers.get(i);
-
-                return true;
-            }
+            return true;
         }
 
         return null;
@@ -163,16 +152,15 @@ public final class Umer {
      * Serve de guarda para quando chamamos certo veiculo, para que nao seja
      * feito o pedido de viagem a um veiculo que nao existe ou esta indisponivel.
      */
-    private static boolean taxiIsAvailable(String taxiID) {
+    private static boolean isTaxiAvailable(String taxiID) {
 
-        for (int i = 0; i < vehicles.size(); i++) {
+        Vehicle taxi = vehicles.get(taxiID);
 
-            if (vehicles.get(i).getIdentifier().equals(taxiID) && vehicles.get(i).getDriver().isAvailable()) {
-                return true;
-            }
+        if (taxi == null || taxi.getDriver() == null) {
+            return false;
         }
 
-        return false;
+        return taxi.getDriver().isAvailable();
     }
 
     /**
@@ -180,11 +168,15 @@ public final class Umer {
      * Serve de guarda para quando chamamos qualquer veiculo, para que nao seja
      * feito o pedido de viagem a um veiculo que nao existe ou esta indisponivel.
      */
-    private static boolean someTaxiIsAvailable() {
+    private static boolean isSomeTaxiAvailable() {
 
-        for (int i = 0; i < vehicles.size(); i++) {
+        Iterator i = vehicles.entrySet().iterator()
 
-            if (vehicles.get(i).getDriver().isAvailable()) {
+        while (i.hasNext()) {
+
+            Vehicle curVehicle = i.next();
+
+            if (curVehicle.getDriver() != null && curVehicle.getDriver.isAvailable()) {
                 return true;
             }
         }
@@ -202,24 +194,9 @@ public final class Umer {
             throw new java.lang.Error("Tried to find nearest vehicle, but current user is not a client.");
         }
 
-        Client a = (Client) Umer.loggedAs;
+        Client client = (Client) Umer.loggedAs;
 
-        return a.getNearestReadyVehicle(Umer.vehicles);
-    }
-
-    /**
-     * Retorna o veículo com o ID específico ao utilizador
-     * logado atualmente, apenas se o utilizador for um cliente
-     */
-    private static Vehicle getSpecificVehicle(String taxiIdentifier) {
-
-        if ( !(Umer.loggedAs instanceof Client) ) {
-            throw new java.lang.Error("Tried to find a specific vehicle, but current user is not a client.");
-        }
-
-        Client a = (Client) Umer.loggedAs;
-
-        return a.getSpecificVehicle(Umer.vehicles, taxiIdentifier);
+        return client.getNearestReadyVehicle(vehicles);
     }
 
     /**
@@ -236,9 +213,9 @@ public final class Umer {
         }
 
         // procura por qualquer taxi caso seja string vazia ou por especifico caso nao seja
-        if ( (taxiID.equals("") && Umer.someTaxiIsAvailable()) || (Umer.taxiIsAvailable(taxiID)) ) {
+        if ( (taxiID.equals("") && Umer.isSomeTaxiAvailable()) || (Umer.isSomeTaxiAvailable(taxiID)) ) {
             Client a = (Client) Umer.loggedAs;
-            newTrip = a.getTrip(Umer.vehicles, a.getPosition(), destPos, taxiID);
+            newTrip = a.getTrip(vehicles, a.getPosition(), destPos, taxiID);
             // Viagem adicionada ao histórico
             a.tripHistory.add(newTrip);
             // Viagem começa a decorrer
@@ -289,59 +266,79 @@ public final class Umer {
     }
 
      public static String getTop10SpendingClients() {
+
+        List clientsList = clients.values();
+
         // ordena o array client tendo em conta o dinheiro gasto
-        Collections.sort(clients, new Comparator<Client>() {
-        @Override
-        public int compare(Client client1, Client client2) {
-            return Double.compare(client1.getMoneySpent(), client2.getMoneySpent());
-        }
+        Collections.sort(clientsList, new Comparator<Client>() {
+            @Override
+            public int compare(Client client1, Client client2) {
+                return Double.compare(client1.getMoneySpent(), client2.getMoneySpent());
+            }
         });
+
         // Cria um hashmap com os nomes dos primeiros 10 clientes
-        Map<String,Double> hashmap = new HashMap<String,Double>();
-        for (int i = 0; i<clients.size() && i < 10; i++)
-        hashmap.put(clients.get(i).getName(),clients.get(i).getMoneySpent());
+
+        HashMap<String,Double> hashmap = new HashMap<String,Double>();
+
+        for (int i = 0; i<clientsList.size() && i < 10; i++) {
+            hashmap.put(clientsList.get(i).getName(),clientsList.get(i).getMoneySpent());
+        }
+
         // Transforma hashmap em String
         String str = hashmap.toString();
+
         return str;
     }
-    
-    public static String getTop5LessReliableDrivers() {
-        // ordena o array drivers tendo em conta os less reliable
-        Collections.sort(drivers, new Comparator<Driver>() {
-        @Override
-        public int compare(Driver driver1, Driver driver2) {
-            return -(Double.compare(driver1.getRating(), driver2.getRating()));
-        }
+
+    public static String getTop5LessReliabledDrivers() {
+
+        List driversList = drivers.values();
+
+        // ordena o array driversList tendo em conta os less reliable
+        Collections.sort(driversList, new Comparator<Driver>() {
+            @Override
+            public int compare(Driver driver1, Driver driver2) {
+                return -(Double.compare(driver1.getRating(), driver2.getRating()));
+            }
         });
-        // Cria um arraylist com os nomes dos primeiros 5 drivers
-        List<String> temp = new ArrayList<String>();
-        for (int i = 0; i<drivers.size() && i < 5; i++)
-            temp.add(drivers.get(i).getName());
+
+        // Cria um arraylist com os nomes dos primeiros 5 driversList
+
+        ArrayList<String> temp = new ArrayList<String>();
+
+        for (int i = 0; i<driversList.size() && i < 5; i++) {
+            temp.add(driversList.get(i).getName());
+        }
+
         // Transforma arraylist em String
+
         String listString = "";
+
         for (String s : temp) {
             listString += s + " ";
         }
+
         return listString;
     }
-    
+
     // TODO - função fast forward
     public static void fastForward(double seconds) {
         // this.fastForwardValue += seconds
         return;
     }
-    
+
     // TODO - função rating
     public static void rateDriver(String driverEmail, double rating) {
         // A magda é mesmo gira
     }
-    
+
     // TODO - função available
     public static void setAvailable(boolean available) {
-    
+
         // (Driver) this.loggedAs.setAvailability(available);
     }
-    
+
     // TODO - get vehicle finances
     public static String getVehicleFinances(String vehicleId) {
         // muto muto dinhero
@@ -397,11 +394,11 @@ public final class Umer {
         Driver marcos = registerDriver("marcos@hotmail.com", "marcos", "forte", "casa", "many a year ago");
 
         /*
-        TESTING WRITING/READING DRIVERS
-        IO iodrivers;
-        iodrivers = new IO();
-        iodrivers.Write(drivers,2);
-        iodrivers.Read(drivers,2);
+        TESTING WRITING/READING driversList
+        IO iodriversList;
+        iodriversList = new IO();
+        iodriversList.Write(driversList,2);
+        iodriversList.Read(driversList,2);
         -----------------------------------
         -----------------------------------
         */
@@ -452,7 +449,7 @@ public final class Umer {
         //-----------------------------------
         System.out.println("Finding vehicle with identifier to currently logged in user (vitor)");
 
-        Vehicle identifierVehicle = Umer.getSpecificVehicle("taxi primeiro");
+        Vehicle identifierVehicle = vehicles.get("taxi primeiro");
 
         System.out.println(identifierVehicle.getIdentifier()); // Dá "taxi primeiro"
         //
@@ -496,18 +493,18 @@ public final class Umer {
             System.out.println(Umer.clients.get(index).getBirthdate() + ";");
         }
 
-        // imprimir drivers
-        System.out.println("\nFull list of drivers:");
-        for (index = 0; index < Umer.drivers.size(); index++) {
-            System.out.print(Umer.drivers.get(index).getName() + ", ");
-            System.out.print(Umer.drivers.get(index).getEmail() + ", ");
-            System.out.print(Umer.drivers.get(index).getPassword() + ", ");
-            System.out.print(Umer.drivers.get(index).getAddress() + ", ");
-            System.out.println(Umer.drivers.get(index).getBirthdate() + ";");
-            System.out.println(Umer.drivers.get(index).getFulfillment() + ", ");
-            System.out.println(Umer.drivers.get(index).getRating() + ", ");
-            System.out.println(Umer.drivers.get(index).getKms() + ", ");
-            System.out.println(Umer.drivers.get(index).isAvailable() + ";");
+        // imprimir driversList
+        System.out.println("\nFull list of driversList:");
+        for (index = 0; index < Umer.driversList.size(); index++) {
+            System.out.print(Umer.driversList.get(index).getName() + ", ");
+            System.out.print(Umer.driversList.get(index).getEmail() + ", ");
+            System.out.print(Umer.driversList.get(index).getPassword() + ", ");
+            System.out.print(Umer.driversList.get(index).getAddress() + ", ");
+            System.out.println(Umer.driversList.get(index).getBirthdate() + ";");
+            System.out.println(Umer.driversList.get(index).getFulfillment() + ", ");
+            System.out.println(Umer.driversList.get(index).getRating() + ", ");
+            System.out.println(Umer.driversList.get(index).getKms() + ", ");
+            System.out.println(Umer.driversList.get(index).isAvailable() + ";");
         }
         */
 
@@ -547,6 +544,6 @@ public final class Umer {
        System.out.println(list);
 
        System.out.println("TOP10 clients: " + getTop10SpendingClients());
-       System.out.println("TOP5 drivers: " + getTop5LessReliableDrivers());
+       System.out.println("TOP5 driversList: " + getTop5LessReliabledriversList());
     }
 }

@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.HashMap;
 import java.io.Serializable;
 
 public class Client extends User implements Serializable {
@@ -39,21 +39,32 @@ public class Client extends User implements Serializable {
     /**
      * Obter o veículo mais próximo (pode estar vazio, ou o condutor pode não estar em serviço)
      */
-    public Vehicle getNearestVehicle(ArrayList<Vehicle> vehicles) {
+    public Vehicle getNearestVehicle(HashMap vehicles) {
 
-        double closestDistanceSoFar = this.position.distanceTo(vehicles.get(0).getPosition());
-        Vehicle closestVehicle = vehicles.get(0);
+        if (vehicles.size() < 1) {
+            return null;
+        }
+
+        Set vehicleSet = vehicles.entrySet();
+        Iterator i = vehicleSet.iterator();
+
+        Vehicle curVehicle = iterator.next()
+
+        double closestDistanceSoFar = this.position.distanceTo(curVehicle.getPosition());
+        Vehicle closestVehicle = curVehicle;
 
         double newDistance;
 
-        for (int i = 1; i < vehicles.size(); i++) {
+        while (iterator.hasNext()) {
 
-            newDistance = this.position.distanceTo(vehicles.get(i).getPosition());
+            curVehicle = iterator.next();
+
+            newDistance = this.position.distanceTo(curVehicle.getPosition());
 
             if (newDistance < closestDistanceSoFar) {
 
                 closestDistanceSoFar = newDistance;
-                closestVehicle = vehicles.get(i);
+                closestVehicle = curVehicle;
             }
         }
 
@@ -63,46 +74,36 @@ public class Client extends User implements Serializable {
     /**
      * Obter o veículo mais próximo ocupado por um condutor em serviço
      */
-    public Vehicle getNearestReadyVehicle(ArrayList<Vehicle> vehicles) {
+    public Vehicle getNearestReadyVehicle(HashMap vehicles) {
+
+        if (vehicles.size() < 1) {
+            return null;
+        }
+
+        Set vehicleSet = vehicles.entrySet();
+        Iterator i = vehicleSet.iterator();
 
         double closestDistanceSoFar = Double.MAX_VALUE;
         Vehicle closestVehicle = null;
 
         double newDistance;
-        double currentDriver;
 
-        for (int i = 0; i < vehicles.size(); i++) {
+        while (iterator.hasNext()) {
 
-            newDistance = this.position.distanceTo(vehicles.get(i).getPosition());
+            curVehicle = iterator.next();
+
+            newDistance = this.position.distanceTo(curVehicle.getPosition());
 
             if (newDistance < closestDistanceSoFar  &&
-                vehicles.get(i).getDriver() != null &&
-                vehicles.get(i).getDriver().isAvailable()
+                curVehicle.get(i).getDriver() != null &&
+                curVehicle.getDriver().isAvailable()
             ) {
                 closestDistanceSoFar = newDistance;
-                closestVehicle = vehicles.get(i);
+                closestVehicle = curVehicle;
             }
         }
 
         return closestVehicle;
-    }
-
-    /**
-     * Obter o veículo com o identificador
-     */
-    public Vehicle getSpecificVehicle(ArrayList<Vehicle> vehicles, String taxiID) {
-
-        Vehicle idVehicle = null;
-
-        for (int i = 0; i < vehicles.size(); i++) {
-
-            if (vehicles.get(i).getIdentifier().equals(taxiID) && vehicles.get(i).getDriver().isAvailable()) {
-                idVehicle = vehicles.get(i);
-                return idVehicle;
-            }
-        }
-
-        return idVehicle;
     }
 
     /**
@@ -111,7 +112,7 @@ public class Client extends User implements Serializable {
      * @param userPosY -> posição Y do cliente
      * @param taxiID -> se for "" é porque quer o nearestVehicle, senão quer com ID especifico
     */
-    public Trip getTrip(ArrayList<Vehicle> vehicles, Point userPos, Point destPos, String taxiID) {
+    public Trip getTrip(HashMap vehicles, Point userPos, Point destPos, String taxiID) {
 
         Trip newTrip = null;
         Vehicle tripVehicle = null;
@@ -131,12 +132,11 @@ public class Client extends User implements Serializable {
             timeToDest = tripVehicle.getTripTime(distanceToDest);
             totalTime = timeToClient + timeToDest;
             tripPrice = tripVehicle.getTripPrice(totalDistance);
-
         }
 
         // introduziu identificador para um taxi
         else{
-            tripVehicle = this.getSpecificVehicle(vehicles, taxiID);
+            tripVehicle = vehicles.get(taxiID);
             tripDriver = tripVehicle.getDriver();
             distanceToClient = userPos.distanceTo(tripVehicle.getPosition());
             distanceToDest = userPos.distanceTo(destPos);
