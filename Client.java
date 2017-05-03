@@ -1,4 +1,6 @@
 import java.util.HashMap;
+import java.util.Set;
+import java.util.Iterator;
 import java.io.Serializable;
 
 public class Client extends User implements Serializable {
@@ -48,16 +50,16 @@ public class Client extends User implements Serializable {
         Set vehicleSet = vehicles.entrySet();
         Iterator i = vehicleSet.iterator();
 
-        Vehicle curVehicle = iterator.next()
+        Vehicle curVehicle = (Vehicle) i.next();
 
         double closestDistanceSoFar = this.position.distanceTo(curVehicle.getPosition());
         Vehicle closestVehicle = curVehicle;
 
         double newDistance;
 
-        while (iterator.hasNext()) {
+        while (i.hasNext()) {
 
-            curVehicle = iterator.next();
+            curVehicle = (Vehicle) i.next();
 
             newDistance = this.position.distanceTo(curVehicle.getPosition());
 
@@ -88,14 +90,14 @@ public class Client extends User implements Serializable {
 
         double newDistance;
 
-        while (iterator.hasNext()) {
+        while (i.hasNext()) {
 
-            curVehicle = iterator.next();
+            Vehicle curVehicle = (Vehicle) i.next();
 
             newDistance = this.position.distanceTo(curVehicle.getPosition());
 
             if (newDistance < closestDistanceSoFar  &&
-                curVehicle.get(i).getDriver() != null &&
+                curVehicle.getDriver() != null &&
                 curVehicle.getDriver().isAvailable()
             ) {
                 closestDistanceSoFar = newDistance;
@@ -136,7 +138,7 @@ public class Client extends User implements Serializable {
 
         // introduziu identificador para um taxi
         else{
-            tripVehicle = vehicles.get(taxiID);
+            tripVehicle = (Vehicle) vehicles.get(taxiID);
             tripDriver = tripVehicle.getDriver();
             distanceToClient = userPos.distanceTo(tripVehicle.getPosition());
             distanceToDest = userPos.distanceTo(destPos);

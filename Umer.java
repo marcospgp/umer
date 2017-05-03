@@ -1,5 +1,10 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.ArrayDeque;
 import javax.swing.UIManager;
 import java.awt.EventQueue;
@@ -14,9 +19,9 @@ import java.awt.EventQueue;
  */
 public final class Umer {
 
-    private static HashMap vehicles = new HashMap(); // vehicleId   -> Vehicle
-    private static HashMap driversList = new HashMap();  // driverEmail -> Driver
-    private static HashMap clients = new HashMap();  // clientEmail -> Client
+    private static HashMap<String, Vehicle> vehicles = new HashMap<String, Vehicle>(); // vehicleId   -> Vehicle
+    private static HashMap<String, Driver> drivers = new HashMap<String, Driver>();  // driverEmail -> Driver
+    private static HashMap<String, Client> clients = new HashMap<String, Client>();  // clientEmail -> Client
     private static ArrayList<Trip> tripHistory = new ArrayList<Trip>();
     private static ArrayList<Trip> tripsUnderway = new ArrayList<Trip>();
 
@@ -45,7 +50,7 @@ public final class Umer {
 
         Vehicle newVehicle = new Vehicle(x, y, identifier, typeKnown);
 
-        Umer.vehicles.put(identifier, newVehicle);
+        vehicles.put(identifier, newVehicle);
 
         return newVehicle;
     }
@@ -57,7 +62,7 @@ public final class Umer {
 
         Driver newDriver = new Driver(email, name, password, address, birthdate);
 
-        Umer.driversList.put(email, newDriver);
+        drivers.put(email, newDriver);
 
         return newDriver;
     }
@@ -79,7 +84,7 @@ public final class Umer {
      */
     public static void assignDriverToVehicle(String driverEmail, String vehicleIdentifier) {
 
-        Driver curDriver = driversList.get(driverEmail);
+        Driver curDriver = drivers.get(driverEmail);
 
         if (curDriver == null || vehicles.get(vehicleIdentifier) == null) {
             return;
@@ -94,7 +99,7 @@ public final class Umer {
 
             Vehicle curVehicle = (Vehicle) i.next();
 
-            íf (curVehicle.getDriver() != null && curVehicle.getDriver().getEmail().equals(driverEmail)) {
+            if (curVehicle.getDriver() != null && curVehicle.getDriver().getEmail().equals(driverEmail)) {
 
                 curVehicle.setDriver(null);
             }
@@ -121,9 +126,9 @@ public final class Umer {
             return false;
         }
 
-        if (driversList.get(email) != null && driversList.get(email).getPassword().equals(password)) {
+        if (drivers.get(email) != null && drivers.get(email).getPassword().equals(password)) {
 
-            loggedAs = driversList.get(email);
+            loggedAs = drivers.get(email);
 
             return true;
         }
@@ -170,13 +175,13 @@ public final class Umer {
      */
     private static boolean isSomeTaxiAvailable() {
 
-        Iterator i = vehicles.entrySet().iterator()
+        Iterator i = vehicles.entrySet().iterator();
 
         while (i.hasNext()) {
 
-            Vehicle curVehicle = i.next();
+            Vehicle curVehicle = (Vehicle) i.next();
 
-            if (curVehicle.getDriver() != null && curVehicle.getDriver.isAvailable()) {
+            if (curVehicle.getDriver() != null && curVehicle.getDriver().isAvailable()) {
                 return true;
             }
         }
@@ -213,7 +218,7 @@ public final class Umer {
         }
 
         // procura por qualquer taxi caso seja string vazia ou por especifico caso nao seja
-        if ( (taxiID.equals("") && Umer.isSomeTaxiAvailable()) || (Umer.isSomeTaxiAvailable(taxiID)) ) {
+        if ( (taxiID.equals("") && isSomeTaxiAvailable()) || (isTaxiAvailable(taxiID)) ) {
             Client a = (Client) Umer.loggedAs;
             newTrip = a.getTrip(vehicles, a.getPosition(), destPos, taxiID);
             // Viagem adicionada ao histórico
@@ -267,7 +272,7 @@ public final class Umer {
 
      public static String getTop10SpendingClients() {
 
-        List clientsList = clients.values();
+        List<Client> clientsList = (List<Client>) clients.values();
 
         // ordena o array client tendo em conta o dinheiro gasto
         Collections.sort(clientsList, new Comparator<Client>() {
@@ -291,24 +296,24 @@ public final class Umer {
         return str;
     }
 
-    public static String getTop5LessReliabledDrivers() {
+    public static String getTop5LessReliableDrivers() {
 
-        List driversList = drivers.values();
+        List<Driver> drivers = (List<Driver>) Umer.drivers.values();
 
-        // ordena o array driversList tendo em conta os less reliable
-        Collections.sort(driversList, new Comparator<Driver>() {
+        // ordena o array drivers tendo em conta os less reliable
+        Collections.sort(drivers, new Comparator<Driver>() {
             @Override
             public int compare(Driver driver1, Driver driver2) {
                 return -(Double.compare(driver1.getRating(), driver2.getRating()));
             }
         });
 
-        // Cria um arraylist com os nomes dos primeiros 5 driversList
+        // Cria um arraylist com os nomes dos primeiros 5 drivers
 
         ArrayList<String> temp = new ArrayList<String>();
 
-        for (int i = 0; i<driversList.size() && i < 5; i++) {
-            temp.add(driversList.get(i).getName());
+        for (int i = 0; i<drivers.size() && i < 5; i++) {
+            temp.add(drivers.get(i).getName());
         }
 
         // Transforma arraylist em String
@@ -394,11 +399,11 @@ public final class Umer {
         Driver marcos = registerDriver("marcos@hotmail.com", "marcos", "forte", "casa", "many a year ago");
 
         /*
-        TESTING WRITING/READING driversList
-        IO iodriversList;
-        iodriversList = new IO();
-        iodriversList.Write(driversList,2);
-        iodriversList.Read(driversList,2);
+        TESTING WRITING/READING drivers
+        IO iodrivers;
+        iodrivers = new IO();
+        iodrivers.Write(drivers,2);
+        iodrivers.Read(drivers,2);
         -----------------------------------
         -----------------------------------
         */
@@ -449,7 +454,7 @@ public final class Umer {
         //-----------------------------------
         System.out.println("Finding vehicle with identifier to currently logged in user (vitor)");
 
-        Vehicle identifierVehicle = vehicles.get("taxi primeiro");
+        Vehicle identifierVehicle = (Vehicle) vehicles.get("taxi primeiro");
 
         System.out.println(identifierVehicle.getIdentifier()); // Dá "taxi primeiro"
         //
@@ -485,26 +490,26 @@ public final class Umer {
         /*  --- TESTES DE ARRAYS ---
         // imprimir clientes
         System.out.println("\nFull list of clients:");
-        for (index = 0; index < Umer.clients.size(); index++) {
-            System.out.print(Umer.clients.get(index).getName() + ", ");
-            System.out.print(Umer.clients.get(index).getEmail() + ", ");
-            System.out.print(Umer.clients.get(index).getPassword() + ", ");
-            System.out.print(Umer.clients.get(index).getAddress() + ", ");
-            System.out.println(Umer.clients.get(index).getBirthdate() + ";");
+        for (index = 0; index < clients.size(); index++) {
+            System.out.print(clients.get(index).getName() + ", ");
+            System.out.print(clients.get(index).getEmail() + ", ");
+            System.out.print(clients.get(index).getPassword() + ", ");
+            System.out.print(clients.get(index).getAddress() + ", ");
+            System.out.println(clients.get(index).getBirthdate() + ";");
         }
 
-        // imprimir driversList
-        System.out.println("\nFull list of driversList:");
-        for (index = 0; index < Umer.driversList.size(); index++) {
-            System.out.print(Umer.driversList.get(index).getName() + ", ");
-            System.out.print(Umer.driversList.get(index).getEmail() + ", ");
-            System.out.print(Umer.driversList.get(index).getPassword() + ", ");
-            System.out.print(Umer.driversList.get(index).getAddress() + ", ");
-            System.out.println(Umer.driversList.get(index).getBirthdate() + ";");
-            System.out.println(Umer.driversList.get(index).getFulfillment() + ", ");
-            System.out.println(Umer.driversList.get(index).getRating() + ", ");
-            System.out.println(Umer.driversList.get(index).getKms() + ", ");
-            System.out.println(Umer.driversList.get(index).isAvailable() + ";");
+        // imprimir drivers
+        System.out.println("\nFull list of drivers:");
+        for (index = 0; index < drivers.size(); index++) {
+            System.out.print(drivers.get(index).getName() + ", ");
+            System.out.print(drivers.get(index).getEmail() + ", ");
+            System.out.print(drivers.get(index).getPassword() + ", ");
+            System.out.print(drivers.get(index).getAddress() + ", ");
+            System.out.println(drivers.get(index).getBirthdate() + ";");
+            System.out.println(drivers.get(index).getFulfillment() + ", ");
+            System.out.println(drivers.get(index).getRating() + ", ");
+            System.out.println(drivers.get(index).getKms() + ", ");
+            System.out.println(drivers.get(index).isAvailable() + ";");
         }
         */
 
@@ -544,6 +549,6 @@ public final class Umer {
        System.out.println(list);
 
        System.out.println("TOP10 clients: " + getTop10SpendingClients());
-       System.out.println("TOP5 driversList: " + getTop5LessReliabledriversList());
+       System.out.println("TOP5 drivers: " + getTop5LessReliableDrivers());
     }
 }
