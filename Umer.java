@@ -93,7 +93,7 @@ public final class Umer {
         // Iterar pelos veículos para ver se aquele driver já está em algum. Se estiver, remove-o.
 
         Set vehicleSet = vehicles.entrySet();
-        Iterator i = vehicleSet.iterator();
+        Iterator<Vehicle> i = vehicleSet.iterator();
 
         while (i.hasNext()) {
 

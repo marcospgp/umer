@@ -48,7 +48,7 @@ public class Client extends User implements Serializable {
         }
 
         Set vehicleSet = vehicles.entrySet();
-        Iterator i = vehicleSet.iterator();
+        Iterator<Vehicle> i = vehicleSet.iterator();
 
         Vehicle curVehicle = (Vehicle) i.next();
 
@@ -83,7 +83,7 @@ public class Client extends User implements Serializable {
         }
 
         Set vehicleSet = vehicles.entrySet();
-        Iterator i = vehicleSet.iterator();
+        Iterator<Vehicle> i = vehicleSet.iterator();
 
         double closestDistanceSoFar = Double.MAX_VALUE;
         Vehicle closestVehicle = null;
