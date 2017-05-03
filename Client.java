@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Set;
+import java.util.Map;
 import java.util.Iterator;
 import java.io.Serializable;
 
@@ -50,7 +51,8 @@ public class Client extends User implements Serializable {
         Set vehicleSet = vehicles.entrySet();
         Iterator<Vehicle> i = vehicleSet.iterator();
 
-        Vehicle curVehicle = (Vehicle) i.next();
+        Map.Entry entry = (Map.Entry) i.next();
+        Vehicle curVehicle = (Vehicle) entry.getValue();
 
         double closestDistanceSoFar = this.position.distanceTo(curVehicle.getPosition());
         Vehicle closestVehicle = curVehicle;
@@ -59,7 +61,8 @@ public class Client extends User implements Serializable {
 
         while (i.hasNext()) {
 
-            curVehicle = (Vehicle) i.next();
+            Map.Entry entryo = (Map.Entry) i.next();
+            curVehicle = (Vehicle) entryo.getValue();
 
             newDistance = this.position.distanceTo(curVehicle.getPosition());
 
@@ -92,7 +95,8 @@ public class Client extends User implements Serializable {
 
         while (i.hasNext()) {
 
-            Vehicle curVehicle = (Vehicle) i.next();
+            Map.Entry entry = (Map.Entry) i.next();
+            Vehicle curVehicle = (Vehicle) entry.getValue();
 
             newDistance = this.position.distanceTo(curVehicle.getPosition());
 

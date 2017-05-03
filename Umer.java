@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.Collections;
 import java.util.Comparator;
@@ -97,7 +98,8 @@ public final class Umer {
 
         while (i.hasNext()) {
 
-            Vehicle curVehicle = (Vehicle) i.next();
+            Map.Entry entry = (Map.Entry) i.next();
+            Vehicle curVehicle = (Vehicle) entry.getValue();
 
             if (curVehicle.getDriver() != null && curVehicle.getDriver().getEmail().equals(driverEmail)) {
 
@@ -179,7 +181,8 @@ public final class Umer {
 
         while (i.hasNext()) {
 
-            Vehicle curVehicle = (Vehicle) i.next();
+            Map.Entry entry = (Map.Entry) i.next();
+            Vehicle curVehicle = (Vehicle) entry.getValue();
 
             if (curVehicle.getDriver() != null && curVehicle.getDriver().isAvailable()) {
                 return true;
