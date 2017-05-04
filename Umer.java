@@ -487,6 +487,7 @@ public final class Umer {
         Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String reportNow = formatter.format(now);
 
+        System.out.println("Report Date: " + reportNow);
         return reportNow;
     }
 
@@ -502,12 +503,8 @@ public final class Umer {
             frame.updateVehicles(getAllVehicles());
             frame.updateTime(getTimeNow());
 
-            try {
-                Thread.sleep(300);                 //1000 milliseconds is one second.
-            } catch(InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
         }
+
     }
 
 
@@ -530,6 +527,8 @@ public final class Umer {
                 }
             }
         });
+
+
 
         int index = 0;
 
