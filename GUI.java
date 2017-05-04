@@ -794,7 +794,10 @@ public class GUI extends JFrame {
 	}
 	
 	private void showTripHistory() {
-		this.showPopup("Registo de viagens", Umer.getTripHistory());
+	    
+	    String trips = String.join("\n", Umer.getTripHistory());
+
+		this.showPopup("Registo de viagens", trips);
 	}
 	
 	private void show10MostSpendingClients() {
@@ -808,6 +811,10 @@ public class GUI extends JFrame {
 	private void showVehicleFinances() {
 		
 		String id = this.vehicleFinancesInput.getText();
+		
+		if (id == null || id == "") {
+		    return;
+		}
 
 		this.showPopup("Finanças do veículo " + id, Umer.getVehicleFinances(id));
 	}
