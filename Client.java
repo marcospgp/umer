@@ -173,4 +173,11 @@ public class Client extends User implements Serializable {
              + "Birthdate: " + this.birthdate + ", "
              + "Location: " + this.position;
     }
+
+    public String infoString() {
+        return "Name: " + this.name + ", "
+             + "Email: " + this.email + ", "
+             + "Spent: " + this.moneySpent + ", "
+             + "Location: " + this.position;
+    }
 }

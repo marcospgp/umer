@@ -1,3 +1,7 @@
+import java.text.Format;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,6 +39,7 @@ public final class Umer {
         throw new AssertionError();
     }
 
+
     /**
      * Cria um novo veículo
      *
@@ -57,6 +62,7 @@ public final class Umer {
         return newVehicle;
     }
 
+
     /**
      * Cria um novo condutor
      */
@@ -69,6 +75,7 @@ public final class Umer {
         return newDriver;
     }
 
+
     /**
      * Cria um novo cliente
      */
@@ -80,6 +87,7 @@ public final class Umer {
 
         return newClient;
     }
+
 
     /**
      * Ocupa um veículo com um dado condutor
@@ -112,6 +120,7 @@ public final class Umer {
         vehicles.get(vehicleIdentifier).setDriver(curDriver);
     }
 
+
     /**
      * Tenta fazer login numa conta de utilizador
      *
@@ -139,6 +148,7 @@ public final class Umer {
         return null;
     }
 
+
     /**
      * Tenta fazer logout de um utilizador
      *
@@ -155,6 +165,7 @@ public final class Umer {
         return false;
     }
 
+
     /**
      * Retorna true caso exista o veiculo com aquele ID e esteja disponível.
      * Serve de guarda para quando chamamos certo veiculo, para que nao seja
@@ -170,6 +181,7 @@ public final class Umer {
 
         return taxi.getDriver().isAvailable();
     }
+
 
     /**
      * Retorna true caso exista algum veiculo disponível.
@@ -193,6 +205,7 @@ public final class Umer {
         return false;
     }
 
+
     /**
      * Retorna o veículo pronto a viajar mais próximo do utilizador
      * logado atualmente, apenas se o utilizador for um cliente
@@ -207,6 +220,7 @@ public final class Umer {
 
         return client.getNearestReadyVehicle(vehicles);
     }
+
 
     /**
      * Retorna o veículo com o ID específico ao utilizador
@@ -265,13 +279,14 @@ public final class Umer {
             return newTrip;
     }
 
+
     /**
      * Retorna a lista de viagens do utilizador logado
      * em forma de ArrayList de Strings
      */
     public static String[] getTripHistory () {
 
-        String[] tripHistory = new String[tripsUnderway.size()];
+        String[] tripHistory = new String[Umer.loggedAs.tripHistory.size()];
 
         for (int i = 0; i < Umer.loggedAs.tripHistory.size(); i++) {
             tripHistory[i] = Umer.loggedAs.tripHistory.get(i).toString();
@@ -280,7 +295,8 @@ public final class Umer {
         return tripHistory;
     }
 
-     public static String getTop10SpendingClients() {
+
+    public static String getTop10SpendingClients() {
 
         Collection<Client> clientsCollection = (Collection<Client>) clients.values();
         ArrayList<Client> clientsList = new ArrayList(clientsCollection);
@@ -306,6 +322,7 @@ public final class Umer {
 
         return str;
     }
+
 
     public static String getTop5LessReliableDrivers() {
 
@@ -339,11 +356,13 @@ public final class Umer {
         return listString;
     }
 
+
     // TODO - função fast forward
     public static void fastForward(double seconds) {
         // this.fastForwardValue += seconds
         return;
     }
+
 
     /**
      * Recolhe o rating do driver em relação àquele serviço
@@ -355,6 +374,7 @@ public final class Umer {
         underRatingDriver.addRating(rating);
     }
 
+
     /**
      * Disponibiliza ou não um condutor para serviço
      */
@@ -365,6 +385,7 @@ public final class Umer {
         a.setAvailability(available);
     }
 
+
     /**
      * Devolve os lucros totais daquele veículo
      */
@@ -374,6 +395,118 @@ public final class Umer {
 
         return String.valueOf(taxi.getFinances());
     }
+
+
+    /**
+     * Retorna a lista de viagens underWay
+     */
+    private static String[] getTripsUnderWay () {
+
+        String[] tripsGoingOn = new String[tripsUnderway.size()];
+
+        for (int i = 0; i < tripsUnderway.size(); i++) {
+            tripsGoingOn[i] = tripsUnderway.get(i).toString();
+        }
+
+        return tripsGoingOn;
+    }
+
+
+    /**
+     * Retorna a lista de clients
+     */
+    private static String[] getAllClients () {
+
+        String[] clientsRegistered = new String[clients.size()];
+        int index = 0;
+        Iterator i = clients.entrySet().iterator();
+
+        while (i.hasNext()) {
+
+            Map.Entry entry = (Map.Entry) i.next();
+            Client curClient = (Client) entry.getValue();
+
+            clientsRegistered[index] = curClient.infoString();
+            index++;
+        }
+
+        return clientsRegistered;
+    }
+
+
+    /**
+     * Retorna a lista de condutores
+     */
+    private static String[] getAllDrivers () {
+
+        String[] driversRegistered = new String[drivers.size()];
+        int index = 0;
+        Iterator i = drivers.entrySet().iterator();
+
+        while (i.hasNext()) {
+
+            Map.Entry entry = (Map.Entry) i.next();
+            Driver curDriver = (Driver) entry.getValue();
+
+            driversRegistered[index] = curDriver.infoString();
+            index++;
+        }
+
+        return driversRegistered;
+    }
+
+
+    /**
+     * Retorna a lista de veículos
+     */
+    private static String[] getAllVehicles () {
+
+        String[] vehiclesRegistered = new String[vehicles.size()];
+        int index = 0;
+        Iterator i = vehicles.entrySet().iterator();
+
+        while (i.hasNext()) {
+
+            Map.Entry entry = (Map.Entry) i.next();
+            Vehicle curVehicle = (Vehicle) entry.getValue();
+
+            vehiclesRegistered[index] = curVehicle.toString();
+            index++;
+        }
+
+        return vehiclesRegistered;
+    }
+
+
+    /**
+     * Retorna o tempo agora
+     */
+    private static String getTimeNow() {
+
+        Date now = new Date();
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String reportNow = formatter.format(now);
+
+        System.out.println("Report Date: " + reportNow);
+        return reportNow;
+    }
+
+
+    // Função que vai permitir atualizar para a GUI
+    private static void mainLoop (GUI frame) {
+
+        while (true) {
+
+            frame.updateTrips(getTripsUnderWay());
+            frame.updateDrivers(getAllClients());
+            frame.updateClients(getAllDrivers());
+            frame.updateVehicles(getAllVehicles());
+            frame.updateTime(getTimeNow());
+
+        }
+
+    }
+
 
     public static void main(String[] args) {
 
@@ -388,20 +521,14 @@ public final class Umer {
                     GUI frame = new GUI();
                     frame.setVisible(true);
                     frame.init();
+                    mainLoop(frame);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
 
-        // Função que vai permitir atualizar para a GUI
-        /*
-        while (true) {
 
-            private static ArrayList<Trip> tripsUnderway = new ArrayList<Trip>();
-
-        }
-        */
 
         int index = 0;
 

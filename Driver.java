@@ -60,6 +60,7 @@ public class Driver extends User implements Serializable {
     public void toggleAvailable() {
         this.available = !this.available;
     }
+
     @Override
     public String toString() {
     return "Email: " + this.email + ", "
@@ -71,5 +72,12 @@ public class Driver extends User implements Serializable {
          + "Rating: " + this.rating + ", "
          + "Kms: " + this.kms + ", "
          + "Available: " + this.available;
+    }
+
+    public String infoString() {
+        return "Name: " + this.name + ", "
+             + "Email: " + this.email + ", "
+             + "Rating: " + this.rating + ", "
+             + "Available: " + this.available;
     }
 }

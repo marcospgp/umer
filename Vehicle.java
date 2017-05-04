@@ -79,9 +79,10 @@ public class Vehicle implements Serializable {
 
     @Override
     public String toString() {
-    return "Position: " + this.position + ", "
-         + "Identifier: " + this.identifier + ", "
+    return "Identifier: " + this.identifier + ", "
          + "Type: " + this.type + ", "
+         + "Finances: " + this.finances + ", "
+         + "Position: " + this.position + ", "
          + "Current Driver: " + this.currentDriver;
     }
 }
