@@ -163,8 +163,9 @@ public class Client extends User implements Serializable {
 
         return newTrip;
     }
-        @Override
-        public String toString() {
+
+    @Override
+    public String toString() {
         return "Email: " + this.email + ", "
              + "Name: " + this.name + ", "
              + "Password: " + this.password + ", "

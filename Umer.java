@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -268,16 +269,15 @@ public final class Umer {
      * Retorna a lista de viagens do utilizador logado
      * em forma de ArrayList de Strings
      */
-    public static String getTripHistory () {
+    public static String[] getTripHistory () {
 
-        String trips = "";
+        String[] tripHistory = new String[tripsUnderway.size()];
 
         for (int i = 0; i < Umer.loggedAs.tripHistory.size(); i++) {
-            trips += Umer.loggedAs.tripHistory.get(i).toString();
-            trips += "\n";
+            tripHistory[i] = Umer.loggedAs.tripHistory.get(i).toString();
         }
 
-        return trips;
+        return tripHistory;
     }
 
      public static String getTop10SpendingClients() {
@@ -297,7 +297,7 @@ public final class Umer {
 
         HashMap<String,Double> hashmap = new HashMap<String,Double>();
 
-        for (int i = 0; i<clientsList.size() && i < 10; i++) {
+        for (int i = 0; i < clientsList.size() && i < 10; i++) {
             hashmap.put(clientsList.get(i).getName(),clientsList.get(i).getMoneySpent());
         }
 
@@ -393,6 +393,15 @@ public final class Umer {
                 }
             }
         });
+
+        // Função que vai permitir atualizar para a GUI
+        /*
+        while (true) {
+
+            private static ArrayList<Trip> tripsUnderway = new ArrayList<Trip>();
+
+        }
+        */
 
         int index = 0;
 
@@ -510,8 +519,8 @@ public final class Umer {
         viagem3 = Umer.startTrip(taxiName, 3.2, 2.4); // Chama pelo ID
 
         //----------------------------------- HISTORICO DE VIAGENS ------------------------------
-        // System.out.println("\nHISTORICO DE VIAGENS:");
-        // System.out.println(getTripHistory());
+        System.out.println("\nHISTORICO DE VIAGENS:");
+        System.out.println(Arrays.toString(getTripHistory()));
 
 
 
