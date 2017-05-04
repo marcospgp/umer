@@ -303,10 +303,12 @@ public final class Umer {
 
         // ordena o array client tendo em conta o dinheiro gasto
         Collections.sort(clientsList, new Comparator<Client>() {
-            @Override
-            public int compare(Client client1, Client client2) {
-                return Double.compare(client1.getMoneySpent(), client2.getMoneySpent());
-            }
+        public int compare(Client client1, Client client2) {
+            double result = client2.getMoneySpent() - client1.getMoneySpent();
+            if(result >= 0.00001) return 1;
+            if(result < -0.00001) return -1;
+            return 0;
+        }
         });
 
         // Cria um hashmap com os nomes dos primeiros 10 clientes
@@ -331,10 +333,12 @@ public final class Umer {
 
         // ordena o array drivers tendo em conta os less reliable
         Collections.sort(driversList, new Comparator<Driver>() {
-            @Override
-            public int compare(Driver driver1, Driver driver2) {
-                return -(Double.compare(driver1.getRating(), driver2.getRating()));
-            }
+        public int compare(Driver driver1, Driver driver2) {
+            double result = driver1.getRating() - driver2.getRating();
+            if(result >= 0.00001) return 1;
+            if(result < -0.00001) return -1;
+            return 0;
+        }
         });
 
         // Cria um arraylist com os nomes dos primeiros 5 drivers
@@ -355,7 +359,6 @@ public final class Umer {
 
         return listString;
     }
-
 
     // TODO - função fast forward
     public static void fastForward(double seconds) {
@@ -494,20 +497,21 @@ public final class Umer {
 
     // Função que vai permitir atualizar para a GUI
     private static void mainLoop (GUI frame) {
+        try {
+            while (true) {
 
-        while (true) {
-
-            frame.updateTrips(getTripsUnderWay());
-            frame.updateDrivers(getAllClients());
-            frame.updateClients(getAllDrivers());
-            frame.updateVehicles(getAllVehicles());
-            frame.updateTime(getTimeNow());
-
+                frame.updateTrips(getTripsUnderWay());
+                frame.updateDrivers(getAllClients());
+                frame.updateClients(getAllDrivers());
+                frame.updateVehicles(getAllVehicles());
+                frame.updateTime(getTimeNow());
+                Thread.sleep(300); 
         }
-
+       }catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
+       }
     }
-
-
+        
     public static void main(String[] args) {
 
         try {
@@ -540,7 +544,7 @@ public final class Umer {
 
         System.out.println("Creating user vitor with password gay at (0.5, 0.324)");
 
-        Client joao = registerClient("vitor@hotmail.com", "joao", "gay", "casa", "yesterday", (double) 0.5, (double) 0.324);
+        Client joao = registerClient("joao@hotmail.com", "joao", "gay", "casa", "yesterday", (double) 0.5, (double) 0.324);
 
         /* TESTING WRITING/READING CLIENTS
         IO ioclients;
