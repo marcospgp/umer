@@ -1,7 +1,10 @@
 #BlueJ class context
-comment0.target=IO
+comment0.params=l\ ID
+comment0.target=void\ WriteHashMap(java.util.HashMap,\ int)
 comment1.params=l\ ID
-comment1.target=void\ Write(java.util.ArrayList,\ int)
+comment1.target=void\ ReadHashMap(java.util.HashMap,\ int)
 comment2.params=l\ ID
-comment2.target=void\ Read(java.util.ArrayList,\ int)
-numComments=3
+comment2.target=void\ WriteArrayList(java.util.ArrayList,\ int)
+comment3.params=l\ ID
+comment3.target=void\ ReadArrayList(java.util.ArrayList,\ int)
+numComments=4
