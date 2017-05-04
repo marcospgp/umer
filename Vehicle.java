@@ -3,6 +3,7 @@ import java.io.Serializable;
 
 public class Vehicle implements Serializable {
 
+    private double finances;
     private Point position;
     private String identifier;
     private VehicleType type;
@@ -20,6 +21,15 @@ public class Vehicle implements Serializable {
         this.type = type;
         this.currentDriver = null;
         this.type = type;
+        this.finances = (double) 0.0;
+    }
+
+    public void addToFinances(double tripCost) {
+        this.finances += tripCost;
+    }
+
+    public double getFinances() {
+        return (int) Math.round(this.finances * 100) / (double) 100;
     }
 
     public Point getPosition() {
@@ -59,7 +69,7 @@ public class Vehicle implements Serializable {
     }
 
     public double getTripTime(double distance) {
-        return (distance / this.type.getAvgSpeed());
+        return ((double) distance / this.type.getAvgSpeed());
     }
 
     // aquela complicação toda é para obter um número que seja apenas com duas casas decimais

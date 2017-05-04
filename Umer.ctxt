@@ -26,6 +26,7 @@ comment18.params=driverEmail\ rating
 comment18.target=void\ rateDriver(java.lang.String,\ double)
 comment19.params=available
 comment19.target=void\ setAvailable(boolean)
+comment19.text=\r\n\ Disponibiliza\ ou\ n\u00E3o\ um\ condutor\ para\ servi\u00E7o\r\n
 comment2.params=x\ y\ identifier\ type\ hasWaitingList
 comment2.target=Vehicle\ createVehicle(double,\ double,\ java.lang.String,\ java.lang.String,\ boolean)
 comment2.text=\r\n\ Cria\ um\ novo\ ve\u00EDculo\r\n\r\n\ @param\ x\ \ \ \ \ \ \ \ \ The\ initial\ x\ position\ of\ the\ vehicle\r\n\ @param\ y\ \ \ \ \ \ \ \ \ The\ initial\ y\ position\ of\ the\ vehicle\r\n\ @param\ type\ \ \ \ \ \ The\ vehicle\ type\r\n\ @param\ newDriver\ (optional)\ The\ new\ vehicle's\ driver.\ Should\ be\ null\ if\ not\ needed.\r\n

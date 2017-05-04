@@ -230,8 +230,12 @@ public final class Umer {
             Umer.tripsUnderway.add(newTrip);
             // Atualizar posição do cliente
             a.setPosition(destPos);
+            // Adicionar custo da viagem ao cliente
+            a.addMoneySpent(newTrip.getCost());
             // Atualizar posição do veículo
-            newTrip.getVehicle().setPosition(destPos); // atualizar a posição do veículo
+            newTrip.getVehicle().setPosition(destPos);
+            // Adicionar custo da viagem ao veículo
+            newTrip.getVehicle().addToFinances(newTrip.getCost());
 
             System.out.println("Vehicle: " + newTrip.getVehicle().getIdentifier());
             System.out.println("Driver: " + newTrip.getDriver().getName());
@@ -246,6 +250,9 @@ public final class Umer {
             System.out.println("Cost: " + newTrip.getCost());
             System.out.println("Pos atualizada client: " + a.getPosition());
             System.out.println("Pos atualizada driver: " + newTrip.getVehicle().getPosition());
+            System.out.println("Profit atual veiculo: " + newTrip.getVehicle().getFinances());
+            System.out.println("Gasto atual do cliente: " + a.getMoneySpent());
+            System.out.println("Driver rating: " + newTrip.getDriver().getRating());
         }
 
         // nao existe aquele veiculo ou nao há nenhum disponível
@@ -338,21 +345,34 @@ public final class Umer {
         return;
     }
 
-    // TODO - função rating
+    /**
+     * Recolhe o rating do driver em relação àquele serviço
+     */
     public static void rateDriver(String driverEmail, double rating) {
-        // A magda é mesmo gira
+
+        Driver underRatingDriver = drivers.get(driverEmail);
+
+        underRatingDriver.addRating(rating);
     }
 
-    // TODO - função available
+    /**
+     * Disponibiliza ou não um condutor para serviço
+     */
     public static void setAvailable(boolean available) {
 
-        // (Driver) this.loggedAs.setAvailability(available);
+        Driver a = (Driver) Umer.loggedAs;
+
+        a.setAvailability(available);
     }
 
-    // TODO - get vehicle finances
+    /**
+     * Devolve os lucros totais daquele veículo
+     */
     public static String getVehicleFinances(String vehicleId) {
-        // muto muto dinhero
-        return "fugue fugue foguetinhos";
+
+        Vehicle taxi = vehicles.get(vehicleId);
+
+        return String.valueOf(taxi.getFinances());
     }
 
     public static void main(String[] args) {
@@ -478,6 +498,9 @@ public final class Umer {
         System.out.println("\nViagem que chama o: 'taxi primeiro'");
         // Chama a startTrip que verifica se existe veiculo e a sua disponibilidade e tal
         viagem2 = Umer.startTrip(taxiName, 3.2, 2.4); // Chama pelo ID
+        System.out.println("Total faturado pelo veículo (igual a profit atual do veiculo): " + getVehicleFinances(taxiName));
+        rateDriver("sergio@hotmail.com", 80.8);
+        System.out.println("Rating do condutor após viagem: " + viagem2.getDriver().getRating());
 
 
         Trip viagem3 = null;

@@ -8,6 +8,7 @@ public class Driver extends User implements Serializable {
     // Classificação do motorista, dado numa escala de 0 a 100,
     // calculada com base na classificação dada pelo cliente no final de cada viagem
     private double rating;
+    private int numberOfEvaluations;
 
     // Total de kms feitos na empresa
     private double kms;
@@ -26,16 +27,24 @@ public class Driver extends User implements Serializable {
         this.birthdate = newBirthdate;
         this.fulfillment = (double) 100;
         this.rating = (double) 100;
+        this.numberOfEvaluations = (int) 1;
         this.kms = (double) 0;
         this.available = false;
     }
-    
+
     public double getFulfillment() {
         return this.fulfillment;
     }
+
     public double getRating() {
-        return this.rating;
+        return ((double) Math.round((this.rating / this.numberOfEvaluations) * 10d) / 10d);
     }
+
+    public void addRating(double newRating) {
+        this.rating += newRating;
+        this.numberOfEvaluations++;
+    }
+
     public double getKms() {
         return this.kms;
     }

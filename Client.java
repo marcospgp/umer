@@ -39,6 +39,10 @@ public class Client extends User implements Serializable {
         return this.moneySpent;
     }
 
+    public void addMoneySpent(double tripCost) {
+        this.moneySpent += tripCost;
+    }
+
     /**
      * Obter o veículo mais próximo (pode estar vazio, ou o condutor pode não estar em serviço)
      */

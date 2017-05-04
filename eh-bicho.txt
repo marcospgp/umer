@@ -58,6 +58,7 @@ getTripHistory();
  - Retorna o histórico de viagens (array de strings)
   do utilizador logado atualmente.
 
+----FEITO----
 getVehicleFinances(String vehicleIdentifier);
  - Retorna o total faturado por uma viatura.
 
@@ -72,6 +73,7 @@ getTop5LessReliableDrivers();
  - Retorna um array com os 5 condutores que apresentam mais
   desvios entre os valores previstos para as viagens e o valor final faturado.
 
+----FEITO----
 rateDriver(String driverEmail, Double rating);
  - Dá uma avaliação a um condutor, de 0 a 100, relativamente
   a uma viagem. Quando este método for chamado, tens de chamar
