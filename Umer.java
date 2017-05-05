@@ -304,10 +304,7 @@ public final class Umer {
         // ordena o array client tendo em conta o dinheiro gasto
         Collections.sort(clientsList, new Comparator<Client>() {
         public int compare(Client client1, Client client2) {
-            double result = client2.getMoneySpent() - client1.getMoneySpent();
-            if(result >= 0.00001) return 1;
-            if(result < -0.00001) return -1;
-            return 0;
+            return Double.compare(client1.getMoneySpent(),client2.getMoneySpent());
         }
         });
 
@@ -334,10 +331,7 @@ public final class Umer {
         // ordena o array drivers tendo em conta os less reliable
         Collections.sort(driversList, new Comparator<Driver>() {
         public int compare(Driver driver1, Driver driver2) {
-            double result = driver1.getRating() - driver2.getRating();
-            if(result >= 0.00001) return 1;
-            if(result < -0.00001) return -1;
-            return 0;
+            return Double.compare(driver2.getRating(),driver1.getRating());
         }
         });
 
