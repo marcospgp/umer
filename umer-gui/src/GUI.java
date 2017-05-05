@@ -566,6 +566,7 @@ public class GUI extends JFrame {
         pnlTripsContainer.add(lblTrips);
 
         JPanel pnlTrips = new JPanel();
+        pnlTrips.setAlignmentX(Component.LEFT_ALIGNMENT);
         pnlTrips.setBorder(new EmptyBorder(15, 0, 0, 0));
         pnlTrips.setOpaque(false);
         pnlTripsContainer.add(pnlTrips);
