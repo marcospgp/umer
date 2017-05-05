@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.ArrayList;
 import java.io.Serializable;
 
 public class Vehicle implements Serializable {
