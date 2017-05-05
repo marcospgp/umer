@@ -183,7 +183,7 @@ public class CreateVehicleDialog extends JDialog {
 			return null;
 		}
 		
-		String[] result = new String[4];
+		String[] result = new String[5];
 		
 		result[0] = txtIdentifier.getText();
 		result[1] = txtType.getText().replaceAll("[^A-Za-z0-9]", "").toUpperCase(); // Only alphanumeric and then convert to uppercase

@@ -403,7 +403,7 @@ public final class Umer {
     /**
      * Retorna a lista de viagens underWay
      */
-    private static String[] getTripsUnderWay () {
+    public static String[] getTripsUnderWay () {
 
         String[] tripsGoingOn = new String[tripsUnderway.size()];
 
@@ -418,7 +418,7 @@ public final class Umer {
     /**
      * Retorna a lista de clients
      */
-    private static String[] getAllClients () {
+    public static String[] getAllClients () {
 
         String[] clientsRegistered = new String[clients.size()];
         int index = 0;
@@ -440,7 +440,7 @@ public final class Umer {
     /**
      * Retorna a lista de condutores
      */
-    private static String[] getAllDrivers () {
+    public static String[] getAllDrivers () {
 
         String[] driversRegistered = new String[drivers.size()];
         int index = 0;
@@ -462,7 +462,7 @@ public final class Umer {
     /**
      * Retorna a lista de veículos
      */
-    private static String[] getAllVehicles () {
+    public static String[] getAllVehicles () {
 
         String[] vehiclesRegistered = new String[vehicles.size()];
         int index = 0;
@@ -484,34 +484,15 @@ public final class Umer {
     /**
      * Retorna o tempo agora
      */
-    private static String getTimeNow() {
+    public static String getTimeNow() {
 
         Date now = new Date();
         Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String reportNow = formatter.format(now);
 
-        System.out.println("Report Date: " + reportNow);
         return reportNow;
     }
 
-
-    // Função que vai permitir atualizar para a GUI
-    private static void mainLoop (GUI frame) {
-        try {
-            while (true) {
-
-                frame.updateTrips(getTripsUnderWay());
-                frame.updateDrivers(getAllClients());
-                frame.updateClients(getAllDrivers());
-                frame.updateVehicles(getAllVehicles());
-                frame.updateTime(getTimeNow());
-                Thread.sleep(300); 
-        }
-       }catch(InterruptedException ex) {
-                Thread.currentThread().interrupt();
-       }
-    }
-        
     public static void main(String[] args) {
 
         try {
@@ -524,20 +505,17 @@ public final class Umer {
                 try {
                     GUI frame = new GUI();
                     frame.setVisible(true);
-                    frame.init();
-                    mainLoop(frame);
+                    frame.startGUILoop();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
 
-
-
         int index = 0;
 
         System.out.println("Starting test");
-        //
+
         System.out.println("Creating user vitor with password gay at (0.5, 0.324)");
 
         Client vitor = registerClient("vitor@hotmail.com", "vitor", "gay", "casa", "yesterday", (double) 0.5, (double) 0.324);
