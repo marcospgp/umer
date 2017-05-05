@@ -178,6 +178,6 @@ public class Client extends User implements Serializable {
         return "Name: " + this.name + ", "
              + "Email: " + this.email + ", "
              + "Spent: " + this.moneySpent + ", "
-             + "Location: " + this.position;
+             + "Location: " + this.position.toString();
     }
 }

@@ -936,8 +936,8 @@ public class GUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 updateTrips(Umer.getTripsUnderWay());
-                updateDrivers(Umer.getAllClients());
-                updateClients(Umer.getAllDrivers());
+                updateDrivers(Umer.getAllDrivers());
+                updateClients(Umer.getAllClients());
                 updateVehicles(Umer.getAllVehicles());
                 updateTime(Umer.getTimeNow());
             }
