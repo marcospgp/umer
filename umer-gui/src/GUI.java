@@ -544,6 +544,7 @@ public class GUI extends JFrame {
          * Panel center inner
          */
         JPanel pnlCenterInner = new JPanel();
+        pnlCenterInner.setBorder(new EmptyBorder(10, 0, 0, 0));
         pnlCenterInner.setPreferredSize(new Dimension(200, 10));
         pnlCenterInner.setMinimumSize(new Dimension(150, 10));
         pnlCenterInner.setBackground(new Color(249, 249, 249));
@@ -551,6 +552,7 @@ public class GUI extends JFrame {
         pnlCenterInner.setLayout(new BorderLayout(0, 0));
 
         JScrollPane scrollPaneTrips = new JScrollPane();
+        scrollPaneTrips.setBorder(null);
         pnlCenterInner.add(scrollPaneTrips);
 
         JPanel pnlTripsContainer = new JPanel();
@@ -559,20 +561,24 @@ public class GUI extends JFrame {
         scrollPaneTrips.setViewportView(pnlTripsContainer);
         pnlTripsContainer.setLayout(new BoxLayout(pnlTripsContainer, BoxLayout.Y_AXIS));
 
-        JLabel lblTrips = new JLabel("Hist\u00F3rico de Viagens");
-        lblTrips.setAlignmentX(Component.CENTER_ALIGNMENT);
-        lblTrips.setHorizontalAlignment(SwingConstants.CENTER);
-        lblTrips.setFont(new Font("Arial", Font.BOLD, 14));
-        pnlTripsContainer.add(lblTrips);
-
         JPanel pnlTrips = new JPanel();
         pnlTrips.setAlignmentX(Component.LEFT_ALIGNMENT);
-        pnlTrips.setBorder(new EmptyBorder(15, 0, 0, 0));
         pnlTrips.setOpaque(false);
         pnlTripsContainer.add(pnlTrips);
         pnlTrips.setLayout(new BoxLayout(pnlTrips, BoxLayout.Y_AXIS));
 
         this.tripsContainer = pnlTrips;
+        
+        JLabel lblThisIsAn = new JLabel("this is an example of a huge string made up of a lot of parameters regarding one trip that makes this container scroll horizontally");
+        lblThisIsAn.setFont(new Font("Trebuchet MS", Font.PLAIN, 12));
+        lblThisIsAn.setBorder(new EmptyBorder(0, 0, 5, 0));
+        pnlTrips.add(lblThisIsAn);
+        
+                JLabel lblTrips = new JLabel("Hist\u00F3rico de Viagens");
+                pnlCenterInner.add(lblTrips, BorderLayout.NORTH);
+                lblTrips.setAlignmentX(Component.CENTER_ALIGNMENT);
+                lblTrips.setHorizontalAlignment(SwingConstants.CENTER);
+                lblTrips.setFont(new Font("Arial", Font.BOLD, 14));
     }
 
     private void insertDriver(String driver) {

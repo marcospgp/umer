@@ -138,6 +138,16 @@ public class GUI extends JFrame {
 
         this.loginButton = btnLogin;
 
+        JButton btnLogout = new JButton("Terminar Sess\u00E3o");
+        btnLogout.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                logout();
+            }
+        });
+        pnlTopInner.add(btnLogout);
+
+        this.logoutButton = btnLogout;
+
         JButton registerClient = new JButton("Registar Cliente");
         registerClient.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -148,17 +158,7 @@ public class GUI extends JFrame {
                 }
             }
         });
-
-        JButton btnLogout = new JButton("Terminar Sess\u00E3o");
-        btnLogout.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                logout();
-            }
-        });
-        pnlTopInner.add(btnLogout);
         pnlTopInner.add(registerClient);
-
-        this.logoutButton = btnLogout;
 
         JButton registerDriver = new JButton("Registar Condutor");
         registerDriver.addActionListener(new ActionListener() {
@@ -544,6 +544,7 @@ public class GUI extends JFrame {
          * Panel center inner
          */
         JPanel pnlCenterInner = new JPanel();
+        pnlCenterInner.setBorder(new EmptyBorder(10, 0, 0, 0));
         pnlCenterInner.setPreferredSize(new Dimension(200, 10));
         pnlCenterInner.setMinimumSize(new Dimension(150, 10));
         pnlCenterInner.setBackground(new Color(249, 249, 249));
@@ -551,6 +552,7 @@ public class GUI extends JFrame {
         pnlCenterInner.setLayout(new BorderLayout(0, 0));
 
         JScrollPane scrollPaneTrips = new JScrollPane();
+        scrollPaneTrips.setBorder(null);
         pnlCenterInner.add(scrollPaneTrips);
 
         JPanel pnlTripsContainer = new JPanel();
@@ -559,25 +561,26 @@ public class GUI extends JFrame {
         scrollPaneTrips.setViewportView(pnlTripsContainer);
         pnlTripsContainer.setLayout(new BoxLayout(pnlTripsContainer, BoxLayout.Y_AXIS));
 
-        JLabel lblTrips = new JLabel("Hist\u00F3rico de Viagens");
-        lblTrips.setAlignmentX(Component.CENTER_ALIGNMENT);
-        lblTrips.setHorizontalAlignment(SwingConstants.CENTER);
-        lblTrips.setFont(new Font("Arial", Font.BOLD, 14));
-        pnlTripsContainer.add(lblTrips);
-
         JPanel pnlTrips = new JPanel();
         pnlTrips.setAlignmentX(Component.LEFT_ALIGNMENT);
-        pnlTrips.setBorder(new EmptyBorder(15, 0, 0, 0));
         pnlTrips.setOpaque(false);
         pnlTripsContainer.add(pnlTrips);
         pnlTrips.setLayout(new BoxLayout(pnlTrips, BoxLayout.Y_AXIS));
 
         this.tripsContainer = pnlTrips;
+
+        JLabel lblTrips = new JLabel("Hist\u00F3rico de Viagens");
+        pnlCenterInner.add(lblTrips, BorderLayout.NORTH);
+        lblTrips.setAlignmentX(Component.CENTER_ALIGNMENT);
+        lblTrips.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTrips.setFont(new Font("Arial", Font.BOLD, 14));
     }
 
     private void insertDriver(String driver) {
 
         JLabel newLabel = new JLabel(driver);
+        newLabel.setFont(new Font("Consolas", Font.PLAIN, 12));
+        newLabel.setBorder(new EmptyBorder(0, 0, 3, 0));
         this.driversContainer.add(newLabel);
         this.driversContainer.revalidate();
         this.driversContainer.repaint();
@@ -586,6 +589,8 @@ public class GUI extends JFrame {
     private void insertClient(String client) {
 
         JLabel newLabel = new JLabel(client);
+        newLabel.setFont(new Font("Consolas", Font.PLAIN, 12));
+        newLabel.setBorder(new EmptyBorder(0, 0, 3, 0));
         this.clientsContainer.add(newLabel);
         this.clientsContainer.revalidate();
         this.clientsContainer.repaint();
@@ -594,6 +599,8 @@ public class GUI extends JFrame {
     private void insertVehicle(String vehicle) {
 
         JLabel newLabel = new JLabel(vehicle);
+        newLabel.setFont(new Font("Consolas", Font.PLAIN, 12));
+        newLabel.setBorder(new EmptyBorder(0, 0, 3, 0));
         this.vehiclesContainer.add(newLabel);
         this.vehiclesContainer.revalidate();
         this.vehiclesContainer.repaint();
@@ -602,6 +609,8 @@ public class GUI extends JFrame {
     private void insertTrip(String trip) {
 
         JLabel newLabel = new JLabel(trip);
+        newLabel.setFont(new Font("Consolas", Font.PLAIN, 12));
+        newLabel.setBorder(new EmptyBorder(0, 0, 3, 0));
         this.tripsContainer.add(newLabel);
         this.tripsContainer.revalidate();
         this.tripsContainer.repaint();
@@ -612,7 +621,7 @@ public class GUI extends JFrame {
     }
 
     private void clearClients() {
-        this.driversContainer.removeAll();
+        this.clientsContainer.removeAll();
     }
 
     private void clearVehicles() {
@@ -906,7 +915,7 @@ public class GUI extends JFrame {
         this.clearClients();
 
         for (String client : clients) {
-            this.insertDriver(client);
+            this.insertClient(client);
         }
     }
 
