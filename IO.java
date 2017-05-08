@@ -83,7 +83,7 @@ public class IO
        System.out.println("HashMap " + ID + " read");
        
        // printing HashMap to console
-       System.out.println("Read:" +l);
+       // System.out.println("Read:" +l);
    }
    
       public static void WriteArrayList(ArrayList<Trip> l, int ID) {
@@ -157,7 +157,7 @@ public class IO
        System.out.println("ArrayList " + ID + " read");
        
        // printing ArrayList to console
-       System.out.println("Read:" +l);
+       // System.out.println("Read:" +l);
    }
     
     

@@ -2,7 +2,8 @@ import java.util.ArrayList;
 import java.io.Serializable;
 
 public class Vehicle implements Serializable {
-
+    
+    private static final long serialVersionUID = -7388682787774554843L;
     private double finances;
     private Point position;
     private String identifier;

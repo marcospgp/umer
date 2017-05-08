@@ -148,6 +148,15 @@ public class GUI extends JFrame {
 
         this.logoutButton = btnLogout;
 
+        JButton btnSave = new JButton("Guardar");
+        btnLogout.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                saveAppState();
+            }
+        });
+        pnlTopInner.add(btnSave);
+
+
         JButton registerClient = new JButton("Registar Cliente");
         registerClient.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -619,6 +628,10 @@ public class GUI extends JFrame {
         this.tripsContainer.add(newLabel);
         this.tripsContainer.revalidate();
         this.tripsContainer.repaint();
+    }
+
+    private void saveAppState() {
+        Umer.saveAppState();
     }
 
     private void clearDrivers() {

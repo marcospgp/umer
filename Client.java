@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 public class Client extends User implements Serializable {
 
+    private static final long serialVersionUID = -7388682787774554843L;
     private Point position;
     private double moneySpent;
 

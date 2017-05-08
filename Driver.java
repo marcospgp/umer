@@ -1,6 +1,8 @@
 import java.io.Serializable;
 
 public class Driver extends User implements Serializable {
+    
+    private static final long serialVersionUID = -7388682787774554843L;
 
     // Grau de cumprimento de horário estabelecido com o cliente, dado por um factor entre 0 e 100
     private double fulfillment;
