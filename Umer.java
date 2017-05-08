@@ -32,9 +32,7 @@ public final class Umer {
     private static ArrayList<Trip> tripsUnderway = new ArrayList<Trip>();
 
     private static double fastForwardValue = 0; // Segundos a adicionar ao getTime(), aumenta a partir de um botão de fast forward presente na GUI
-
     private static User loggedAs = null;
-
     private static boolean userUpdates = false;
 
     // Prevenir instanciação desta classe (googlar "java final class private constructor")
@@ -294,7 +292,7 @@ public final class Umer {
         // Reportar updates para o loop da GUI
         userUpdates = true;
 
-            return newTrip;
+        return newTrip;
     }
 
 
@@ -524,19 +522,29 @@ public final class Umer {
     /**
      * Retorna informação completa sobre o cliente logado
      */
-    public static String getLoggedClientInfo () {
+    public static String[] getLoggedClientInfo() {
 
         Client logged = (Client) Umer.loggedAs;
 
-        return logged.toString();
+        if (logged == null) {
+            return null;
+        }
+
+        String returnValues[] = {logged.toString(), "teste@teste.com"};
+
+        return returnValues;
     }
 
     /**
      * Retorna informação completa sobre o condutor logado
      */
-    public static String getLoggedDriverInfo () {
+    public static String getLoggedDriverInfo() {
 
         Driver logged = (Driver) Umer.loggedAs;
+
+        if (logged == null) {
+            return null;
+        }
 
         return logged.toString();
     }
@@ -544,30 +552,29 @@ public final class Umer {
     /**
      * Retorna disponibilidade do condutor
      */
-    public static boolean getLoggedDriverAvailability () {
+    public static boolean getLoggedDriverAvailability() {
 
         Driver logged = (Driver) Umer.loggedAs;
 
         return logged.isAvailable();
     }
 
-    public static boolean userHasUpdates () {
+    public static boolean userHasUpdates() {
         return userUpdates;
     }
 
-    public static void userUpdated () {
+    public static void userUpdated() {
         userUpdates = false;
     }
 
-
     public static void saveAppState() {
-                    IO io;
-                    io = new IO();
-                    io.WriteHashMap(vehicles,1);
-                    io.WriteHashMap(drivers,2);
-                    io.WriteHashMap(clients,3);
-                    io.WriteArrayList(tripHistory,1);
-                    io.WriteArrayList(tripsUnderway,2);
+        IO io;
+        io = new IO();
+        io.WriteHashMap(vehicles,1);
+        io.WriteHashMap(drivers,2);
+        io.WriteHashMap(clients,3);
+        io.WriteArrayList(tripHistory,1);
+        io.WriteArrayList(tripsUnderway,2);
     }
 
     public static void main(String[] args) {
@@ -583,21 +590,21 @@ public final class Umer {
 
                     IO io;
                     io = new IO();
-                    io.ReadHashMap(vehicles,1);
-                    io.ReadHashMap(drivers,2);
-                    io.ReadHashMap(clients,3);
-                    io.ReadArrayList(tripHistory,1);
-                    io.ReadArrayList(tripsUnderway,2);
+                    io.ReadHashMap(vehicles, 1);
+                    io.ReadHashMap(drivers, 2);
+                    io.ReadHashMap(clients, 3);
+                    io.ReadArrayList(tripHistory, 1);
+                    io.ReadArrayList(tripsUnderway, 2);
 
                     GUI frame = new GUI();
                     frame.setVisible(true);
                     frame.startGUILoop();
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
-
 
         int index = 0;
 
@@ -614,7 +621,7 @@ public final class Umer {
         System.out.println("Creating driver sergio with password gay at (2,3)");
 
         Driver sergio = registerDriver("sergio@hotmail.com", "sergio", "gay", "casa", "couple weeks ago");
-        //
+
         System.out.println("Creating driver marcos with password forte at (4,2)");
 
         Driver marcos = registerDriver("marcos@hotmail.com", "marcos", "forte", "casa", "many a year ago");

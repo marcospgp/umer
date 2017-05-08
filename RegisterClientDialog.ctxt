@@ -1,13 +1,14 @@
 #BlueJ class context
-comment0.params=
-comment0.target=RegisterClientDialog()
-comment0.text=\r\n\ Create\ the\ dialog.\r\n
-comment1.params=e
-comment1.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment0.target=RegisterClientDialog
+comment1.params=
+comment1.target=RegisterClientDialog()
+comment1.text=\r\n\ Create\ the\ dialog.\r\n
 comment2.params=e
 comment2.target=void\ actionPerformed(java.awt.event.ActionEvent)
-comment3.params=
-comment3.target=void\ customShow()
+comment3.params=e
+comment3.target=void\ actionPerformed(java.awt.event.ActionEvent)
 comment4.params=
-comment4.target=java.lang.String[]\ getResult()
-numComments=5
+comment4.target=void\ customShow()
+comment5.params=
+comment5.target=java.lang.String[]\ getResult()
+numComments=6
