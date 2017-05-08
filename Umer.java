@@ -31,6 +31,7 @@ public final class Umer {
     private static ArrayList<Trip> tripHistory = new ArrayList<Trip>();
     private static ArrayList<Trip> tripsUnderway = new ArrayList<Trip>();
 
+    private static double fastForwardValue = 0; // Segundos a adicionar ao getTime(), aumenta a partir de um botão de fast forward presente na GUI
 
     private static User loggedAs = null;
 
@@ -354,9 +355,11 @@ public final class Umer {
         return listString;
     }
 
-    // TODO - função fast forward
+    // Função fast forward
     public static void fastForward(double seconds) {
-        // this.fastForwardValue += seconds
+
+        fastForwardValue += seconds;
+
         return;
     }
 
@@ -481,8 +484,12 @@ public final class Umer {
     public static String getTimeNow() {
 
         Date now = new Date();
+
+        String instantString = "" + now.getTime();
+        double instant = Double.parseDouble(instantString) + (fastForwardValue * 1000);
+
         Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String reportNow = formatter.format(now);
+        String reportNow = formatter.format(instant);
 
         return reportNow;
     }

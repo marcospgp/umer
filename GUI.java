@@ -458,6 +458,11 @@ public class GUI extends JFrame {
 
         JButton btnToggleAvailability = new JButton("Alterar disponibilidade");
         btnToggleAvailability.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnToggleAvailability.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                toggleAvailability();
+            }
+        });
         pnlLoggedInDriverAvailableContainer.add(btnToggleAvailability);
 
         /*
