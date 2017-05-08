@@ -378,11 +378,11 @@ public final class Umer {
     /**
      * Disponibiliza ou não um condutor para serviço
      */
-    public static void setAvailable(boolean available) {
+    public static void toggleAvailability() {
 
         Driver a = (Driver) Umer.loggedAs;
 
-        a.setAvailability(available);
+        a.setAvailability(!a.isAvailable());
     }
 
 

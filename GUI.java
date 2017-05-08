@@ -807,7 +807,7 @@ public class GUI extends JFrame {
             this.driverAvailableLabel.setVisible(true);
         }
 
-        Umer.setAvailable(this.isAvailable);
+        Umer.toggleAvailability();
     }
 
     private void showPopup(String titleBar, String text) {
@@ -946,7 +946,7 @@ public class GUI extends JFrame {
 
         // Atualizar a GUI constantemente através de um swing timer
 
-        Timer t = new Timer(1000, new ActionListener(){
+        Timer t = new Timer(300, new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 updateTrips(Umer.getTripsUnderWay());
