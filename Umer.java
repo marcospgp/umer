@@ -523,7 +523,14 @@ public final class Umer {
      */
     public static String[] getLoggedClientInfo() {
 
-        Client logged = (Client) Umer.loggedAs;
+    	Client logged;
+
+    	if (Umer.loggedAs instanceof Client) {
+    		logged = (Client) Umer.loggedAs;
+    	}
+    	else {
+    		return null;
+    	}
 
         if (logged == null) {
             return null;
@@ -539,7 +546,14 @@ public final class Umer {
      */
     public static String getLoggedDriverInfo() {
 
-        Driver logged = (Driver) Umer.loggedAs;
+    	Driver logged;
+
+    	if (Umer.loggedAs instanceof Driver) {
+        	logged = (Driver) Umer.loggedAs;
+        }
+        else {
+        	return null;
+        }
 
         if (logged == null) {
             return null;
