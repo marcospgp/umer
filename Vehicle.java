@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.io.Serializable;
 
 public class Vehicle implements Serializable {
-    
+
     private static final long serialVersionUID = -7388682787774554843L;
     private double finances;
     private Point position;
@@ -80,9 +80,9 @@ public class Vehicle implements Serializable {
 
     @Override
     public String toString() {
-    return "Identifier: " + this.identifier + ", "
+    return "<html>Identifier: " + this.identifier + ", "
          + "Type: " + this.type + ", "
-         + "Finances: " + this.finances + ", "
+         + "<br>Finances: " + this.finances + ", "
          + "Position: " + this.position + ", "
          + "Current Driver: " + this.currentDriver;
     }

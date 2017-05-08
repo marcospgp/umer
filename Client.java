@@ -167,18 +167,18 @@ public class Client extends User implements Serializable {
 
     @Override
     public String toString() {
-        return "Email: " + this.email + ", "
-             + "Name: " + this.name + ", "
-             + "Password: " + this.password + ", "
-             + "Address: " + this.address + ", "
-             + "Birthdate: " + this.birthdate + ", "
-             + "Location: " + this.position;
+        return "<html>Email: " + this.email
+             + "<br>Name: " + this.name
+             + "<br>Password: " + this.password
+             + "<br>Address: " + this.address
+             + "<br>Birthdate: " + this.birthdate
+             + "<br>Location: " + this.position;
     }
 
     public String infoString() {
-        return "Name: " + this.name + ", "
+        return "<html>Name: " + this.name + ", "
              + "Email: " + this.email + ", "
-             + "Spent: " + this.moneySpent + ", "
+             + "<br>Spent: " + this.moneySpent + ", "
              + "Location: " + this.position.toString();
     }
 }

@@ -85,21 +85,21 @@ public class Driver extends User implements Serializable {
 
     @Override
     public String toString() {
-    return "Email: " + this.email + ", "
-         + "Name: " + this.name + ", "
-         + "Password: " + this.password + ", "
-         + "Address: " + this.address + ", "
-         + "Birthdate: " + this.birthdate + ", "
-         + "Fulfillment: " + this.fulfillment + ", "
-         + "Rating: " + this.rating + ", "
-         + "Kms: " + this.kms + ", "
-         + "Available: " + this.available;
+    return "<html>Email: " + this.email
+         + "<br>Name: " + this.name
+         + "<br>Password: " + this.password
+         + "<br>Address: " + this.address
+         + "<br>Birthdate: " + this.birthdate
+         + "<br>Fulfillment: " + this.fulfillment
+         + "<br>Rating: " + this.rating
+         + "<br>Kms: " + this.kms
+         + "<br>Available: " + this.available;
     }
 
     public String infoString() {
-        return "Name: " + this.name + ", "
+        return "<html>Name: " + this.name + ", "
              + "Email: " + this.email + ", "
-             + "Rating: " + this.rating + ", "
+             + "<br>Rating: " + this.rating + ", "
              + "Available: " + this.available;
     }
 }
