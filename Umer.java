@@ -172,8 +172,7 @@ public final class Umer {
             return true;
         }
 
-        // Reportar updates para o loop da GUI
-        userUpdates = true;
+        userUpdates = false;
 
         return false;
     }
