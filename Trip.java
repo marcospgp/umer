@@ -6,6 +6,7 @@ import java.io.Serializable;
  */
 public class Trip implements Serializable {
 
+    private static final long serialVersionUID = -7388682787774554843L;
     private Vehicle vehicle;
     private Driver driver;
     private Point origin;

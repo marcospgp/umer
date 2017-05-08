@@ -157,7 +157,7 @@ public class IO
        System.out.println("ArrayList " + ID + " read");
        
        // printing ArrayList to console
-       System.out.println("Read:" +l);
+       //System.out.println("Read:" +l);
    }
     
     

@@ -486,6 +486,16 @@ public final class Umer {
 
         return reportNow;
     }
+    
+    public static void saveAppState() {
+                    IO io;
+                    io = new IO();
+                    io.WriteHashMap(vehicles,1);
+                    io.WriteHashMap(drivers,2);
+                    io.WriteHashMap(clients,3);
+                    io.WriteArrayList(tripHistory,1);
+                    io.WriteArrayList(tripsUnderway,2);
+    }
 
     public static void main(String[] args) {
 
@@ -497,6 +507,15 @@ public final class Umer {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+
+                    IO io;
+                    io = new IO();
+                    io.ReadHashMap(vehicles,1);
+                    io.ReadHashMap(drivers,2);
+                    io.ReadHashMap(clients,3);
+                    io.ReadArrayList(tripHistory,1);
+                    io.ReadArrayList(tripsUnderway,2);
+
                     GUI frame = new GUI();
                     frame.setVisible(true);
                     frame.startGUILoop();
@@ -518,15 +537,6 @@ public final class Umer {
 
         Client joao = registerClient("joao@hotmail.com", "joao", "gay", "casa", "yesterday", (double) 0.5, (double) 0.324);
 
-        /* TESTING WRITING/READING CLIENTS
-        IO ioclients;
-        ioclients = new IO();
-        ioclients.Write(clients,3);
-        ioclients.Read(clients,3);
-         //-----------------------------------//
-         //-----------------------------------//
-        */
-
         System.out.println("Creating driver sergio with password gay at (2,3)");
 
         Driver sergio = registerDriver("sergio@hotmail.com", "sergio", "gay", "casa", "couple weeks ago");
@@ -534,16 +544,6 @@ public final class Umer {
         System.out.println("Creating driver marcos with password forte at (4,2)");
 
         Driver marcos = registerDriver("marcos@hotmail.com", "marcos", "forte", "casa", "many a year ago");
-
-        /*
-        TESTING WRITING/READING drivers
-        IO iodrivers;
-        iodrivers = new IO();
-        iodrivers.Write(drivers,2);
-        iodrivers.Read(drivers,2);
-        -----------------------------------
-        -----------------------------------
-        */
 
         System.out.println("Setting driver marcos to available");
 
@@ -573,15 +573,6 @@ public final class Umer {
         Vehicle taxi2 = createVehicle((double) 0.0, (double) 0.0, "taxi origem", "LIGHT", false);
         assignDriverToVehicle("marcos@hotmail.com", "taxi origem");
 
-        /*
-        TESTING WRITING/READING VEHICLES
-        IO iovehicles;
-        iovehicles = new IO();
-        iovehicles.Write(vehicles,1);
-        iovehicles.Read(vehicles,1);
-        -----------------------------------
-        -----------------------------------
-        */
 
         System.out.println("Finding nearest (ready to travel) vehicle to currently logged in user (vitor)");
 
@@ -651,23 +642,6 @@ public final class Umer {
             System.out.println(drivers.get(index).getKms() + ", ");
             System.out.println(drivers.get(index).isAvailable() + ";");
         }
-        */
-
-        /* TESTING WRITING/READING TRIPHISTORY
-        IO iotriphistory;
-        iotriphistory = new IO();
-        iotriphistory.Write(tripHistory,4);
-        iotriphistory.Read(clients,4);
-        //-----------------------------------//
-        //-----------------------------------//
-
-        /* TESTING WRITING/READING TRIPSUNDERWAY
-        IO iotripsunderway;
-        iotripsunderway = new IO();
-        iotripsunderway.Write(tripsUnderway,5);
-        iotripsunderway.Read(tripsUnderway,5);
-        //-----------------------------------//
-        //-----------------------------------//
         */
 
        //--------------- QUEUE -------------//
