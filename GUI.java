@@ -149,7 +149,7 @@ public class GUI extends JFrame {
         this.logoutButton = btnLogout;
 
         JButton btnSave = new JButton("Guardar");
-        btnLogout.addActionListener(new ActionListener() {
+        btnSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 saveAppState();
             }
