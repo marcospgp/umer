@@ -46,6 +46,9 @@ public class IO
 
     public static void ReadHashMap(HashMap<String, ?> l, int ID) {
         
+       // creating a new hash to import object from file
+       HashMap newHash = new HashMap();
+       
        // creating input stream variables
        FileInputStream fileinput = null;
        ObjectInputStream objectinput = null;
@@ -63,9 +66,9 @@ public class IO
             
             // reading object's value and checking if input object is HashMap
             
-            l = (HashMap<String, ?>) objectinput.readObject();
-            if (!(l instanceof HashMap)){
-                l=null;
+            newHash = (HashMap<String, ?>) objectinput.readObject();
+            if (!(newHash instanceof HashMap)){
+                newHash=null;
                 System.out.println("ERROR - input object is not Hashmap");
             }
             objectinput.close();
@@ -80,9 +83,11 @@ public class IO
             ccex.printStackTrace();
        }
        
-       System.out.println("HashMap " + ID + " read");
+       // copy all of the mappings from newhash to l map
+       l.putAll(newHash);
        
        // printing HashMap to console
+       // System.out.println("HashMap " + ID + " read");
        // System.out.println("Read:" +l);
    }
    

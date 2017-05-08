@@ -523,14 +523,14 @@ public final class Umer {
      */
     public static String[] getLoggedClientInfo() {
 
-    	Client logged;
+        Client logged;
 
-    	if (Umer.loggedAs instanceof Client) {
-    		logged = (Client) Umer.loggedAs;
-    	}
-    	else {
-    		return null;
-    	}
+        if (Umer.loggedAs instanceof Client) {
+            logged = (Client) Umer.loggedAs;
+        }
+        else {
+            return null;
+        }
 
         if (logged == null) {
             return null;
@@ -546,13 +546,13 @@ public final class Umer {
      */
     public static String getLoggedDriverInfo() {
 
-    	Driver logged;
+        Driver logged;
 
-    	if (Umer.loggedAs instanceof Driver) {
-        	logged = (Driver) Umer.loggedAs;
+        if (Umer.loggedAs instanceof Driver) {
+            logged = (Driver) Umer.loggedAs;
         }
         else {
-        	return null;
+            return null;
         }
 
         if (logged == null) {
@@ -619,6 +619,7 @@ public final class Umer {
             }
         });
 
+        /*
         int index = 0;
 
         System.out.println("Starting test");
@@ -637,9 +638,9 @@ public final class Umer {
 
         System.out.println("Creating driver marcos with password forte at (4,2)");
 
-        Driver marcos = registerDriver("marcos@hotmail.com", "marcos", "forte", "casa", "many a year ago");
+        Driver marcos = registerDriver("marcos@hotmail.com", "marcos",  "forte", "casa", "many a year ago");
 
-
+        */
         /* AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
         System.out.println("Setting driver marcos to available");
 
