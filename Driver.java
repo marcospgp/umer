@@ -1,7 +1,7 @@
 import java.io.Serializable;
 
 public class Driver extends User implements Serializable {
-    
+
     private static final long serialVersionUID = -7388682787774554843L;
 
     // Grau de cumprimento de horário estabelecido com o cliente, dado por um factor entre 0 e 100
@@ -32,6 +32,26 @@ public class Driver extends User implements Serializable {
         this.numberOfEvaluations = (int) 1;
         this.kms = (double) 0;
         this.available = false;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public String getAddress() {
+        return this.address;
+    }
+
+    public String getBirthdate() {
+        return this.birthdate;
     }
 
     public double getFulfillment() {

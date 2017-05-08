@@ -24,7 +24,8 @@ updateVehicles(String[] vehicles);
 updateTime(String time);
  - Recebe uma string que indica o tempo atual, para ser apresentada na GUI
 
-updateLoggedDriverInfo(String driverString, boolean isAvailable);
+---LINKED---
+updateLoggedDriverInfo(String[] driverString, boolean isAvailable);
 e
 updateLoggedClientInfo(String clientString, String[] driverEmails);
  - Atualizam a informação do utilizador logado atualmente.
