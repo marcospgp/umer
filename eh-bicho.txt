@@ -1,25 +1,30 @@
 ﻿GUI (métodos que tu vais chamar a partir do Umer)
 ========
+---LINKED---
 updateTrips(String[] trips);
  - Esta função da GUI vai receber um array de strings que devem ser apresentadas na secção "histórico de viagens"
   Podes passar as duas arrayLists de viagens por um loop e preencher um array fazendo trip.toString()
 
+---LINKED---
 updateDrivers(String[] drivers);
  - Recebe um array de strings que serão apresentadas
   na secção "Condutores Registados"
 
+---LINKED---
 updateClients(String[] clients);
  - Recebe um array de strings que serão apresentadas
   na secção "Clientes Registados"
 
+---LINKED---
 updateVehicles(String[] vehicles);
  - Recebe um array de strings que serão apresentadas
   na secção "Veículos Registados"
 
+---LINKED---
 updateTime(String time);
  - Recebe uma string que indica o tempo atual, para ser apresentada na GUI
 
-updateLoggedDriverInfo(String driverString);
+updateLoggedDriverInfo(String driverString, boolean isAvailable);
 e
 updateLoggedClientInfo(String clientString, String[] driverEmails);
  - Atualizam a informação do utilizador logado atualmente.

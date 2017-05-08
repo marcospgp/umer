@@ -946,7 +946,7 @@ public class GUI extends JFrame {
 
         // Atualizar a GUI constantemente através de um swing timer
 
-        Timer t = new Timer(300, new ActionListener(){
+        Timer t = new Timer(15000, new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 updateTrips(Umer.getTripsUnderWay());
@@ -954,6 +954,14 @@ public class GUI extends JFrame {
                 updateClients(Umer.getAllClients());
                 updateVehicles(Umer.getAllVehicles());
                 updateTime(Umer.getTimeNow());
+                System.out.println(Umer.userHasUpdates());
+                if (Umer.userHasUpdates()) {
+                    System.out.println("Ando aqui a meter merda");
+                    updateLoggedDriverInfo(Umer.getLoggedDriverInfo(), Umer.getLoggedDriverAvailability());
+                    //updateLoggedClientInfo(getLoggedClientInfo, String[] driverEmails);
+                    // Já obtivemos as informações updated
+                    Umer.userUpdated();
+                }
             }
         });
         t.start();

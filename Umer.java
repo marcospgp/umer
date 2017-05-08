@@ -35,6 +35,8 @@ public final class Umer {
 
     private static User loggedAs = null;
 
+    private static boolean userUpdates = false;
+
     // Prevenir instanciação desta classe (googlar "java final class private constructor")
     private Umer() {
         throw new AssertionError();
@@ -119,6 +121,9 @@ public final class Umer {
 
         // Associar o condutor ao veículo
         vehicles.get(vehicleIdentifier).setDriver(curDriver);
+
+        // Reportar updates para o loop da GUI
+        userUpdates = true;
     }
 
 
@@ -136,12 +141,18 @@ public final class Umer {
 
             loggedAs = clients.get(email);
 
+            // Reportar updates para o loop da GUI
+            userUpdates = true;
+
             return false;
         }
 
         if (drivers.get(email) != null && drivers.get(email).getPassword().equals(password)) {
 
             loggedAs = drivers.get(email);
+
+            // Reportar updates para o loop da GUI
+            userUpdates = true;
 
             return true;
         }
@@ -162,6 +173,9 @@ public final class Umer {
             Umer.loggedAs = null;
             return true;
         }
+
+        // Reportar updates para o loop da GUI
+        userUpdates = true;
 
         return false;
     }
@@ -277,6 +291,9 @@ public final class Umer {
             return newTrip;
         }
 
+        // Reportar updates para o loop da GUI
+        userUpdates = true;
+
             return newTrip;
     }
 
@@ -360,6 +377,9 @@ public final class Umer {
 
         fastForwardValue += seconds;
 
+        // Reportar updates para o loop da GUI
+        userUpdates = true;
+
         return;
     }
 
@@ -372,6 +392,9 @@ public final class Umer {
         Driver underRatingDriver = drivers.get(driverEmail);
 
         underRatingDriver.addRating(rating);
+
+        // Reportar updates para o loop da GUI
+        userUpdates = true;
     }
 
 
@@ -383,6 +406,9 @@ public final class Umer {
         Driver a = (Driver) Umer.loggedAs;
 
         a.setAvailability(!a.isAvailable());
+
+        // Reportar updates para o loop da GUI
+        userUpdates = true;
     }
 
 
@@ -494,6 +520,45 @@ public final class Umer {
         return reportNow;
     }
 
+    /**
+     * Retorna informação completa sobre o cliente logado
+     */
+    public static String getLoggedClientInfo () {
+
+        Client logged = (Client) Umer.loggedAs;
+
+        return logged.toString();
+    }
+
+    /**
+     * Retorna informação completa sobre o condutor logado
+     */
+    public static String getLoggedDriverInfo () {
+
+        Driver logged = (Driver) Umer.loggedAs;
+
+        return logged.toString();
+    }
+
+    /**
+     * Retorna disponibilidade do condutor
+     */
+    public static boolean getLoggedDriverAvailability () {
+
+        Driver logged = (Driver) Umer.loggedAs;
+
+        return logged.isAvailable();
+    }
+
+    public static boolean userHasUpdates () {
+        return userUpdates;
+    }
+
+    public static void userUpdated () {
+        userUpdates = false;
+    }
+
+
     public static void main(String[] args) {
 
         try {
@@ -512,6 +577,7 @@ public final class Umer {
                 }
             }
         });
+
 
         int index = 0;
 
@@ -542,6 +608,8 @@ public final class Umer {
 
         Driver marcos = registerDriver("marcos@hotmail.com", "marcos", "forte", "casa", "many a year ago");
 
+
+
         /*
         TESTING WRITING/READING drivers
         IO iodrivers;
@@ -551,7 +619,7 @@ public final class Umer {
         -----------------------------------
         -----------------------------------
         */
-
+        /* AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
         System.out.println("Setting driver marcos to available");
 
         marcos.toggleAvailable();
@@ -560,6 +628,7 @@ public final class Umer {
 
         sergio.toggleAvailable();
         //
+        /* AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
         System.out.println("Logging in as vitor with password gay");
 
         Umer.login(vitor.getEmail(), vitor.getPassword());
@@ -589,7 +658,7 @@ public final class Umer {
         -----------------------------------
         -----------------------------------
         */
-
+        /* AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
         System.out.println("Finding nearest (ready to travel) vehicle to currently logged in user (vitor)");
 
         nearestVehicle = Umer.getNearestReadyVehicle();
@@ -676,7 +745,7 @@ public final class Umer {
         //-----------------------------------//
         //-----------------------------------//
         */
-
+        /* AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
        //--------------- QUEUE -------------//
        Queue queue ;
        queue = new Queue();
@@ -697,5 +766,10 @@ public final class Umer {
 
        System.out.println("TOP10 clients: " + getTop10SpendingClients());
        System.out.println("TOP5 drivers: " + getTop5LessReliableDrivers());
+
+       */ //AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+
+       //login("sergio@hotmail.com", "gay");
+
     }
 }
