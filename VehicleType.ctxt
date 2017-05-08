@@ -1,13 +1,11 @@
 #BlueJ class context
-comment0.target=VehicleType
-comment0.text=\r\n\ Enum\ dos\ tipos\ de\ t\u00E1xis\r\n
-comment1.params=avgSpeed\ pricePerKm\ reliability
-comment1.target=VehicleType(double,\ double,\ double)
-comment1.text=\r\n\ Constructor\ for\ VehicleType\ enums\r\n
+comment0.params=avgSpeed\ pricePerKm\ reliability
+comment0.target=VehicleType(double,\ double,\ double)
+comment0.text=\r\n\ Constructor\ for\ VehicleType\ enums\r\n
+comment1.params=
+comment1.target=double\ getAvgSpeed()
 comment2.params=
-comment2.target=double\ getAvgSpeed()
+comment2.target=double\ getPricePerKm()
 comment3.params=
-comment3.target=double\ getPricePerKm()
-comment4.params=
-comment4.target=double\ getReliability()
-numComments=5
+comment3.target=double\ getReliability()
+numComments=4

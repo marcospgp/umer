@@ -35,7 +35,7 @@ public class LoginDialog extends JDialog {
 	public LoginDialog() {
 		setResizable(false);
 		setTitle("Iniciar Sess\u00E3o");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(RegisterDriverDialog.class.getResource("/resources/logo.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(LoginDialog.class.getResource("/resources/logo.png")));
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

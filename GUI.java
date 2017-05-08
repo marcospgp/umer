@@ -148,6 +148,15 @@ public class GUI extends JFrame {
 
         this.logoutButton = btnLogout;
 
+        JButton btnSave = new JButton("Guardar");
+        btnLogout.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                saveAppState();
+            }
+        });
+        pnlTopInner.add(btnSave);
+
+
         JButton registerClient = new JButton("Registar Cliente");
         registerClient.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -458,6 +467,11 @@ public class GUI extends JFrame {
 
         JButton btnToggleAvailability = new JButton("Alterar disponibilidade");
         btnToggleAvailability.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnToggleAvailability.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                toggleAvailability();
+            }
+        });
         pnlLoggedInDriverAvailableContainer.add(btnToggleAvailability);
 
         /*
@@ -614,6 +628,10 @@ public class GUI extends JFrame {
         this.tripsContainer.add(newLabel);
         this.tripsContainer.revalidate();
         this.tripsContainer.repaint();
+    }
+
+    private void saveAppState() {
+        Umer.saveAppState();
     }
 
     private void clearDrivers() {
@@ -802,7 +820,7 @@ public class GUI extends JFrame {
             this.driverAvailableLabel.setVisible(true);
         }
 
-        Umer.setAvailable(this.isAvailable);
+        Umer.toggleAvailability();
     }
 
     private void showPopup(String titleBar, String text) {
@@ -941,7 +959,7 @@ public class GUI extends JFrame {
 
         // Atualizar a GUI constantemente através de um swing timer
 
-        Timer t = new Timer(1000, new ActionListener(){
+        Timer t = new Timer(300, new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 updateTrips(Umer.getTripsUnderWay());
