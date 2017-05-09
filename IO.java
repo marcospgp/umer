@@ -20,9 +20,9 @@ public class IO
             
             // writing data
             
-            if (ID==1) fileoutput = new FileOutputStream("vehicles.txt");
-            if (ID==2) fileoutput = new FileOutputStream("drivers.txt");
-            if (ID==3) fileoutput = new FileOutputStream("clients.txt");
+            if (ID == 1) fileoutput = new FileOutputStream("vehicles.txt");
+            if (ID == 2) fileoutput = new FileOutputStream("drivers.txt");
+            if (ID == 3) fileoutput = new FileOutputStream("clients.txt");
             
             // converting object to binary
             objectoutput = new ObjectOutputStream(fileoutput);
@@ -57,9 +57,9 @@ public class IO
             
             // reading data
             
-            if (ID==1) fileinput = new FileInputStream("vehicles.txt");
-            if (ID==2) fileinput = new FileInputStream("drivers.txt");
-            if (ID==3) fileinput = new FileInputStream("clients.txt");
+            if (ID == 1) fileinput = new FileInputStream("vehicles.txt");
+            if (ID == 2) fileinput = new FileInputStream("drivers.txt");
+            if (ID == 3) fileinput = new FileInputStream("clients.txt");
             
             // converting data to object
             objectinput = new ObjectInputStream(fileinput);
@@ -68,7 +68,7 @@ public class IO
             
             newHash = (HashMap<String, ?>) objectinput.readObject();
             if (!(newHash instanceof HashMap)){
-                newHash=null;
+                newHash = null;
                 System.out.println("ERROR - input object is not Hashmap");
             }
             objectinput.close();
@@ -102,8 +102,8 @@ public class IO
             
             // writing data
             
-            if (ID==1) fileoutput = new FileOutputStream("triphistory.txt");
-            if (ID==2) fileoutput = new FileOutputStream("tripsunderway.txt");
+            if (ID == 1) fileoutput = new FileOutputStream("triphistory.txt");
+            if (ID == 2) fileoutput = new FileOutputStream("tripsunderway.txt");
             
             // converting object to binary
             objectoutput = new ObjectOutputStream(fileoutput);
@@ -126,6 +126,9 @@ public class IO
     
     public static void ReadArrayList(ArrayList<Trip> l, int ID) {
         
+       // creating new arraylist to import object from file
+       ArrayList<Trip> newArrayList = new ArrayList<Trip>();
+       
        // creating input stream variables
        
        FileInputStream fileinput = null;
@@ -134,17 +137,17 @@ public class IO
        try {
             // reading data
             
-            if (ID==1) fileinput = new FileInputStream("triphistory.txt");
-            if (ID==2) fileinput = new FileInputStream("tripsunderway.txt");
+            if (ID == 1) fileinput = new FileInputStream("triphistory.txt");
+            if (ID == 2) fileinput = new FileInputStream("tripsunderway.txt");
             
             // converting data to object
             objectinput = new ObjectInputStream(fileinput);
             
             // reading object's value and checking if input object is an Arraylist
             
-            l = (ArrayList<Trip>) objectinput.readObject();
-            if (!(l instanceof ArrayList)){
-                l=null;
+            newArrayList = (ArrayList<Trip>) objectinput.readObject();
+            if (!(newArrayList  instanceof ArrayList)){
+                newArrayList = null;
                 System.out.println("ERROR - input object is not an Arraylist");
             }
             objectinput.close();
@@ -159,8 +162,12 @@ public class IO
             ccex.printStackTrace();
        }
         
-       System.out.println("ArrayList " + ID + " read");
+       // copy new things to Arraylist
        
+       newArrayList.removeAll(l); 
+       l.addAll(newArrayList);
+       
+       // System.out.println("ArrayList " + ID + " read");
        // printing ArrayList to console
        // System.out.println("Read:" +l);
    }
