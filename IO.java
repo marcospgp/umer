@@ -167,7 +167,7 @@ public class IO
        
    }
    
-   public static void WriteQueue(ArrayDeque<Vehicle> l) {  
+   public static void WriteQueue(ArrayDeque<String> l) {  
        
         // creating output stream variables
         
@@ -199,10 +199,10 @@ public class IO
     }
     
 
-    public static void ReadQueue(ArrayDeque<Vehicle> l) {
+    public static void ReadQueue(ArrayDeque<String> l) {
         
        // creating a new queue to import object from file
-       ArrayDeque<Vehicle> newQueue = new ArrayDeque<>();
+       ArrayDeque<String> newQueue = new ArrayDeque<>();
        
        // creating input stream variables
        FileInputStream fileinput = null;
@@ -218,7 +218,7 @@ public class IO
             
             // reading object's value and checking if input object is HashMap
             
-            newQueue = (ArrayDeque<Vehicle>) objectinput.readObject();
+            newQueue = (ArrayDeque<String>) objectinput.readObject();
             if (!(newQueue instanceof ArrayDeque)){
                 newQueue = null;
                 System.out.println("ERROR - input object is not Queue");
