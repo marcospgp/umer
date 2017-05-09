@@ -80,6 +80,10 @@ public class Vehicle implements Serializable {
         return (int) Math.round((distance / this.type.getPricePerKm()) * 100) / (double) 100;
     }
 
+    public boolean getHasWaitingList() {
+    	return this.waitingList;
+    }
+
     @Override
     public String toString() {
     return "<html>Identifier: " + this.identifier + ", "

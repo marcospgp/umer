@@ -167,7 +167,7 @@ public class IO
        
    }
    
-   public static void WriteQueue(ArrayDeque<String> l) {  
+   public static void WriteArrayDeque(ArrayDeque<String> l) {  
        
         // creating output stream variables
         
@@ -199,7 +199,7 @@ public class IO
     }
     
 
-    public static void ReadQueue(ArrayDeque<String> l) {
+    public static void ReadArrayDeque(ArrayDeque<String> l) {
         
        // creating a new queue to import object from file
        ArrayDeque<String> newQueue = new ArrayDeque<>();

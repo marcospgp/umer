@@ -30,7 +30,7 @@ public final class Umer {
     private static HashMap<String, Client> clients = new HashMap<String, Client>();  // clientEmail -> Client
     private static ArrayList<Trip> tripHistory = new ArrayList<Trip>();
     private static ArrayList<Trip> tripsUnderway = new ArrayList<Trip>();
-    private static ArrayList<Trip> waitingList = new ArrayList<Trip>();
+    private static ArrayDeque<String> waitingList = new ArrayDeque<String>();
 
     private static double fastForwardValue = 0; // Segundos a adicionar ao getTime(), aumenta a partir de um botão de fast forward presente na GUI
     private static User loggedAs = null;
@@ -234,6 +234,17 @@ public final class Umer {
         return client.getNearestReadyVehicle(vehicles);
     }
 
+    private static boolean waitingListCar(String taxiID) {
+
+    	Vehicle taxi = vehicles.get(taxiID);
+
+        if (taxi == null || taxi.getDriver() == null) {
+            return false;
+        }
+
+        return taxi.getDriver().isAvailable();
+    }
+
 
     /**
      * Retorna o veículo com o ID específico ao utilizador
@@ -295,8 +306,18 @@ public final class Umer {
 
         // nao existe aquele veiculo ou nao há nenhum disponível
         else {
-            System.out.println("O veículo " + taxiID + " não existe ou não está disponível.");
-            return newTrip;
+        	// Se aquele existe
+        	if (vehicles.get(taxiID) != null) {
+        		// Se o veículo tem waiting list
+        		if (vehicles.get(taxiID).getHasWaitingList()) {
+        			waitingList.addLast(taxiID); // adicionar a string do taxi a lista
+        			// o que quero mesmo fazer é adicionar o id do cliente para depois o taxi fazer a startTrip
+        		}
+        	}
+        	else {
+        		System.out.println("O veículo " + taxiID + " não existe ou não está disponível, e/ou não tem waitingList.");
+            	return newTrip;
+        	}
         }
 
         // Reportar updates para o loop da GUI
@@ -615,6 +636,7 @@ public final class Umer {
         io.WriteHashMap(clients,3);
         io.WriteArrayList(tripHistory,1);
         io.WriteArrayList(tripsUnderway,2);
+        io.WriteArrayDeque(waitingList);
     }
 
     public static void main(String[] args) {
@@ -635,6 +657,7 @@ public final class Umer {
                     io.ReadHashMap(clients, 3);
                     io.ReadArrayList(tripHistory, 1);
                     io.ReadArrayList(tripsUnderway, 2);
+                    io.ReadArrayDeque(waitingList);
 
                     GUI frame = new GUI();
                     frame.setVisible(true);
