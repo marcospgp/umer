@@ -9,6 +9,7 @@ public class Vehicle implements Serializable {
     private String identifier;
     private VehicleType type;
     private Driver currentDriver;
+    private boolean waitingList;
 
     // Histórico de viagens
     private ArrayList<Trip> tripHistory = new ArrayList<Trip>();
@@ -16,13 +17,14 @@ public class Vehicle implements Serializable {
     /**
      * Constructor for objects of class Vehicle
      */
-    public Vehicle(double newPosX, double newPosY, String identifier, VehicleType type) {
+    public Vehicle(double newPosX, double newPosY, String identifier, VehicleType type, boolean hasWaitingList) {
         this.position = new Point<Double>(newPosX, newPosY);
         this.identifier = identifier;
         this.type = type;
         this.currentDriver = null;
         this.type = type;
         this.finances = (double) 0.0;
+        this.waitingList = hasWaitingList;
     }
 
     public void addToFinances(double tripCost) {
@@ -84,6 +86,7 @@ public class Vehicle implements Serializable {
          + "Type: " + this.type + ", "
          + "<br>Finances: " + this.finances + ", "
          + "Position: " + this.position + ", "
+         + "<br>Wait List: " + this.waitingList + ", "
          + "Current Driver: " + this.currentDriver;
     }
 }

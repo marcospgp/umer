@@ -30,6 +30,7 @@ public final class Umer {
     private static HashMap<String, Client> clients = new HashMap<String, Client>();  // clientEmail -> Client
     private static ArrayList<Trip> tripHistory = new ArrayList<Trip>();
     private static ArrayList<Trip> tripsUnderway = new ArrayList<Trip>();
+    private static ArrayList<Trip> waitingList = new ArrayList<Trip>();
 
     private static double fastForwardValue = 0; // Segundos a adicionar ao getTime(), aumenta a partir de um botão de fast forward presente na GUI
     private static User loggedAs = null;
@@ -56,7 +57,7 @@ public final class Umer {
         // determinar o tipo de veículo (e se existe esse tipo)
         VehicleType typeKnown = VehicleType.valueOf(type);
 
-        Vehicle newVehicle = new Vehicle(x, y, identifier, typeKnown);
+        Vehicle newVehicle = new Vehicle(x, y, identifier, typeKnown, hasWaitingList);
 
         vehicles.put(identifier, newVehicle);
 
