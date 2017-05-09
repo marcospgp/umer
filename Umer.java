@@ -251,26 +251,35 @@ public final class Umer {
         if ( (taxiID.equals("") && isSomeTaxiAvailable()) || (isTaxiAvailable(taxiID)) ) {
             Client a = (Client) Umer.loggedAs;
             newTrip = a.getTrip(vehicles, a.getPosition(), destPos, taxiID);
-            // Viagem adicionada ao histórico
+            // Viagem adicionada ao histórico do cliente
             a.tripHistory.add(newTrip);
+            // Viagem adicionada às viagens under rating
+            a.underEvalDrivers.add(newTrip.getDriver().getEmail());
             // Viagem começa a decorrer
             Umer.tripsUnderway.add(newTrip);
             // Atualizar posição do cliente
             a.setPosition(destPos);
             // Adicionar custo da viagem ao cliente
             a.addMoneySpent(newTrip.getCost());
+            // Viagem adicionada ao histórico do condutor
+            newTrip.getDriver().tripHistory.add(newTrip);
             // Atualizar posição do veículo
             newTrip.getVehicle().setPosition(destPos);
             // Adicionar custo da viagem ao veículo
             newTrip.getVehicle().addToFinances(newTrip.getCost());
+            // Trip started at:
+            newTrip.setTimeStarted();
+            // Trip ends at:
+            newTrip.setArrivingTime();
 
+            /*
             System.out.println("Vehicle: " + newTrip.getVehicle().getIdentifier());
             System.out.println("Driver: " + newTrip.getDriver().getName());
             System.out.println("Origin: " + "(" + newTrip.getOrigin().getX() + "," + newTrip.getOrigin().getY() + ")");
             System.out.println("Destination: " + "(" + newTrip.getDestination().getX() + "," + newTrip.getDestination().getY() + ")");
             System.out.println("Estimated duration: " + newTrip.getEstimatedDuration());
             System.out.println("Real Duration: " + newTrip.getRealDuration());
-            newTrip.setTimeStarted();
+			newTrip.setTimeStarted();
             System.out.println("Time Started: " + newTrip.getTimeStarted());
             newTrip.setArrivingTime();
             System.out.println("Arriving time: " + newTrip.getArrivingTime());
@@ -280,6 +289,7 @@ public final class Umer {
             System.out.println("Profit atual veiculo: " + newTrip.getVehicle().getFinances());
             System.out.println("Gasto atual do cliente: " + a.getMoneySpent());
             System.out.println("Driver rating: " + newTrip.getDriver().getRating());
+            */
         }
 
         // nao existe aquele veiculo ou nao há nenhum disponível
@@ -521,7 +531,7 @@ public final class Umer {
     /**
      * Retorna informação completa sobre o cliente logado
      */
-    public static String[] getLoggedClientInfo() {
+    public static String getLoggedClientInfo() {
 
         Client logged;
 
@@ -536,10 +546,26 @@ public final class Umer {
             return null;
         }
 
-        String returnValues[] = {logged.toString(), "teste@teste.com"};
-
-        return returnValues;
+        return logged.toString();
     }
+
+    public static String[] getUnderEvalTrips() {
+        System.out.println("Comecei getUnderEvalTrips");
+
+        Client logged;
+
+        if (Umer.loggedAs instanceof Client) {
+            logged = (Client) Umer.loggedAs;
+            System.out.println("Estou no get e chamei underEvalTrips");
+            System.out.println(Arrays.toString(logged.underEvalTrips()));
+
+            return logged.underEvalTrips();
+        }
+
+        // Não há nenhum para ser avaliado
+        return new String[0];
+    }
+
 
     /**
      * Retorna informação completa sobre o condutor logado

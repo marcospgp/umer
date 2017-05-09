@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Map;
@@ -9,6 +10,8 @@ public class Client extends User implements Serializable {
     private static final long serialVersionUID = -7388682787774554843L;
     private Point position;
     private double moneySpent;
+
+    protected ArrayList<String> underEvalDrivers = new ArrayList<String>();
 
     /**
      * Constructor for objects of class Client
@@ -42,6 +45,29 @@ public class Client extends User implements Serializable {
 
     public void addMoneySpent(double tripCost) {
         this.moneySpent += tripCost;
+    }
+
+    public String[] underEvalTrips() {
+        System.out.println("Comecei underEvalTrips");
+
+        if(this.underEvalDrivers.size() > 0) {
+            System.out.println("Entrei no if");
+
+            String[] emails = new String[this.underEvalDrivers.size()];
+
+            for (int i = 0; i < this.underEvalDrivers.size(); i++) {
+                System.out.println("passar" + i);
+                emails[i] = this.underEvalDrivers.get(i);
+            }
+
+        return emails;
+
+        }
+
+        else {
+            System.out.println("vou dar vazio");
+            return new String[0];
+        }
     }
 
     /**

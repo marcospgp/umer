@@ -882,7 +882,7 @@ public class GUI extends JFrame {
 
         this.loggedInClientInfo.setText(clientString);
 
-        if (ratingPendingEmails.length == 0) {
+        if (ratingPendingEmails == null || ratingPendingEmails.length == 0) {
             this.emptyRatingsNotifier.setVisible(true);
         } else {
             this.emptyRatingsNotifier.setVisible(false);
@@ -977,13 +977,13 @@ public class GUI extends JFrame {
                         updateLoggedDriverInfo(loggedDriverInfo, Umer.getLoggedDriverAvailability());
                     }
 
-                    String[] loggedClientInfo = Umer.getLoggedClientInfo(); // [client string, driver email 0, driver email 1, ...]
+                    String loggedClientInfo = Umer.getLoggedClientInfo();
 
                     if (loggedClientInfo != null) {
 
-                        String driverEmails[] = Arrays.copyOfRange(loggedClientInfo, 1, loggedClientInfo.length);
+                        String[] driverEmails = Umer.getUnderEvalTrips();
 
-                        updateLoggedClientInfo(loggedClientInfo[0], driverEmails);
+                        updateLoggedClientInfo(loggedClientInfo, driverEmails);
                     }
 
                     Umer.userUpdated();
