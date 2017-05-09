@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.ArrayDeque;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.FileInputStream;
@@ -86,9 +87,6 @@ public class IO
        // copy all of the mappings from newhash to l map
        l.putAll(newHash);
        
-       // printing HashMap to console
-       // System.out.println("HashMap " + ID + " read");
-       // System.out.println("Read:" +l);
    }
    
       public static void WriteArrayList(ArrayList<Trip> l, int ID) {
@@ -167,9 +165,81 @@ public class IO
        newArrayList.removeAll(l); 
        l.addAll(newArrayList);
        
-       // System.out.println("ArrayList " + ID + " read");
-       // printing ArrayList to console
-       // System.out.println("Read:" +l);
+   }
+   
+   public static void WriteQueue(ArrayDeque<Vehicle> l) {  
+       
+        // creating output stream variables
+        
+        FileOutputStream fileoutput = null;
+        ObjectOutputStream objectoutput = null;
+        
+        try {
+            
+            // writing data
+            fileoutput = new FileOutputStream("queue.txt");
+            
+            // converting object to binary
+            objectoutput = new ObjectOutputStream(fileoutput);
+            
+            // writing HashMap to stream
+            
+            objectoutput.writeObject(l);
+            objectoutput.flush();
+            objectoutput.close();
+        } 
+        catch (FileNotFoundException fnfex) {
+            fnfex.printStackTrace();
+        }
+        catch (IOException ioex) {
+            ioex.printStackTrace();
+        }
+        
+        System.out.println("Queue saved");
+    }
+    
+
+    public static void ReadQueue(ArrayDeque<Vehicle> l) {
+        
+       // creating a new queue to import object from file
+       ArrayDeque<Vehicle> newQueue = new ArrayDeque<>();
+       
+       // creating input stream variables
+       FileInputStream fileinput = null;
+       ObjectInputStream objectinput = null;
+       
+       try {
+            
+            // reading data   
+            fileinput = new FileInputStream("queue.txt");
+            
+            // converting data to object
+            objectinput = new ObjectInputStream(fileinput);
+            
+            // reading object's value and checking if input object is HashMap
+            
+            newQueue = (ArrayDeque<Vehicle>) objectinput.readObject();
+            if (!(newQueue instanceof ArrayDeque)){
+                newQueue = null;
+                System.out.println("ERROR - input object is not Queue");
+            }
+            objectinput.close();
+       } 
+       catch (FileNotFoundException fnfex) {
+            fnfex.printStackTrace();
+       }
+       catch (IOException ioex) {
+            ioex.printStackTrace();
+       } 
+       catch (ClassNotFoundException ccex) {
+            ccex.printStackTrace();
+       }
+       
+       // copy new things to Queue
+       
+       newQueue.removeAll(l); 
+       l.addAll(newQueue);
+       
    }
     
     
