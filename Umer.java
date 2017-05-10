@@ -28,7 +28,7 @@ public final class Umer {
     private static HashMap<String, Vehicle> vehicles = new HashMap<String, Vehicle>(); // vehicleId   -> Vehicle
     private static HashMap<String, Driver> drivers = new HashMap<String, Driver>();  // driverEmail -> Driver
     private static HashMap<String, Client> clients = new HashMap<String, Client>();  // clientEmail -> Client
-    private static ArrayList<Trip> tripHistory = new ArrayList<Trip>();
+    private static ArrayList<Trip> tripsCompleted = new ArrayList<Trip>();
     private static ArrayList<Trip> tripsUnderway = new ArrayList<Trip>();
     private static ArrayDeque<String> waitingList = new ArrayDeque<String>();
 
@@ -355,13 +355,13 @@ public final class Umer {
      */
     public static String[] getTripHistory () {
 
-        String[] tripHistory = new String[Umer.loggedAs.tripHistory.size()];
+        String[] userHistory = new String[Umer.loggedAs.tripHistory.size()];
 
         for (int i = 0; i < Umer.loggedAs.tripHistory.size(); i++) {
-            tripHistory[i] = Umer.loggedAs.tripHistory.get(i).toString();
+            userHistory[i] = Umer.loggedAs.tripHistory.get(i).toString();
         }
 
-        return tripHistory;
+        return userHistory;
     }
 
 
@@ -482,6 +482,9 @@ public final class Umer {
      * Retorna a lista de viagens underWay
      */
     public static String[] getTripsUnderWay () {
+
+    	// Eliminar as viagens que já terminaram
+    	endsTripsUnderway();
 
         String[] tripsGoingOn = new String[tripsUnderway.size()];
 
@@ -660,7 +663,7 @@ public final class Umer {
         io.WriteHashMap(vehicles,1);
         io.WriteHashMap(drivers,2);
         io.WriteHashMap(clients,3);
-        io.WriteArrayList(tripHistory,1);
+        io.WriteArrayList(tripsCompleted,1);
         io.WriteArrayList(tripsUnderway,2);
         io.WriteArrayDeque(waitingList);
     }
@@ -673,8 +676,14 @@ public final class Umer {
         // Percorrer a lista
         for (int i = 0; i < tripsUnderway.size(); i++) {
             // Ver se o atualTime é maior que o arriving time, se for acaba a viagem -> tira da tripsUnderWay, trip setIsCompleted(true) e vehicle setInUse(false);
-            if ()
             System.out.println(tripsUnderway.get(i));
+            if (atualTime.after(tripsUnderway.get(i).getArrivingTime())) {
+            	tripsUnderway.get(i).setIsCompleted(true);
+            	tripsUnderway.get(i).getVehicle().setInUse(false);
+
+            	tripsUnderway.remove(i);
+
+            }
         }
 
     }
@@ -695,7 +704,7 @@ public final class Umer {
                     io.ReadHashMap(vehicles, 1);
                     io.ReadHashMap(drivers, 2);
                     io.ReadHashMap(clients, 3);
-                    io.ReadArrayList(tripHistory, 1);
+                    io.ReadArrayList(tripsCompleted, 1);
                     io.ReadArrayList(tripsUnderway, 2);
                     io.ReadArrayDeque(waitingList);
 

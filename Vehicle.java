@@ -109,6 +109,7 @@ public class Vehicle implements Serializable {
          + "<br>Finances: " + this.finances + ", "
          + "Position: " + this.position + ", "
          + "<br>Wait List: " + this.waitingList + ", "
-         + "Current Driver: " + this.currentDriver;
+         + "In use: " + this.inUse + ", "
+         + "<br>Current Driver: " + this.currentDriver;
     }
 }
