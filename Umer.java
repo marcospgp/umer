@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.Collection;
@@ -365,62 +366,53 @@ public final class Umer {
     }
 
 
-    public static String getTop10SpendingClients() {
+        public static String getTop10SpendingClients() {
 
-        Collection<Client> clientsCollection = (Collection<Client>) clients.values();
-        ArrayList<Client> clientsList = new ArrayList(clientsCollection);
-
-        // ordena o array client tendo em conta o dinheiro gasto
+        ArrayList<Client> clientsList = new ArrayList<Client>();
+        clientsList.addAll(clients.values());
+        
+        // ordena o array clients tendo em conta os top spending
         Collections.sort(clientsList, new Comparator<Client>() {
-        public int compare(Client client1, Client client2) {
-            return Double.compare(client1.getMoneySpent(),client2.getMoneySpent());
+            public int compare(Client client1, Client client2) {
+                return Double.compare(client2.getMoneySpent(),client1.getMoneySpent());
         }
         });
 
-        // Cria um hashmap com os nomes dos primeiros 10 clientes
+        // Cria um linkedhashmap com os nomes dos primeiros 10 clientes
 
-        HashMap<String,Double> hashmap = new HashMap<String,Double>();
-
+        LinkedHashMap<String,Double> hashmap = new LinkedHashMap<String,Double>();
         for (int i = 0; i < clientsList.size() && i < 10; i++) {
             hashmap.put(clientsList.get(i).getName(),clientsList.get(i).getMoneySpent());
         }
 
         // Transforma hashmap em String
         String str = hashmap.toString();
-
         return str;
+        
     }
-
 
     public static String getTop5LessReliableDrivers() {
 
-        Collection<Driver> driversCollection = (Collection<Driver>) drivers.values();
-        ArrayList<Driver> driversList = new ArrayList(driversCollection);
+        ArrayList<Driver> driversList = new ArrayList<Driver>();
+        driversList.addAll(drivers.values());
 
         // ordena o array drivers tendo em conta os less reliable
         Collections.sort(driversList, new Comparator<Driver>() {
-        public int compare(Driver driver1, Driver driver2) {
-            return Double.compare(driver2.getRating(),driver1.getRating());
+            public int compare(Driver driver1, Driver driver2) {
+                return Double.compare(driver1.getRating(),driver2.getRating());
         }
         });
 
-        // Cria um arraylist com os nomes dos primeiros 5 drivers
+        // Cria um linkedhashmap com os nomes dos primeiros 5 drivers
 
-        ArrayList<String> temp = new ArrayList<String>();
-
+        LinkedHashMap<String,Double> hashmap = new LinkedHashMap<String,Double>();
         for (int i = 0; i < driversList.size() && i < 5; i++) {
-            temp.add(driversList.get(i).getName());
+            hashmap.put(driversList.get(i).getName(),driversList.get(i).getRating());
         }
 
-        // Transforma arraylist em String
-
-        String listString = "";
-
-        for (String s : temp) {
-            listString += s + " ";
-        }
-
-        return listString;
+        // Transforma hashmap em String
+        String str = hashmap.toString();
+        return str;
     }
 
     // Função fast forward
