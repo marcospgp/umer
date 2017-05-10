@@ -48,15 +48,15 @@ public class Client extends User implements Serializable {
     }
 
     public String[] underEvalTrips() {
-        System.out.println("Comecei underEvalTrips");
+        // System.out.println("Comecei underEvalTrips");
 
         if(this.underEvalDrivers.size() > 0) {
-            System.out.println("Entrei no if");
+            // System.out.println("Entrei no if");
 
             String[] emails = new String[this.underEvalDrivers.size()];
 
             for (int i = 0; i < this.underEvalDrivers.size(); i++) {
-                System.out.println("passar" + i);
+                // System.out.println("passar" + i);
                 emails[i] = this.underEvalDrivers.get(i);
             }
 
@@ -65,7 +65,7 @@ public class Client extends User implements Serializable {
         }
 
         else {
-            System.out.println("vou dar vazio");
+            // System.out.println("vou dar vazio");
             return new String[0];
         }
     }

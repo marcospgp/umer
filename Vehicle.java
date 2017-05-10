@@ -1,3 +1,4 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.io.Serializable;
 
@@ -13,6 +14,9 @@ public class Vehicle implements Serializable {
 
     // Histórico de viagens
     private ArrayList<Trip> tripHistory = new ArrayList<Trip>();
+
+    // Lista de espera para os utilizadores especificados (só é populado caso waitingList == true)
+    private ArrayDeque<String> waitingQueue = new ArrayDeque<String>();
 
     /**
      * Constructor for objects of class Vehicle
@@ -82,6 +86,10 @@ public class Vehicle implements Serializable {
 
     public boolean getHasWaitingList() {
     	return this.waitingList;
+    }
+
+    public ArrayDeque<String> getWaitingQueue() {
+    	return this.waitingQueue;
     }
 
     @Override

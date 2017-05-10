@@ -306,12 +306,32 @@ public final class Umer {
 
         // nao existe aquele veiculo ou nao há nenhum disponível
         else {
-        	// Se aquele existe
+
+        	// Se aquele veiculo existe
         	if (vehicles.get(taxiID) != null) {
+
         		// Se o veículo tem waiting list
         		if (vehicles.get(taxiID).getHasWaitingList()) {
+        			System.out.println("Estou a adicionar à lista de viagens em espera de UMER.");
         			waitingList.addLast(taxiID); // adicionar a string do taxi a lista
+
+        			// let us print all the elements available in deque
+					for (String nome : waitingList) {
+						System.out.println("Taxi = " + nome);
+					}
+
         			// o que quero mesmo fazer é adicionar o id do cliente para depois o taxi fazer a startTrip
+        			Client a = (Client) Umer.loggedAs;
+        			System.out.println("Estou a adicionar o cliente à lista de viagens em espera do veículo.");
+        			(vehicles.get(taxiID)).getWaitingQueue().addLast(a.getName());
+        			// let us print all the elements available in deque of vehicle
+        			System.out.println("Na lista do veículo:");
+					for (String nome : (vehicles.get(taxiID)).getWaitingQueue()) {
+						System.out.println("Client = " + nome);
+					}
+
+
+
         		}
         	}
         	else {
@@ -572,14 +592,14 @@ public final class Umer {
     }
 
     public static String[] getUnderEvalTrips() {
-        System.out.println("Comecei getUnderEvalTrips");
+        // System.out.println("Comecei getUnderEvalTrips");
 
         Client logged;
 
         if (Umer.loggedAs instanceof Client) {
             logged = (Client) Umer.loggedAs;
-            System.out.println("Estou no get e chamei underEvalTrips");
-            System.out.println(Arrays.toString(logged.underEvalTrips()));
+            // System.out.println("Estou no get e chamei underEvalTrips");
+            // System.out.println(Arrays.toString(logged.underEvalTrips()));
 
             return logged.underEvalTrips();
         }
