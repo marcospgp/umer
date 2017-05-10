@@ -478,6 +478,7 @@ public final class Umer {
     	// Eliminar as viagens que já terminaram
     	endsTripsUnderway();
     	// Começar viagens em fila de espera
+    	startOnWaitingListTrips();
 
         String[] tripsGoingOn = new String[tripsUnderway.size() + tripsCompleted.size()];
         int j = 0;
@@ -666,6 +667,11 @@ public final class Umer {
         io.WriteArrayDeque(waitingList);
     }
 
+    /**
+     * Verifica se viagens hora de chegada da viagem já passou e,
+     * caso isso se verifique, termina a viagem (isCompleted = true), adicionando à lista de viagens terminadas,
+     * tornando o veículo disponível novamente e retirando a viagem das tripsUnderway.
+     */
     private static void endsTripsUnderway() {
 
         // Data atual
@@ -685,6 +691,37 @@ public final class Umer {
 
             }
         }
+
+    }
+
+    /**
+     * Verifica se os veículos com nome na lista de espera têm condições para iniciar viagem nova,
+     * caso isso se verifique, ????????????.
+     */
+    private static void startOnWaitingListTrips() {
+
+    	Vehicle curVehicle = null;
+
+    	// Percorrer todos os taxis com lista de espera com algo
+		for (String taxiID : waitingList) {
+			// O taxi a verificar é este
+			System.out.println("Taxi a verificar: " + taxiID);
+			curVehicle = vehicles.get(taxiID);
+
+			// Verificar se tem condições para iniciar a viagem
+			if (curVehicle.getDriver() != null && curVehicle.getDriver().isAvailable() && !curVehicle.getIsInUse()) {
+
+				// O utilizador no primeiro lugar da fila é este. O poll já o remove da lista de espera do veículo.
+				(Client) userInQueue = clients.get(curVehicle.waitingQueue.pollFirst());
+				System.out.println("Para o utilizador na fila: " + userInQueue);
+
+				Trip viagemIniciada = startTrip(taxiID, userInQueue.getPosition().getX(), userInQueue.getPosition().getY());
+
+				// Remover aquele taxiID da waitingList da UMER (a primeira ocorrência)
+				waitingList.remove(taxiID);
+			}
+
+		}
 
     }
 
