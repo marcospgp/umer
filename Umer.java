@@ -370,7 +370,7 @@ public final class Umer {
 
         ArrayList<Client> clientsList = new ArrayList<Client>();
         clientsList.addAll(clients.values());
-        
+
         // ordena o array clients tendo em conta os top spending
         Collections.sort(clientsList, new Comparator<Client>() {
             public int compare(Client client1, Client client2) {
@@ -388,7 +388,7 @@ public final class Umer {
         // Transforma hashmap em String
         String str = hashmap.toString();
         return str;
-        
+
     }
 
     public static String getTop5LessReliableDrivers() {
@@ -478,10 +478,15 @@ public final class Umer {
     	// Eliminar as viagens que já terminaram
     	endsTripsUnderway();
 
-        String[] tripsGoingOn = new String[tripsUnderway.size()];
+        String[] tripsGoingOn = new String[tripsUnderway.size() + tripsCompleted.size()];
+        int j = 0;
 
-        for (int i = 0; i < tripsUnderway.size(); i++) {
-            tripsGoingOn[i] = tripsUnderway.get(i).toString();
+        for (int i = 0; i < tripsUnderway.size(); i++, j++) {
+            tripsGoingOn[j] = tripsUnderway.get(i).toString();
+        }
+
+        for (int i = 0; i < tripsCompleted.size(); i++, j++) {
+            tripsGoingOn[j] = tripsCompleted.get(i).toString();
         }
 
         return tripsGoingOn;
@@ -672,7 +677,9 @@ public final class Umer {
             if (atualTime.after(tripsUnderway.get(i).getArrivingTime())) {
             	tripsUnderway.get(i).setIsCompleted(true);
             	tripsUnderway.get(i).getVehicle().setInUse(false);
-
+            	// adicionar à lista de terminadas
+            	tripsCompleted.add(tripsUnderway.get(i));
+            	// remover da lista de correntes
             	tripsUnderway.remove(i);
 
             }

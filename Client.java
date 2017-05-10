@@ -133,7 +133,8 @@ public class Client extends User implements Serializable {
 
             if (newDistance < closestDistanceSoFar  &&
                 curVehicle.getDriver() != null &&
-                curVehicle.getDriver().isAvailable()
+                curVehicle.getDriver().isAvailable() &&
+                !curVehicle.getIsInUse()
             ) {
                 closestDistanceSoFar = newDistance;
                 closestVehicle = curVehicle;
