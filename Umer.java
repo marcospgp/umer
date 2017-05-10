@@ -188,7 +188,7 @@ public final class Umer {
 
         Vehicle taxi = vehicles.get(taxiID);
 
-        if (taxi == null || taxi.getDriver() == null) {
+        if (taxi == null || taxi.getDriver() == null || taxi.getIsInUse()) {
             return false;
         }
 
@@ -210,7 +210,7 @@ public final class Umer {
             Map.Entry entry = (Map.Entry) i.next();
             Vehicle curVehicle = (Vehicle) entry.getValue();
 
-            if (curVehicle.getDriver() != null && curVehicle.getDriver().isAvailable()) {
+            if (curVehicle.getDriver() != null && curVehicle.getDriver().isAvailable() && !curVehicle.getIsInUse()) {
                 return true;
             }
         }
@@ -279,6 +279,8 @@ public final class Umer {
             newTrip.getVehicle().setPosition(destPos);
             // Adicionar custo da viagem ao veículo
             newTrip.getVehicle().addToFinances(newTrip.getCost());
+            // Set veículo "em uso"
+            newTrip.getVehicle().setInUse(true);
             // Trip started at:
             newTrip.setTimeStarted();
             // Trip ends at:
@@ -442,6 +444,10 @@ public final class Umer {
 
         underRatingDriver.addRating(rating);
 
+        // Já foi avaliado, por isso tirar do arraylist de avaliações
+        Client a = (Client) Umer.loggedAs;
+        a.underEvalDrivers.remove(driverEmail);
+
         // Reportar updates para o loop da GUI
         userUpdates = true;
     }
@@ -599,7 +605,7 @@ public final class Umer {
         if (Umer.loggedAs instanceof Client) {
             logged = (Client) Umer.loggedAs;
             // System.out.println("Estou no get e chamei underEvalTrips");
-            // System.out.println(Arrays.toString(logged.underEvalTrips()));
+             System.out.println(Arrays.toString(logged.underEvalTrips()));
 
             return logged.underEvalTrips();
         }
@@ -657,6 +663,20 @@ public final class Umer {
         io.WriteArrayList(tripHistory,1);
         io.WriteArrayList(tripsUnderway,2);
         io.WriteArrayDeque(waitingList);
+    }
+
+    private static void endsTripsUnderway() {
+
+        // Data atual
+        Date atualTime = new Date();
+
+        // Percorrer a lista
+        for (int i = 0; i < tripsUnderway.size(); i++) {
+            // Ver se o atualTime é maior que o arriving time, se for acaba a viagem -> tira da tripsUnderWay, trip setIsCompleted(true) e vehicle setInUse(false);
+            if ()
+            System.out.println(tripsUnderway.get(i));
+        }
+
     }
 
     public static void main(String[] args) {

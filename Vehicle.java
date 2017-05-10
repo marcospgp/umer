@@ -11,6 +11,7 @@ public class Vehicle implements Serializable {
     private VehicleType type;
     private Driver currentDriver;
     private boolean waitingList;
+    private boolean inUse;
 
     // Histórico de viagens
     private ArrayList<Trip> tripHistory = new ArrayList<Trip>();
@@ -29,6 +30,7 @@ public class Vehicle implements Serializable {
         this.type = type;
         this.finances = (double) 0.0;
         this.waitingList = hasWaitingList;
+        this.inUse = false;
     }
 
     public void addToFinances(double tripCost) {
@@ -86,6 +88,14 @@ public class Vehicle implements Serializable {
 
     public boolean getHasWaitingList() {
     	return this.waitingList;
+    }
+
+    public boolean getIsInUse() {
+    	return this.inUse;
+    }
+
+    public void setInUse(boolean usado) {
+    	this.inUse = usado;
     }
 
     public ArrayDeque<String> getWaitingQueue() {
