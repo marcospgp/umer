@@ -477,6 +477,7 @@ public final class Umer {
 
     	// Eliminar as viagens que já terminaram
     	endsTripsUnderway();
+    	// Começar viagens em fila de espera
 
         String[] tripsGoingOn = new String[tripsUnderway.size() + tripsCompleted.size()];
         int j = 0;
@@ -605,7 +606,7 @@ public final class Umer {
         if (Umer.loggedAs instanceof Client) {
             logged = (Client) Umer.loggedAs;
             // System.out.println("Estou no get e chamei underEvalTrips");
-             System.out.println(Arrays.toString(logged.underEvalTrips()));
+            System.out.println("Pedidos de avaliação: " + Arrays.toString(logged.underEvalTrips()));
 
             return logged.underEvalTrips();
         }
@@ -673,7 +674,7 @@ public final class Umer {
         // Percorrer a lista
         for (int i = 0; i < tripsUnderway.size(); i++) {
             // Ver se o atualTime é maior que o arriving time, se for acaba a viagem -> tira da tripsUnderWay, trip setIsCompleted(true) e vehicle setInUse(false);
-            System.out.println(tripsUnderway.get(i));
+            // System.out.println(tripsUnderway.get(i)); -> para ver se esta a reconhecer a Trip
             if (atualTime.after(tripsUnderway.get(i).getArrivingTime())) {
             	tripsUnderway.get(i).setIsCompleted(true);
             	tripsUnderway.get(i).getVehicle().setInUse(false);
