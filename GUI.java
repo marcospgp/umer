@@ -890,6 +890,9 @@ public class GUI extends JFrame {
 
         // Reinicializar o array que vai guardar as inputs de ratings
         this.ratingInputs = new JTextField[ratingPendingEmails.length];
+        
+        // Limpar o contentor das inputs de rating
+        this.pendingRatingsContainer.removeAll();
 
         for (int i = 0; i < ratingPendingEmails.length; i++) {
 
