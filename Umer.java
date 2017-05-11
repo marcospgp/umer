@@ -33,7 +33,7 @@ public final class Umer {
     private static ArrayList<Trip> tripsUnderway = new ArrayList<Trip>();
     private static ArrayDeque<String> waitingList = new ArrayDeque<String>();
 
-    private static double fastForwardValue = 0; // Segundos a adicionar ao getTime(), aumenta a partir de um botão de fast forward presente na GUI
+    private static int fastForwardValue = 0; // Segundos a adicionar ao getTime(), aumenta a partir de um botão de fast forward presente na GUI
     private static User loggedAs = null;
     private static boolean userUpdates = false;
 
@@ -283,9 +283,9 @@ public final class Umer {
             // Set veículo "em uso"
             newTrip.getVehicle().setInUse(true);
             // Trip started at:
-            newTrip.setTimeStarted();
+            newTrip.setTimeStarted(fastForwardValue);
             // Trip ends at:
-            newTrip.setArrivingTime();
+            newTrip.setArrivingTime(fastForwardValue);
 
             /*
             System.out.println("Vehicle: " + newTrip.getVehicle().getIdentifier());
@@ -294,9 +294,9 @@ public final class Umer {
             System.out.println("Destination: " + "(" + newTrip.getDestination().getX() + "," + newTrip.getDestination().getY() + ")");
             System.out.println("Estimated duration: " + newTrip.getEstimatedDuration());
             System.out.println("Real Duration: " + newTrip.getRealDuration());
-			newTrip.setTimeStarted();
+			newTrip.setTimeStarted(fastForwardValue);
             System.out.println("Time Started: " + newTrip.getTimeStarted());
-            newTrip.setArrivingTime();
+            newTrip.setArrivingTime(fastForwardValue);
             System.out.println("Arriving time: " + newTrip.getArrivingTime());
             System.out.println("Cost: " + newTrip.getCost());
             System.out.println("Pos atualizada client: " + a.getPosition());
@@ -566,9 +566,10 @@ public final class Umer {
     public static String getTimeNow() {
 
         Date now = new Date();
+        now.setSeconds(now.getSeconds() + fastForwardValue);
 
         String instantString = "" + now.getTime();
-        double instant = Double.parseDouble(instantString) + (fastForwardValue * 1000);
+        double instant = Double.parseDouble(instantString);
 
         Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String reportNow = formatter.format(instant);
@@ -675,6 +676,7 @@ public final class Umer {
 
         // Data atual
         Date atualTime = new Date();
+        atualTime.setSeconds(atualTime.getSeconds() + fastForwardValue);
 
         // Percorrer a lista
         for (int i = 0; i < tripsUnderway.size(); i++) {
@@ -756,9 +758,9 @@ public final class Umer {
         // Set veículo "em uso"
         newTrip.getVehicle().setInUse(true);
         // Trip started at:
-        newTrip.setTimeStarted();
+        newTrip.setTimeStarted(fastForwardValue);
         // Trip ends at:
-        newTrip.setArrivingTime();
+        newTrip.setArrivingTime(fastForwardValue);
 
         /*
         System.out.println("Vehicle: " + newTrip.getVehicle().getIdentifier());
@@ -767,9 +769,9 @@ public final class Umer {
         System.out.println("Destination: " + "(" + newTrip.getDestination().getX() + "," + newTrip.getDestination().getY() + ")");
         System.out.println("Estimated duration: " + newTrip.getEstimatedDuration());
         System.out.println("Real Duration: " + newTrip.getRealDuration());
-		newTrip.setTimeStarted();
+		newTrip.setTimeStarted(fastForwardValue);
         System.out.println("Time Started: " + newTrip.getTimeStarted());
-        newTrip.setArrivingTime();
+        newTrip.setArrivingTime(fastForwardValue);
         System.out.println("Arriving time: " + newTrip.getArrivingTime());
         System.out.println("Cost: " + newTrip.getCost());
         System.out.println("Pos atualizada client: " + a.getPosition());

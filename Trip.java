@@ -90,8 +90,9 @@ public class Trip implements Serializable {
         return this.arrivingTime;
     }
 
-    public void setTimeStarted() {
+    public void setTimeStarted(int fastForwardValue) {
         Date startedAt = new Date();
+        startedAt.setSeconds(startedAt.getSeconds() + fastForwardValue);
         this.startingTime = startedAt;
     }
 
@@ -100,9 +101,9 @@ public class Trip implements Serializable {
     }
 
     // Define a hora de chegada esperada
-    public void setArrivingTime() {
+    public void setArrivingTime(int fastForwardValue) {
         Date currentDate = new Date();
-        long currentTime = currentDate.getTime();
+        long currentTime = currentDate.getTime() + (fastForwardValue * 1000);
         long tripTime = (long) (this.getEstimatedDuration() * 60 * 60000);
         long finalTime = tripTime + currentTime;
         Date itemDate = new Date(finalTime);
