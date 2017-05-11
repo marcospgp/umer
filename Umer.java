@@ -251,7 +251,7 @@ public final class Umer {
      * Retorna o veículo com o ID específico ao utilizador
      * logado atualmente, apenas se o utilizador for um cliente
      */
-    public static Trip startTrip(String taxiID, double destPosX, double destPosY) {
+    public static void startTrip(String taxiID, double destPosX, double destPosY) {
 
         Trip newTrip = null;
         Point destPos = new Point(destPosX, destPosY);
@@ -340,14 +340,12 @@ public final class Umer {
         	}
         	else {
         		System.out.println("O veículo " + taxiID + " não existe ou não está disponível, e/ou não tem waitingList.");
-            	return newTrip;
         	}
         }
 
         // Reportar updates para o loop da GUI
         userUpdates = true;
 
-        return newTrip;
     }
 
 
@@ -717,13 +715,73 @@ public final class Umer {
 				queuedTripInfo = curVehicle.getWaitingQueue().pollFirst();
 				System.out.println("Para o utilizador na fila: " + queuedTripInfo.getClientName());
 
-				Trip viagemIniciada = startTrip(taxiID, (double) queuedTripInfo.getDestX(), (double) queuedTripInfo.getDestY());
+				startQueuedTrip(taxiID, queuedTripInfo.getClientName() ,(double) queuedTripInfo.getDestX(), (double) queuedTripInfo.getDestY());
 
 				// Remover aquele taxiID da waitingList da UMER (a primeira ocorrência)
 				waitingList.remove(taxiID);
 			}
 
 		}
+
+    }
+
+    /**
+     * Retorna o veículo com o ID específico ao utilizador
+     * logado atualmente, apenas se o utilizador for um cliente
+     */
+    private static void startQueuedTrip(String taxiID, String clientID, double destPosX, double destPosY) {
+
+        Trip newTrip = null;
+        Point destPos = new Point(destPosX, destPosY);
+
+
+        Client a = (Client) clients.get(clientID);
+        newTrip = a.getTrip(vehicles, a.getPosition(), destPos, taxiID);
+        // Viagem adicionada ao histórico do cliente
+        a.tripHistory.add(newTrip);
+        // Viagem adicionada às viagens under rating
+        a.underEvalDrivers.add(newTrip.getDriver().getEmail());
+        // Viagem começa a decorrer
+        Umer.tripsUnderway.add(newTrip);
+        // Atualizar posição do cliente
+        a.setPosition(destPos);
+        // Adicionar custo da viagem ao cliente
+        a.addMoneySpent(newTrip.getCost());
+        // Viagem adicionada ao histórico do condutor
+        newTrip.getDriver().tripHistory.add(newTrip);
+        // Atualizar posição do veículo
+        newTrip.getVehicle().setPosition(destPos);
+        // Adicionar custo da viagem ao veículo
+        newTrip.getVehicle().addToFinances(newTrip.getCost());
+        // Set veículo "em uso"
+        newTrip.getVehicle().setInUse(true);
+        // Trip started at:
+        newTrip.setTimeStarted();
+        // Trip ends at:
+        newTrip.setArrivingTime();
+
+        /*
+        System.out.println("Vehicle: " + newTrip.getVehicle().getIdentifier());
+        System.out.println("Driver: " + newTrip.getDriver().getName());
+        System.out.println("Origin: " + "(" + newTrip.getOrigin().getX() + "," + newTrip.getOrigin().getY() + ")");
+        System.out.println("Destination: " + "(" + newTrip.getDestination().getX() + "," + newTrip.getDestination().getY() + ")");
+        System.out.println("Estimated duration: " + newTrip.getEstimatedDuration());
+        System.out.println("Real Duration: " + newTrip.getRealDuration());
+		newTrip.setTimeStarted();
+        System.out.println("Time Started: " + newTrip.getTimeStarted());
+        newTrip.setArrivingTime();
+        System.out.println("Arriving time: " + newTrip.getArrivingTime());
+        System.out.println("Cost: " + newTrip.getCost());
+        System.out.println("Pos atualizada client: " + a.getPosition());
+        System.out.println("Pos atualizada driver: " + newTrip.getVehicle().getPosition());
+        System.out.println("Profit atual veiculo: " + newTrip.getVehicle().getFinances());
+        System.out.println("Gasto atual do cliente: " + a.getMoneySpent());
+        System.out.println("Driver rating: " + newTrip.getDriver().getRating());
+        */
+
+
+        // Reportar updates para o loop da GUI
+        userUpdates = true;
 
     }
 
