@@ -325,12 +325,13 @@ public final class Umer {
 
         			// o que quero mesmo fazer é adicionar o id do cliente para depois o taxi fazer a startTrip
         			Client a = (Client) Umer.loggedAs;
-        			System.out.println("Estou a adicionar o cliente à lista de viagens em espera do veículo.");
-        			(vehicles.get(taxiID)).getWaitingQueue().addLast(a.getName());
+        			QueueInfo queuedTripInfo = new QueueInfo(a.getName(), destPosX, destPosY);
+        			System.out.println("Estou a adicionar a informação da viagem à lista de viagens em espera do veículo.");
+        			(vehicles.get(taxiID)).getWaitingQueue().addLast(queuedTripInfo);
         			// let us print all the elements available in deque of vehicle
         			System.out.println("Na lista do veículo:");
-					for (String nome : (vehicles.get(taxiID)).getWaitingQueue()) {
-						System.out.println("Client = " + nome);
+					for (QueueInfo tripInfo : (vehicles.get(taxiID)).getWaitingQueue()) {
+						System.out.println("Client = " + tripInfo.getClientName());
 					}
 
 
@@ -701,7 +702,7 @@ public final class Umer {
     private static void startOnWaitingListTrips() {
 
     	Vehicle curVehicle = null;
-    	Client userInQueue = null;
+    	QueueInfo queuedTripInfo = null;
 
     	// Percorrer todos os taxis com lista de espera com algo
 		for (String taxiID : waitingList) {
@@ -713,10 +714,10 @@ public final class Umer {
 			if (curVehicle.getDriver() != null && curVehicle.getDriver().isAvailable() && !curVehicle.getIsInUse()) {
 
 				// O utilizador no primeiro lugar da fila é este. O poll já o remove da lista de espera do veículo.
-				userInQueue = clients.get(curVehicle.getWaitingQueue().pollFirst());
-				System.out.println("Para o utilizador na fila: " + userInQueue);
+				queuedTripInfo = curVehicle.getWaitingQueue().pollFirst();
+				System.out.println("Para o utilizador na fila: " + queuedTripInfo.getClientName());
 
-				Trip viagemIniciada = startTrip(taxiID, (double) userInQueue.getPosition().getX(), (double) userInQueue.getPosition().getY());
+				Trip viagemIniciada = startTrip(taxiID, (double) queuedTripInfo.getDestX(), (double) queuedTripInfo.getDestY());
 
 				// Remover aquele taxiID da waitingList da UMER (a primeira ocorrência)
 				waitingList.remove(taxiID);

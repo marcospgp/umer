@@ -17,7 +17,7 @@ public class Vehicle implements Serializable {
     private ArrayList<Trip> tripHistory = new ArrayList<Trip>();
 
     // Lista de espera para os utilizadores especificados (só é populado caso waitingList == true)
-    private ArrayDeque<String> waitingQueue = new ArrayDeque<String>();
+    private ArrayDeque<QueueInfo> waitingQueue = new ArrayDeque<QueueInfo>();
 
     /**
      * Constructor for objects of class Vehicle
@@ -98,7 +98,7 @@ public class Vehicle implements Serializable {
     	this.inUse = usado;
     }
 
-    public ArrayDeque<String> getWaitingQueue() {
+    public ArrayDeque<QueueInfo> getWaitingQueue() {
     	return this.waitingQueue;
     }
 
