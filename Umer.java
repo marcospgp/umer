@@ -701,6 +701,7 @@ public final class Umer {
     private static void startOnWaitingListTrips() {
 
     	Vehicle curVehicle = null;
+    	Client userInQueue = null;
 
     	// Percorrer todos os taxis com lista de espera com algo
 		for (String taxiID : waitingList) {
@@ -712,10 +713,10 @@ public final class Umer {
 			if (curVehicle.getDriver() != null && curVehicle.getDriver().isAvailable() && !curVehicle.getIsInUse()) {
 
 				// O utilizador no primeiro lugar da fila é este. O poll já o remove da lista de espera do veículo.
-				(Client) userInQueue = clients.get(curVehicle.waitingQueue.pollFirst());
+				userInQueue = clients.get(curVehicle.getWaitingQueue().pollFirst());
 				System.out.println("Para o utilizador na fila: " + userInQueue);
 
-				Trip viagemIniciada = startTrip(taxiID, userInQueue.getPosition().getX(), userInQueue.getPosition().getY());
+				Trip viagemIniciada = startTrip(taxiID, (double) userInQueue.getPosition().getX(), (double) userInQueue.getPosition().getY());
 
 				// Remover aquele taxiID da waitingList da UMER (a primeira ocorrência)
 				waitingList.remove(taxiID);
