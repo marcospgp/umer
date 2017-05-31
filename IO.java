@@ -7,6 +7,8 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.util.Iterator;
+import java.util.Map;
 
 public class IO
 {
@@ -83,11 +85,12 @@ public class IO
        catch (ClassNotFoundException ccex) {
             ccex.printStackTrace();
        }
-
-       // copy all of the mappings from newhash to l map
+       
+      
        l.putAll(newHash);
 
-   }
+       }
+    
 
       public static void WriteArrayList(ArrayList<Trip> l, int ID) {
 
@@ -163,7 +166,9 @@ public class IO
        // copy new things to Arraylist
 
        newArrayList.removeAll(l);
-       l.addAll(newArrayList);
+       for(Trip t: newArrayList){
+           l.add(t);
+        }
 
    }
 
@@ -238,7 +243,9 @@ public class IO
        // copy new things to Queue
 
        newQueue.removeAll(l);
-       l.addAll(newQueue);
+       for(String s: newQueue){
+           l.add(s);
+        }
 
    }
 

@@ -368,7 +368,10 @@ public final class Umer {
         public static String getTop10SpendingClients() {
 
         ArrayList<Client> clientsList = new ArrayList<Client>();
-        clientsList.addAll(clients.values());
+        
+        for(Client c: clients.values()) {
+            clientsList.add(c);
+        }
 
         // ordena o array clients tendo em conta os top spending
         Collections.sort(clientsList, new Comparator<Client>() {
@@ -393,7 +396,9 @@ public final class Umer {
     public static String getTop5LessReliableDrivers() {
 
         ArrayList<Driver> driversList = new ArrayList<Driver>();
-        driversList.addAll(drivers.values());
+        for(Driver d: drivers.values()) {
+            driversList.add(d);
+        }
 
         // ordena o array drivers tendo em conta os less reliable
         Collections.sort(driversList, new Comparator<Driver>() {
