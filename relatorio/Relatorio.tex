@@ -7,7 +7,7 @@
 \usepackage{spverbatim}
 \usepackage{graphicx}
 
-\title{Projeto de POO - UMER\\Grupo x}
+\title{Projeto de POO - UMER\\Grupo 52}
 \author{Sérgio Jorge (A77730) \and Vítor Castro (A77870) \and Marcos Pereira (A79116)}
 \date{}
 
@@ -25,7 +25,7 @@ Neste relatório faremos uma análise do projeto de Programação Orientada aos 
 \section{Introdução}
 \label{sec:intro}
 
-Este projeto foi realizado com o objetivo de desenvolver um programa responsável por toda a gestão de uma empresa de taxis. Foram, então, propostas pelos professores algumas funcionalidades com contexto real enquadradas no tema, às quais o programa deve responder com sucesso. A implementação destas permitiram consolidar e adquirir conhecimentos ao nível da sintaxe de programação em Java e também incentivaram à exploração de estruturas de dados e de bibliotecas características desta linguagem. 
+Este projeto foi realizado com o objetivo de desenvolver um programa responsável por toda a gestão de uma empresa de taxis. Foram, então, propostas pelos professores algumas funcionalidades com contexto real enquadradas no tema, às quais o programa deve responder com sucesso. A implementação destas permitiram consolidar e adquirir conhecimentos ao nível da sintaxe de programação em Java e também incentivaram à exploração de estruturas de dados e de APIs características desta linguagem. 
 Assim, de modo a facilitar a compreensão do projeto, o relatório está dividido da seguinte forma:
 
 \begin{description}
@@ -74,7 +74,7 @@ A nossa solução foi implementada com base em diferentes classes dos quais dest
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width = 420pt, height = 240pt]{lala}
+    \includegraphics[width = 420pt, height = 240pt]{bluej}
 \end{figure}
 
 \pagebreak
@@ -90,29 +90,42 @@ Esta é uma superclasse que define variáveis como: email, nome, password, morad
 \end{description}
 
 \subsection{Vehicle}
-Em Vehicle
+Em Vehicle, classe relativa aos objetos táxis da empresa, são definidas variáveis como: finanças do veículo, posição, ID, tipo de veículo, motorista atual e dois booleanos relativos a fila de espera e ocupação.
 
 \subsection{Trip}
-Na classe
+Na classe Trip estão as variáveis relativas às viagens e, a cada viagem, deve estar associado um veículo, um motorista, dois pontos (origem e destino), duração estimada, duração real, custo da viagem , hora de partida e chegada.
 
 \subsection{IO}
-Esta classe...
+Esta é a classe responsável pelas operações de Input/Output do programa. Assim, através dela, é-nos possível guardar o estado da aplicação em determinado momento e é também possível recuperar esse estado posteriormente. O estado é guardado em ficheiros presentes na diretoria do programa.
 
-\subsection{Implementação - GUI e classe UMER}
-EXPLICAAAR MAIN
+\subsection{Implementação - UMER}
 
-\pagebreak
+Na implementação deste programa, optamos por criar uma interface gráfica do utilizador (GUI) de modo a facilitar a interação da aplicação com as funcionalidades exigidas. Usamos três \textit{hashmaps} para guardar a informação relativa a motoristas, clientes e veículos. A escolha recaiu no uso deste tipo de estrutura de dados por nos possibilitar ganhos de performance relativamente a listas.
+Por sua vez, as listas são usadas, no nosso programa, para guardar a informação relativa a viagens já completadas e viagens a decorrer.
+
+Primeiramente, esta classe é responsável por métodos relativos a \textit{login} e \textit{logout}, instancia ou cria objetos das classes motoristas, clientes e veículos e adiciona-os às estruturas de dados respetivas e trata de associar um condutor a um veículo.
+É, então, que se torna possível a criação ou o começo de uma viagem.
+
+No que diz respeito à criação de viagens, é verificado se há algum veículo disponível ou se o que foi pedido pelo cliente está disponível. Em caso afirmativo, a viagem é adicionada às listas de viagens, as posições dos objetos são atualizadas, as finanças e o custo são adicionadas ao veículo e ao cliente e o cliente avalia o condutor. Em caso negativo, se existir algum veículo com fila de espera, o cliente é adicionado à sua fila de espera.
+É importante referir que a nossa aplicação faz uso de um relógio que nos permite marcar a hora de início e de fim da viagem. Assim, é-nos possível saber quando a viagem acaba pelo que, nesse momento, podemos tirar a viagem da lista de viagens a decorrer. Está também implementado o método \textit{fastforward} que adianta o relógio.
+
+Para cliente e motorista terem acesso às viagens que já fizeram percorre-se a lista do historial de viagens e vê-se em que viagens é que estes participaram e é apenas feito um ToString dessa informação.
+
+Em relação aos tops, decidimos converter as \textit{hashmaps} de clientes e de motoristas para \textit{arraylists} que, posteriormente, são ordenados. A seguir, passamos os N primeiros elementos dos \textit{arraylists} (já ordenados) para \textit{linkedhashmaps} aos quais damos toString.
+
+O estado da aplicação é guardado a partir de um botão na GUI que chama os métodos responsáveis por esse efeito, presentes na classe IO. Relativamente a carregar o estado, é feita a chamada aos métodos, automaticamente, quando a GUI é aberta. 
 \subsection{Resultado Final}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width = 420pt, height = 240pt]{gui}
+\end{figure}
 
 \section{Conclusões}
 \label{sec:conclusao}
-Este tra
-
-Este projeto serviu para aprofundarmos o conhecimento da linguagem JAVA, assim como as bibliotecas que lhe estão associadas. Achámos que, com a realização de um trabalho deste tipo permite uma consolidação proveitosa da linguagem, não só em termos teóricos como também em termos práticos. Permite também melhorar as habilidades na resolução de problemas. Concluímos também que:
+Este projeto serviu para aprofundarmos o conhecimento da linguagem JAVA, assim como as APIs que lhe estão associadas. Achámos que, a realização de um trabalho deste tipo permite uma consolidação proveitosa da linguagem, não só em termos teóricos como também em termos práticos. Permite também melhorar as habilidades na resolução de problemas. Concluímos também que:
 
 \begin{itemize}
-        \item jhjh
- 	    \item jkjskdj
+        \item O uso da estrutura de dados adequada (hashmaps) foi essencial de forma a obter um programa eficiente;
 \end{itemize}
 
 \end{document}
