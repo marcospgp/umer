@@ -46,10 +46,12 @@ public final class Umer {
     /**
      * Cria um novo veículo
      *
-     * @param x         The initial x position of the vehicle
-     * @param y         The initial y position of the vehicle
-     * @param type      The vehicle type
-     * @param newDriver (optional) The new vehicle's driver. Should be null if not needed.
+     * @param x         	The initial x position of the vehicle
+     * @param y         	The initial y position of the vehicle
+     * @param identifier	The vehicle identifier
+     * @param type      	The vehicle type
+     * @param hasWaitingList Indicating if this vehicle has waitingList
+     * @return Vehicle 		The new vehicle.
      */
     public static Vehicle createVehicle(double x, double y, String identifier, String type, boolean hasWaitingList) {
 
@@ -68,6 +70,13 @@ public final class Umer {
 
     /**
      * Cria um novo condutor
+     *
+     * @param email         The driver's account email
+     * @param name         	The driver's name
+     * @param password		The driver's account password
+     * @param address      	The driver's address
+     * @param birthdate 	The driver's birthdate
+     * @return Driver 		The new driver.
      */
     public static Driver registerDriver(String email, String name, String password, String address, String birthdate) {
 
@@ -81,6 +90,15 @@ public final class Umer {
 
     /**
      * Cria um novo cliente
+     *
+     * @param email         The client's account email
+     * @param name         	The client's name
+     * @param password		The client's account password
+     * @param address      	The client's address
+     * @param birthdate 	The client's birthdate
+     * @param x         	The initial x position of the client
+     * @param y         	The initial y position of the client
+     * @return Client 		The new client.
      */
     public static Client registerClient(String email, String name, String password, String address, String birthdate, double posX, double posY) {
 
@@ -93,7 +111,9 @@ public final class Umer {
 
 
     /**
-     * Ocupa um veículo com um dado condutor
+     * Ocupa um veículo com um dado condutor.
+     * @param driverEmail         O mail do condutor.
+     * @param vehicleIdentifier   O identificador do veículo.
      */
     public static void assignDriverToVehicle(String driverEmail, String vehicleIdentifier) {
 
@@ -128,7 +148,7 @@ public final class Umer {
 
 
     /**
-     * Tenta fazer login numa conta de utilizador
+     * Tenta fazer login numa conta de utilizador.
      *
      * @param email   O email do utilizador
      * @param passord A password do utilizador
@@ -184,6 +204,7 @@ public final class Umer {
      * Retorna true caso exista o veiculo com aquele ID e esteja disponível.
      * Serve de guarda para quando chamamos certo veiculo, para que nao seja
      * feito o pedido de viagem a um veiculo que nao existe ou esta indisponivel.
+     * @param taxiID O identificador do taxi a pesquisar.
      */
     private static boolean isTaxiAvailable(String taxiID) {
 
@@ -222,7 +243,7 @@ public final class Umer {
 
     /**
      * Retorna o veículo pronto a viajar mais próximo do utilizador
-     * logado atualmente, apenas se o utilizador for um cliente
+     * logado atualmente, apenas se o utilizador for um cliente.
      */
     private static Vehicle getNearestReadyVehicle() {
 
@@ -248,8 +269,13 @@ public final class Umer {
 
 
     /**
-     * Retorna o veículo com o ID específico ao utilizador
-     * logado atualmente, apenas se o utilizador for um cliente
+     * Inicia uma viagem, se possível. Se não receber um taxiID, procura pelo mais próximo.
+     * Caso receba alguma taxiID, procura por esse. Se não for possível a viagem, não a inicia.
+     * Pode também adicionar na waitingList de certo veículo, caso seja possível.
+     * Atualiza posições e a viagem, adiciona a históricos e informa veículo e cliente ocupados.
+     * @param taxiID Identificador do taxi
+     * @param destPosX Coordenada x de destino escolhido
+     * @param destPosY Coordenada y de destino escolhido
      */
     public static void startTrip(String taxiID, double destPosX, double destPosY) {
 
@@ -351,7 +377,7 @@ public final class Umer {
 
     /**
      * Retorna a lista de viagens do utilizador logado
-     * em forma de ArrayList de Strings
+     * em forma de Array de Strings.
      */
     public static String[] getTripHistory () {
 
@@ -368,7 +394,7 @@ public final class Umer {
         public static String getTop10SpendingClients() {
 
         ArrayList<Client> clientsList = new ArrayList<Client>();
-        
+
         for(Client c: clients.values()) {
             clientsList.add(c);
         }
@@ -393,6 +419,10 @@ public final class Umer {
 
     }
 
+    /**
+     * Retorna a lista de condutores menos fiáveis,
+     * sob a forma de String.
+     */
     public static String getTop5LessReliableDrivers() {
 
         ArrayList<Driver> driversList = new ArrayList<Driver>();
@@ -419,7 +449,10 @@ public final class Umer {
         return str;
     }
 
-    // Função fast forward
+    /**
+     * Avança o tempo no programa.
+     * @param seconds	Quantos segundos devemos avançar.
+     */
     public static void fastForward(double seconds) {
 
         fastForwardValue += seconds;
@@ -432,7 +465,9 @@ public final class Umer {
 
 
     /**
-     * Recolhe o rating do driver em relação àquele serviço
+     * Recolhe o rating do driver em relação àquele serviço.
+     * @param driverEmail 	O mail identificador do condutor.
+     * @param rating 		A avaliação dada.
      */
     public static void rateDriver(String driverEmail, double rating) {
 
@@ -450,7 +485,7 @@ public final class Umer {
 
 
     /**
-     * Disponibiliza ou não um condutor para serviço
+     * Disponibiliza ou não um condutor para serviço.
      */
     public static void toggleAvailability() {
 
@@ -464,7 +499,8 @@ public final class Umer {
 
 
     /**
-     * Devolve os lucros totais daquele veículo
+     * Devolve os lucros totais daquele veículo, sob a forma de String.
+     * @param vehicleId 	Identificador do veículo a pesquisar.
      */
     public static String getVehicleFinances(String vehicleId) {
 
@@ -475,7 +511,8 @@ public final class Umer {
 
 
     /**
-     * Retorna a lista de viagens underWay
+     * Retorna a lista de viagens a decorrer,
+     * sob a forma de Array de Strings.
      */
     public static String[] getTripsUnderWay () {
 
@@ -500,7 +537,8 @@ public final class Umer {
 
 
     /**
-     * Retorna a lista de clients
+     * Retorna a lista de clients,
+     * sob a forma de Array de Strings.
      */
     public static String[] getAllClients () {
 
@@ -522,7 +560,8 @@ public final class Umer {
 
 
     /**
-     * Retorna a lista de condutores
+     * Retorna a lista de condutores,
+     * sob a forma de Array de Strings.
      */
     public static String[] getAllDrivers () {
 
@@ -544,7 +583,8 @@ public final class Umer {
 
 
     /**
-     * Retorna a lista de veículos
+     * Retorna a lista de veículos,
+     * sob a forma de Array de Strings.
      */
     public static String[] getAllVehicles () {
 
@@ -566,7 +606,8 @@ public final class Umer {
 
 
     /**
-     * Retorna o tempo agora
+     * Retorna o tempo agora,
+     * sob a forma de String.
      */
     public static String getTimeNow() {
 
@@ -584,7 +625,8 @@ public final class Umer {
 
 
     /**
-     * Retorna informação completa sobre o cliente logado
+     * Retorna informação completa sobre o cliente logado,
+     * sob a forma de String.
      */
     public static String getLoggedClientInfo() {
 
@@ -604,6 +646,10 @@ public final class Umer {
         return logged.toString();
     }
 
+    /**
+     * Retorna a lista de viagens à espera de avaliação,
+     * sob a forma de Array de Strings.
+     */
     public static String[] getUnderEvalTrips() {
         // System.out.println("Comecei getUnderEvalTrips");
 
@@ -623,7 +669,8 @@ public final class Umer {
 
 
     /**
-     * Retorna informação completa sobre o condutor logado
+     * Retorna informação completa sobre o condutor logado,
+     * sob a forma de String.
      */
     public static String getLoggedDriverInfo() {
 
@@ -644,7 +691,8 @@ public final class Umer {
     }
 
     /**
-     * Retorna disponibilidade do condutor
+     * Retorna disponibilidade do condutor,
+     * sob a forma de boolean.
      */
     public static boolean getLoggedDriverAvailability() {
 
@@ -653,6 +701,9 @@ public final class Umer {
         return logged.isAvailable();
     }
 
+    /**
+     * Retorna true caso hajam updates para a GUI e false caso não.
+     */
     public static boolean userHasUpdates() {
         return userUpdates;
     }
@@ -661,6 +712,9 @@ public final class Umer {
         userUpdates = false;
     }
 
+    /**
+     * Guarda os dados do programa.
+     */
     public static void saveAppState() {
         IO io;
         io = new IO();
@@ -674,7 +728,7 @@ public final class Umer {
 
     /**
      * Verifica se viagens hora de chegada da viagem já passou e,
-     * caso isso se verifique, termina a viagem (isCompleted = true), adicionando à lista de viagens terminadas,
+     * caso isso se verifique, termina a viagem, adicionando à lista de viagens terminadas,
      * tornando o veículo disponível novamente e retirando a viagem das tripsUnderway.
      */
     private static void endsTripsUnderway() {
@@ -701,8 +755,8 @@ public final class Umer {
     }
 
     /**
-     * Verifica se os veículos com nome na lista de espera têm condições para iniciar viagem nova,
-     * caso isso se verifique, ????????????.
+     * Verifica se os veículos com nome na lista de espera têm condições para iniciar viagem nova.
+     * caso isso se verifique, procede à criação da viagem.
      */
     private static void startOnWaitingListTrips() {
 
@@ -734,7 +788,7 @@ public final class Umer {
 
     /**
      * Retorna o veículo com o ID específico ao utilizador
-     * logado atualmente, apenas se o utilizador for um cliente
+     * logado atualmente, apenas se o utilizador for um cliente.
      */
     private static void startQueuedTrip(String taxiID, String clientID, double destPosX, double destPosY) {
 

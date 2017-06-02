@@ -1,5 +1,6 @@
 #BlueJ class context
 comment0.target=Vehicle
+comment0.text=\r\n\ Classe\ que\ representa\ um\ qualquer\ ve\u00EDculo.\r\n\ Guarda\ toda\ a\ informa\u00E7\u00E3o\ respetiva\ \u00E0\ atividade\ passada\ e\ atual\r\n\ do\ ve\u00EDculo\ em\ quest\u00E3o.\r\n\ Pode\ ser\ definido,\ posteriormente,\ como\ um\ tipo\ espec\u00EDfico.\r\n\ O\ Vehicle\ tem\ finances,\ position,\ identifier,\ type,\ currentDriver,\ waitingList\ e\ inUse.\r\n
 comment1.params=newPosX\ newPosY\ identifier\ type\ hasWaitingList
 comment1.target=Vehicle(double,\ double,\ java.lang.String,\ VehicleType,\ boolean)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Vehicle\r\n

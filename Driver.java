@@ -1,5 +1,10 @@
 import java.io.Serializable;
 
+/**
+ * Classe que é subclasse de User, e que
+ * guarda a informação específica ao condutor.
+ * O Driver tem fulfillment, rating, numberOfEvaluations, kms e available.
+ */
 public class Driver extends User implements Serializable {
 
     private static final long serialVersionUID = -7388682787774554843L;

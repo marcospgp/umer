@@ -1,5 +1,6 @@
 #BlueJ class context
 comment0.target=Client
+comment0.text=\r\n\ Classe\ que\ \u00E9\ subclasse\ de\ User,\ e\ que\r\n\ guarda\ a\ informa\u00E7\u00E3o\ espec\u00EDfica\ ao\ cliente.\r\n\ O\ Driver\ tem\ position,\ moneySpent\ e\ underEvalDrivers.\r\n
 comment1.params=newEmail\ newName\ newPassword\ newAddress\ newBirthdate\ newPosX\ newPosY
 comment1.target=Client(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ double,\ double)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Client\r\n
@@ -21,11 +22,11 @@ comment6.params=
 comment6.target=java.lang.String[]\ underEvalTrips()
 comment7.params=vehicles
 comment7.target=Vehicle\ getNearestVehicle(java.util.HashMap)
-comment7.text=\r\n\ Obter\ o\ ve\u00EDculo\ mais\ pr\u00F3ximo\ (pode\ estar\ vazio,\ ou\ o\ condutor\ pode\ n\u00E3o\ estar\ em\ servi\u00E7o)\r\n
+comment7.text=\r\n\ Obter\ o\ ve\u00EDculo\ mais\ pr\u00F3ximo.\r\n\ @return\ Vehicle\ \tRetorna\ o\ vehicle\ ou\ null,\ caso\ nenhum\ dispon\u00EDvel.\r\n
 comment8.params=vehicles
 comment8.target=Vehicle\ getNearestReadyVehicle(java.util.HashMap)
-comment8.text=\r\n\ Obter\ o\ ve\u00EDculo\ mais\ pr\u00F3ximo\ ocupado\ por\ um\ condutor\ em\ servi\u00E7o\r\n
+comment8.text=\r\n\ Obter\ o\ ve\u00EDculo\ mais\ pr\u00F3ximo\ dispon\u00EDvel\ e\ pronto.\r\n\ @return\ Vehicle\ Retorna\ o\ vehicle\ ou\ null,\ caso\ nenhum\ dispon\u00EDvel.\r\n
 comment9.params=vehicles\ userPos\ destPos\ taxiID
 comment9.target=Trip\ getTrip(java.util.HashMap,\ Point,\ Point,\ java.lang.String)
-comment9.text=\r\n\ Obtem\ uma\ viagem\ a\ pedido\ do\ cliente.\r\n\ @param\ userPosX\ ->\ posi\u00E7\u00E3o\ X\ do\ cliente\r\n\ @param\ userPosY\ ->\ posi\u00E7\u00E3o\ Y\ do\ cliente\r\n\ @param\ taxiID\ ->\ se\ for\ ""\ \u00E9\ porque\ quer\ o\ nearestVehicle,\ sen\u00E3o\ quer\ com\ ID\ especifico\r\n
+comment9.text=\r\n\ Obtem\ uma\ viagem\ a\ pedido\ do\ cliente.\r\n\ @param\ vehicle\ \tTodos\ os\ ve\u00EDculos\ existentes\r\n\ @param\ userPosX\ ->\ posi\u00E7\u00E3o\ X\ do\ cliente\r\n\ @param\ userPosY\ ->\ posi\u00E7\u00E3o\ Y\ do\ cliente\r\n\ @param\ taxiID\ ->\ se\ for\ ""\ \u00E9\ porque\ quer\ o\ nearestVehicle,\ sen\u00E3o\ quer\ com\ ID\ especifico\r\n\ @return\ Trip\ \tRetorna\ a\ viagem\ ou\ null\ caso\ esta\ n\u00E3o\ possa\ acontecer.\r\n
 numComments=12

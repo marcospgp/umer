@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=QueueInfo
+comment0.text=\r\n\ Classe\ que\ representa\ a\ informa\u00E7\u00E3o\ acerca\ do\ cliente\r\n\ e\ da\ posi\u00E7\u00E3o\ para\ onde\ deseja\ viajar,\ no\ futuro.\r\n\ \u00C9\ aplicado\ a\ uma\ queue\ existente\ nos\ ve\u00EDculos,\r\n\ mas\ apenas\ naqueles\ que\ t\u00EAm\ fila\ de\ espera.\r\n\ Tem\ client,\ posDestX\ e\ posDestY.\r\n
 comment1.params=clientName\ posX\ posY
 comment1.target=QueueInfo(java.lang.String,\ double,\ double)
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Driver\r\n
 comment2.params=
 comment2.target=java.lang.String\ getClientName()
 comment3.params=

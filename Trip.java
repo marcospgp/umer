@@ -3,6 +3,8 @@ import java.io.Serializable;
 
 /**
  * Classe que guarda informação sobre uma viagem efetuada no programa.
+ * A Trip tem vehicle, driver, origin, destination, estimatedDuration,
+ * realDuration, cost, completed, startingTime e arrivingTime.
  */
 public class Trip implements Serializable {
 
@@ -89,6 +91,7 @@ public class Trip implements Serializable {
     public Date getArrivingTime() {
         return this.arrivingTime;
     }
+
 
     public void setTimeStarted(int fastForwardValue) {
         Date startedAt = new Date();

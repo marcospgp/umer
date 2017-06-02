@@ -2,6 +2,13 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.io.Serializable;
 
+/**
+ * Classe que representa um qualquer veículo.
+ * Guarda toda a informação respetiva à atividade passada e atual
+ * do veículo em questão.
+ * Pode ser definido, posteriormente, como um tipo específico.
+ * O Vehicle tem finances, position, identifier, type, currentDriver, waitingList e inUse.
+ */
 public class Vehicle implements Serializable {
 
     private static final long serialVersionUID = -7388682787774554843L;

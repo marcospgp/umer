@@ -1,5 +1,6 @@
 #BlueJ class context
 comment0.target=User
+comment0.text=\r\n\ Classe\ que\ representa\ um\ qualquer\ utilizador.\r\n\ Este\ utilizador\ pode\ ser\ um\ Condutor\ ou\ um\ Cliente,\r\n\ classes\ depois\ definidas\ e\ que\ detalham\ o\ utilizador\ conforme\ necess\u00E1rio.\r\n\ O\ User\ tem\ email,\ name,\ password,\ address\ e\ birthdate.\r\n
 comment1.params=
 comment1.target=java.lang.String\ getEmail()
 comment2.params=

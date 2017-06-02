@@ -5,6 +5,11 @@ import java.util.Map;
 import java.util.Iterator;
 import java.io.Serializable;
 
+/**
+ * Classe que é subclasse de User, e que
+ * guarda a informação específica ao cliente.
+ * O Driver tem position, moneySpent e underEvalDrivers.
+ */
 public class Client extends User implements Serializable {
 
     private static final long serialVersionUID = -7388682787774554843L;
@@ -71,7 +76,8 @@ public class Client extends User implements Serializable {
     }
 
     /**
-     * Obter o veículo mais próximo (pode estar vazio, ou o condutor pode não estar em serviço)
+     * Obter o veículo mais próximo.
+     * @return Vehicle 	Retorna o vehicle ou null, caso nenhum disponível.
      */
     public Vehicle getNearestVehicle(HashMap vehicles) {
 
@@ -108,7 +114,8 @@ public class Client extends User implements Serializable {
     }
 
     /**
-     * Obter o veículo mais próximo ocupado por um condutor em serviço
+     * Obter o veículo mais próximo disponível e pronto.
+     * @return Vehicle Retorna o vehicle ou null, caso nenhum disponível.
      */
     public Vehicle getNearestReadyVehicle(HashMap vehicles) {
 
@@ -146,9 +153,11 @@ public class Client extends User implements Serializable {
 
     /**
      * Obtem uma viagem a pedido do cliente.
+     * @param vehicle 	Todos os veículos existentes
      * @param userPosX -> posição X do cliente
      * @param userPosY -> posição Y do cliente
      * @param taxiID -> se for "" é porque quer o nearestVehicle, senão quer com ID especifico
+     * @return Trip 	Retorna a viagem ou null caso esta não possa acontecer.
     */
     public Trip getTrip(HashMap vehicles, Point userPos, Point destPos, String taxiID) {
 

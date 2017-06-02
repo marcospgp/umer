@@ -1,6 +1,12 @@
 import java.util.ArrayList;
 import java.io.Serializable;
 
+/**
+ * Classe que representa um qualquer utilizador.
+ * Este utilizador pode ser um Condutor ou um Cliente,
+ * classes depois definidas e que detalham o utilizador conforme necessário.
+ * O User tem email, name, password, address e birthdate.
+ */
 public abstract class User implements Serializable{
 
     protected String email;

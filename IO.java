@@ -10,6 +10,9 @@ import java.io.FileNotFoundException;
 import java.util.Iterator;
 import java.util.Map;
 
+/**
+ * Classe responsável pelo save e load dos dados de utilização.
+ */
 public class IO
 {
    public static void WriteHashMap(HashMap<String, ?> l, int ID) {
@@ -85,12 +88,12 @@ public class IO
        catch (ClassNotFoundException ccex) {
             ccex.printStackTrace();
        }
-       
-      
+
+
        l.putAll(newHash);
 
        }
-    
+
 
       public static void WriteArrayList(ArrayList<Trip> l, int ID) {
 

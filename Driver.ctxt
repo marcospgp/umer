@@ -1,5 +1,6 @@
 #BlueJ class context
 comment0.target=Driver
+comment0.text=\r\n\ Classe\ que\ \u00E9\ subclasse\ de\ User,\ e\ que\r\n\ guarda\ a\ informa\u00E7\u00E3o\ espec\u00EDfica\ ao\ condutor.\r\n\ O\ Driver\ tem\ fulfillment,\ rating,\ numberOfEvaluations,\ kms\ e\ available.\r\n
 comment1.params=newEmail\ newName\ newPassword\ newAddress\ newBirthdate
 comment1.target=Driver(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Driver\r\n

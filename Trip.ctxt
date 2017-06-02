@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Trip
-comment0.text=\r\n\ Classe\ que\ guarda\ informa\u00E7\u00E3o\ sobre\ uma\ viagem\ efetuada\ no\ programa.\r\n
+comment0.text=\r\n\ Classe\ que\ guarda\ informa\u00E7\u00E3o\ sobre\ uma\ viagem\ efetuada\ no\ programa.\r\n\ A\ Trip\ tem\ vehicle,\ driver,\ origin,\ destination,\ estimatedDuration,\r\n\ realDuration,\ cost,\ completed,\ startingTime\ e\ arrivingTime.\r\n
 comment1.params=vehicle\ driver\ origin\ destination\ estimatedDuration\ realDuration\ cost
 comment1.target=Trip(Vehicle,\ Driver,\ Point,\ Point,\ double,\ double,\ double)
 comment10.params=
