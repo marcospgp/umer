@@ -96,7 +96,7 @@ Esta é uma superclasse que define variáveis como: email, nome, password, morad
 \end{description}
 
 \subsection{Vehicle}
-Em Vehicle, classe relativa aos objetos táxis da empresa, são definidas variáveis como: finanças do veículo, posição, ID, tipo de veículo, motorista atual e dois booleanos relativos a fila de espera e ocupação.
+Em Vehicle, classe relativa aos objetos Veículos da empresa, são definidas variáveis como: finanças do veículo, posição, ID, tipo de veículo, motorista atual e dois booleanos relativos a fila de espera e ocupação.
 
 \subsection{Trip}
 Na classe Trip estão as variáveis relativas às viagens e, a cada viagem, deve estar associado um veículo, um motorista, dois pontos (origem e destino), duração estimada, duração real, custo da viagem , hora de partida e chegada.
@@ -204,19 +204,86 @@ Como nos anteriores, existe também um botão para a criação de um veículo - 
 \end{center}
 
 \subsection{Cliente}
+Nos seguintes pontos se descrevem todas as funcionalidades disponíveis apenas quando o cliente inicia a sua sessão. O cliente com sessão iniciado terá a sua zona pessoal, apresentada no lado esquerdo do ecrã, cujo aspeto está presente na imagem seguinte.
+\begin{center}
+  \includegraphics[scale=0.70]{janela_cliente}\\
+  \caption{figure}{Área de cliente}
+  \label{fig:picture}
+\end{center}
 \subsubsection{Iniciar sessão}
+O cliente, após clicar no botão "Iniciar Sessão", no topo da janela, deverá introduzir os dados pedidos e clicar em "OK".
+\begin{center}
+  \includegraphics[scale=0.75]{cliente_iniciarsessao}\\
+  \caption{figure}{Início de sessão de um Cliente}
+  \label{fig:picture}
+\end{center}
 \subsubsection{Obter registo de viagens}
+Na sua área pessoal, poderá clicar em "Registo de Viagens". Desta forma, será apresentada uma janela com a informação relativa a todas as suas viagens.
+\begin{center}
+  \includegraphics[scale=0.75]{cliente_registo}\\
+  \caption{figure}{Registo de viagens de um Cliente}
+  \label{fig:picture}
+\end{center}
 \subsubsection{Iniciar viagem}
 \paragraph{Para o veículo mais próximo}
+O cliente poderá iniciar uma viagem com o veículo mais próximo e, nesse caso, não precisará de inserir qualquer identificador de veículo mas apenas a localização de destino. Automaticamente o Veículo mais próximo será pedido.
+\begin{center}
+  \includegraphics[scale=0.75]{cliente_viagemprox}\\
+  \caption{figure}{Pedido de viagem a Veículo mais próximo}
+  \label{fig:picture}
+\end{center}
 \paragraph{Para o veículo específico}
+O cliente poderá iniciar uma viagem para um veículo específico, introduzindo o ID do veículo desejado.
+\begin{center}
+  \includegraphics[scale=0.75]{cliente_viagemid}\\
+  \caption{figure}{Pedido de viagem a Veículo específico}
+  \label{fig:picture}
+\end{center}
 \subsubsection{Avaliar motorista}
+O cliente, após o término da viagem, avaliará o condutor no local "Avaliações Pendentes", presente na sua área pessoal. O valor inserido de avaliação deverá ser de 0 a 100.
+\begin{center}
+  \includegraphics[scale=0.75]{cliente_avaliacao}\\
+  \caption{figure}{Avaliação de um Condutor}
+  \label{fig:picture}
+\end{center}
 \subsubsection{Terminar sessão}
+Poderá, no fim da sua utilização, o cliente proceder ao término da sessão, no mesmo local onde iniciou sessão, sendo que agora o botão mostra "Terminar Sessão".
+\begin{center}
+  \includegraphics[scale=0.70]{terminarsessao}\\
+  \caption{figure}{Terminar sessão}
+  \label{fig:picture}
+\end{center}
 
 \subsection{Condutor}
+Serão, nos pontos seguintes, descritas todas as funcionalidades disponíveis a um Condutor registado.
 \subsubsection{Iniciar sessão}
+O condutor, após clicar no botão "Iniciar Sessão", no topo da janela, deverá introduzir os dados pedidos e clicar em "OK".
+\begin{center}
+  \includegraphics[scale=0.75]{cliente_iniciarsessao}\\
+  \caption{figure}{Início de sessão de um Condutor}
+  \label{fig:picture}
+\end{center}
 \subsubsection{Obter registo de viagens}
+Na sua área pessoal, poderá clicar em "Registo de Viagens". Desta forma, será apresentada uma janela com a informação relativa a todas as suas viagens.
+\begin{center}
+  \includegraphics[scale=0.75]{condutor_registo}\\
+  \caption{figure}{Registo de viagens de um Condutor}
+  \label{fig:picture}
+\end{center}
 \subsubsection{Alterar disponibilidade}
+O condutor poderá tomar conhecimento da sua disponibilidade atual e também alterá-la, através do botão "Alterar Disponibilidade", presente na sua área pessoal.
+\begin{center}
+  \includegraphics[scale=0.75]{condutor_disponibilidade}\\
+  \caption{figure}{Disponibilidade de um Condutor}
+  \label{fig:picture}
+\end{center}
 \subsubsection{Terminar sessão}
+Poderá, no fim da sua utilização, o condutor proceder ao término da sessão, no mesmo local onde iniciou sessão, sendo que agora o botão mostra "Terminar Sessão".
+\begin{center}
+  \includegraphics[scale=0.70]{terminarsessao}\\
+  \caption{figure}{Terminar sessão}
+  \label{fig:picture}
+\end{center}
 
 \subsection{Veículo}
 \subsubsection{Ver finanças}
