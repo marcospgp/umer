@@ -126,6 +126,107 @@ O estado da aplicação é guardado a partir de um botão na GUI que chama os m�
     \includegraphics[width = 420pt, height = 240pt]{gui}
 \end{figure}
 
+\section{Manual de Utilização}
+De seguida, se destacam os elementos que permitem proceder à utilização completa do programa, sendo que cada passo será acompanhado da devida ilustração. Todo as funcionalidades são apresentadas na mesma janela, sendo por isso fácil ter uma perspetiva completa do que acontece a cada momento.
+
+\begin{itemize}
+    \item Criar entidades;
+        \begin{itemize}
+        \item{Cliente;}
+        \item{Condutor;}
+        \item{Veículo;}
+        \end{itemize}
+    \item Cliente;
+        \begin{itemize}
+        \item{Iniciar sessão;}
+        \item{Obter registo de viagens;}
+        \item{Iniciar viagem;}
+            \begin{itemize}
+            \item{Para o veículo mais próximo;}
+            \item{Para o veículo específico.}
+            \end{itemize}
+        \item{Avaliar motorista;}
+        \item{Terminar sessão.}
+        \end{itemize}
+    \item Condutor;
+        \begin{itemize}
+        \item{Iniciar sessão;}
+        \item{Obter registo de viagens;}
+        \item{Alterar disponibilidade;}
+        \item{Terminar sessão.}
+        \end{itemize}
+    \item Veículo;
+        \begin{itemize}
+        \item{Ver finanças.}
+        \end{itemize}
+    \item Outras funcionalidades.
+        \begin{itemize}
+        \item{Guardar o estado do programa;}
+        \item{Associar condutor a veículo;}
+        \item{5 piores condutores;}
+        \item{10 clientes que mais gastam;}
+        \item{Avançar no tempo.}
+        \end{itemize}
+\end{itemize}
+
+\label{sec:manual}
+
+\subsection{Criar entidades}
+Foram disponibilizados botões específicos para cada entidade, podendo esta ser um Cliente, um Condutor ou um Veículo. Procedeu-se desta forma pois é mais intuitivo para um possível futuro utilizador. Todos as entidades registadas serão apresentadas no lado direito da janela do programa, como é visível na seguinte figura.
+\begin{figure}
+  \centering
+      \includegraphics[width=0.5\textwidth]{janela_registados}}
+  \caption{Entidades registadas}
+\end{figure}
+\subsubsection{Cliente}
+Para proceder à criação de um cliente, bastará clicar no botão "Registar Cliente", facilmente identificável no topo da interface. Depois disso, o utilizador terá de preencher os campos "Email", "Nome", "Password", "Endereço" (morada), "Nascimento" (data em qualquer formato) e "Posição" (X e Y). De seguida, clicará em "OK" e ficará registado no sistema.
+\begin{figure}
+  \centering
+      \includegraphics[width=0.5\textwidth]{criar_cliente}}
+  \caption{Criação de um Cliente}
+\end{figure}
+
+\subsubsection{Condutor}
+Junto do botão para criação de um Cliente existe também o botão "Registar Condutor", através do qual será possível criar um novo Condutor. Obviamente, a posição do motorista não tem interesse, pelo que não é pedida.
+  \centering
+      \includegraphics[width=0.5\textwidth]{criar_condutor}}
+  \caption{Criação de um Condutor}
+\end{figure}
+
+\subsubsection{Veículo}
+Como nos anteriores, existe também um botão para a criação de um veículo - "Criar veículo". Será pedido o "Identificador" (do Veículo), o "Tipo" do mesmo (LIGHT para carros 5 lugares, NINESEAT para carros 9 lugares e MOTORCYCLE para motas), a "Posição" em que se encontra e o utilizador deverá selecionar o campo "Lista de Espera" caso pretenda que aquele veículo tenha essa característica.
+\begin{figure}
+  \centering
+      \includegraphics[width=0.5\textwidth]{criar_veiculo}}
+  \caption{Criação de um Veículo}
+\end{figure}
+
+\subsection{Cliente}
+\subsubsection{Iniciar sessão}
+\subsubsection{Obter registo de viagens}
+\subsubsection{Iniciar viagem}
+\paragraph{Para o veículo mais próximo}
+\paragraph{Para o veículo específico}
+\subsubsection{Avaliar motorista}
+\subsubsection{Terminar sessão}
+
+\subsection{Condutor}
+\subsubsection{Iniciar sessão}
+\subsubsection{Obter registo de viagens}
+\subsubsection{Alterar disponibilidade}
+\subsubsection{Terminar sessão}
+
+\subsection{Veículo}
+\subsubsection{Ver finanças}
+
+\subsection{Outras funcionalidades}
+\subsubsection{Guardar o estado do programa}
+\subsubsection{Associar condutor a veículo}
+\subsubsection{5 piores condutores}
+\subsubsection{10 clientes que mais gastam}
+\subsubsection{Avançar no tempo}
+
+
 \section{Conclusões}
 \label{sec:conclusao}
 Este projeto serviu para aprofundarmos o conhecimento da linguagem JAVA, assim como as APIs que lhe estão associadas. Achamos que a realização de um trabalho deste tipo permite uma consolidação proveitosa da linguagem, não só em termos teóricos como também em termos práticos. Permite também melhorar as habilidades na resolução de problemas. No entanto, apesar de nos termos proposto a fazer todos os pontos do trabalho, acabamos por não ter tempo para implementar as empresas de taxis e o random dos condutores. Não temos dúvidas de que o conseguimos fazer, mas tivemos de dedicar tempo precioso a outras UCs. Fomos além do pedido e fizemos uma GUI, o que nos poderá ter custado tempo útil para fazermos os pontos pedidos que faltaram, mas acreditamos que ficamos a conhecer melhor outra parte da programação que até ao momento desconhecíamos e, assim sendo, cremos ter sido vantajoso este esforço que sabemos não contar para avaliação.
